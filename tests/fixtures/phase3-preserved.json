@@ -1,0 +1,46 @@
+[
+  {
+    "path": "src/content/domTodo.ts",
+    "sha256": "41771650abe168ed4e2074284cd6960630b44fb3cf3acff1911a22bd64a63222"
+  },
+  {
+    "path": "src/content/domQuestions.ts",
+    "sha256": "b012ff743b5cc6b018a8f3fbf284b8814f88a10c93ab7c2a5d8250ea8ac9be92"
+  },
+  {
+    "path": "src/content/todoPhase3.ts",
+    "sha256": "69206aec6afbc2a4759ce812b46ba0e775dbc3ee9905b77c7d65249ef18acd53"
+  },
+  {
+    "path": "src/content/todoPhase3Questions.ts",
+    "sha256": "05846f92b922b001048d6bc4e17a4c3500b369957a0bd234723a7260ff53c088"
+  },
+  {
+    "path": "src/content/todoPhase3References.ts",
+    "sha256": "7a5e62d3fa1dc70d37f4a243ff7fba4ecd0cbdff588538d73f3e3ef6e28b9eab"
+  },
+  {
+    "path": "src/persistence/store.ts",
+    "sha256": "002a54600ede3c38a27ee9c3fa3b17f001292068ccfa5f9b9cc4a69082c4bb6c"
+  },
+  {
+    "path": "src/lesson/engine.ts",
+    "sha256": "c75e679b9659bea40f0e95901b07111069ab4bc3e4b8ca61712392bbbed541ce"
+  },
+  {
+    "path": "src/runtime/compiler.worker.ts",
+    "sha256": "60c99308997e274e65ad86390792d2be4b1c9c9f3c77ccd60acb0ab485b8bae6"
+  },
+  {
+    "path": "src/runtime/loopInstrumentation.ts",
+    "sha256": "a0559e6278cd47bd4a5a69cb9ab84aa5c53dcdcf8004f1335737ab28564b9f9a"
+  },
+  {
+    "path": "src/runtime/trainingStorage.ts",
+    "sha256": "a9fe0dda95d705949070d13ef84001cc596e23d5c2143e8d5e4332ce2e5af5fb"
+  },
+  {
+    "path": "package-lock.json",
+    "sha256": "4d7fb7c4c31953edd0409bdc0b9dd5198cb49825a5eb9a5a134d6474c2e3d638"
+  }
+]

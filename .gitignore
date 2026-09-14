@@ -1,0 +1,7 @@
+node_modules/
+dist/
+public/runtime/
+src/runtime/vendor.generated.ts
+test-results/
+playwright-report/
+.DS_Store
