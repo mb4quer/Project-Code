@@ -1,0 +1,74 @@
+[
+  {
+    "path": "src/content/domTodo.ts",
+    "sha256": "bd40c4432ad838742a1e79b551cbba9c8bfe894f021cd125ee5ea2eea40223f6"
+  },
+  {
+    "path": "src/content/domQuestions.ts",
+    "sha256": "f5925210f08a89d5bd48e5532bb1625b09beff95c55173c936eb8db8782cd470"
+  },
+  {
+    "path": "src/content/todoPhase3.ts",
+    "sha256": "69206aec6afbc2a4759ce812b46ba0e775dbc3ee9905b77c7d65249ef18acd53"
+  },
+  {
+    "path": "src/content/todoPhase3Questions.ts",
+    "sha256": "05846f92b922b001048d6bc4e17a4c3500b369957a0bd234723a7260ff53c088"
+  },
+  {
+    "path": "src/content/todoPhase3References.ts",
+    "sha256": "fbd8075effdd353551daa37f02156ffcf535325b373dbc3d6770a4acd38a38d9"
+  },
+  {
+    "path": "src/content/weather.ts",
+    "sha256": "ed8393f5d882425b5a733e41120ab4bef6d537a8ff569c06839fdcd4d1ca7b17"
+  },
+  {
+    "path": "src/content/weatherQuestions.ts",
+    "sha256": "3bbdfd7440def0d8665ca29c832f09d625720b672e4bc545b379850f9e886a59"
+  },
+  {
+    "path": "src/content/weatherReferences.ts",
+    "sha256": "9d925adb8b1ed4a89036761ff0921c8b03e7c99861ee44c8552e7c005dd88c35"
+  },
+  {
+    "path": "src/runtime/weatherApi.ts",
+    "sha256": "51656eab080e03b2f8cf9e1fc601311446f42a99b0a98671720741e9afff03d6"
+  },
+  {
+    "path": "src/runtime/trainingStorage.ts",
+    "sha256": "a9fe0dda95d705949070d13ef84001cc596e23d5c2143e8d5e4332ce2e5af5fb"
+  },
+  {
+    "path": "src/runtime/compiler.worker.ts",
+    "sha256": "7837a6730eb326871b703f25bd6b2dcb2f979525f282d9395ece109561334619"
+  },
+  {
+    "path": "src/runtime/loopInstrumentation.ts",
+    "sha256": "34c63b6ffa65e6427aa833dae5810545216cbccd7698cf082a18ddd5f9d59086"
+  },
+  {
+    "path": "src/runtime/index.ts",
+    "sha256": "be10e6e6652218c675561a7407aefac00a870c42d153aa93c5a4e41d48eb858a"
+  },
+  {
+    "path": "src/persistence/store.ts",
+    "sha256": "002a54600ede3c38a27ee9c3fa3b17f001292068ccfa5f9b9cc4a69082c4bb6c"
+  },
+  {
+    "path": "src/lesson/engine.ts",
+    "sha256": "a98a9d2f6e4ef0a96ae1e91d78cc45e8143c9686dff1d418c223c9aa78133b08"
+  },
+  {
+    "path": "src/exportProject.ts",
+    "sha256": "eac4237330697de1c609aafc8c48d3deda53da4bf88a2a08d51f706e503973c2"
+  },
+  {
+    "path": "src/contracts.ts",
+    "sha256": "8c38e5ea33b7be8948a489f1267fa34747027edeeed6dc096446925b0a595769"
+  },
+  {
+    "path": "package-lock.json",
+    "sha256": "f324bb0d70d407aa90ab4b44991421f5f37d8d97b5d5c6ef8b7e1313c047c6b9"
+  }
+]

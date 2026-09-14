@@ -19,7 +19,7 @@ async function grade(page: Page, files: Files, assessmentId: string) {
   return page.evaluate(async ({ files, assessmentId, graderModule }) => {
     const { createChallengeGrader } = await import(graderModule);
     const container = document.createElement('div');
-    container.hidden = true;
+    container.className = 'grading-sandbox'; container.setAttribute('aria-hidden', 'true');
     document.body.append(container);
     const grader = createChallengeGrader(container, () => {});
     try { return await grader.grade(files, assessmentId); }
@@ -85,3 +85,4 @@ test.describe('Phase 4 Async Weather behavioral matrix', () => {
     }
   });
 });
+

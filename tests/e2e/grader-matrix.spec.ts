@@ -19,7 +19,7 @@ async function grade(page: Page, files: Files, assessmentId: string) {
     const graderUrl = '/src/lesson/grader.ts';
     const { createChallengeGrader } = await import(graderUrl);
     const container = document.createElement('div');
-    container.hidden = true; document.body.append(container);
+    container.className = 'grading-sandbox'; container.setAttribute('aria-hidden', 'true'); document.body.append(container);
     const grader = createChallengeGrader(container, () => {});
     try { return await grader.grade(files, assessmentId); }
     finally { grader.dispose(); container.remove(); }
@@ -80,3 +80,4 @@ test.describe('behavioral Todo grader matrix', () => {
     expect((await grade(page, { ...full, 'main.js': 'while (true) {}' }, 'todo-dom-combine')).passed).toBe(false);
   });
 });
+

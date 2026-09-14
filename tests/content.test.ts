@@ -35,14 +35,14 @@ function publishCompleteFirstTopic(data: Curriculum) {
 }
 
 describe('Versioned content contract', () => {
-  it('accepts seven preserved Todo and eight Weather topics, retaining 14 later drafts', () => {
+  it('accepts seven Todo, eight Weather and six React topics, retaining eight capstone drafts', () => {
     const result = validateContent(curriculum);
     expect(result.success).toBe(true);
     expect(curriculum.projects.map((project) => project.title)).toEqual(['Vanilla Todo', 'Async Weather', 'React Task Dashboard', 'Original Amazon-inspired Ecommerce']);
     expect(curriculum.projects.every((project) => project.topicIds.length >= 5 && project.topicIds.length <= 8)).toBe(true);
-    expect(curriculum.topics.filter(topic => topic.status === 'published')).toHaveLength(15);
+    expect(curriculum.topics.filter(topic => topic.status === 'published')).toHaveLength(21);
     expect(curriculum.topics[0].assessmentQuestions).toHaveLength(32);
-    expect(curriculum.topics.slice(15).every((topic) => topic.status === 'draft' && topic.assessmentQuestions.length === 0)).toBe(true);
+    expect(curriculum.topics.slice(21).every((topic) => topic.status === 'draft' && topic.assessmentQuestions.length === 0)).toBe(true);
     expect(curriculum.topics.every((topic) => topic.challenges.map((challenge) => challenge.order).join(',') === '1,2,3')).toBe(true);
   });
 
@@ -99,3 +99,4 @@ describe('Versioned content contract', () => {
     }
   });
 });
+
