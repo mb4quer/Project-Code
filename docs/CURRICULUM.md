@@ -1,6 +1,6 @@
 # Curriculum outline
 
-Curriculum version `1`, learning path `javascript-to-projects`, now contains seven published Vanilla Todo topics, eight published Async Weather topics, and 14 draft topics across four projects. The two runtime demos in `src/data/demos.ts` remain executable proofs, separate from course content. Published IDs are now durable; future edits must preserve assessment identities.
+Curriculum version `1`, learning path `javascript-to-projects`, now contains seven published Vanilla Todo topics, eight published Async Weather topics, six in-progress React Task Dashboard topics, and eight later draft topics across four projects. The current inventory is 21 published topics, 105 activities, 44 blanks, 512 questions, and 63 challenges. The two runtime demos in `src/data/demos.ts` remain executable proofs, separate from course content. Published IDs are now durable; future edits must preserve assessment identities.
 
 The four project sequence is cumulative:
 
@@ -19,7 +19,7 @@ The topic gate records every guided activity ID and all three challenge IDs. It 
 
 Run `npm run validate:content` to validate paths, stable IDs, references, prerequisites, ordering, challenge/gate coverage, and published-content completeness. The validator rejects a draft placeholder promoted to published status.
 
-Content validation covers 4 projects / 29 topics: 15 authored Todo/Weather topics and 14 later drafts. The original pilot bank and IDs are preserved. No draft receives automatic completion.
+Content validation covers 4 projects / 29 topics: 21 authored Todo/Weather/React topics and eight later drafts. The original pilot bank and IDs are preserved. No draft receives automatic completion.
 
 ## Published DOM/Todo pilot
 
@@ -72,3 +72,11 @@ Eight topics retain the existing outline IDs and sequence. Each contains read/gu
 The injected fetch-like API is not unrestricted network fetch. Fixture names are London (18°C, Cloudy), Paris (22°C, Clear), Empty/unknown (null), Error (resolved 503), Offline (rejected), Malformed (invalid data), Slow (80ms), Fast (5ms), SlowError (80ms rejected) and Literal (HTML-like strings with 0°C). Grading has only fixtures. The optional Open-Meteo live adapter requires explicit host permission for the Run and an in-app choice; it is never needed for progression. Export starts in fixtures and contains the adapter and original source; standalone Live uses the app opt-in without the course host checkbox.
 
 All seven Todo topics remain byte-for-byte preserved. Weather's cumulative ten-distinct-correct rule uses the unchanged engine: misses retain credits, reveals retire identities and schedule unseen concept equivalents, reserve guards preserve attainability, and completed work remains reviewable. Weather completion unlocks the first React draft without publishing or completing it. See WEATHER_QUESTION_REVIEW.md for final editorial review and HANDOFF.md for acceptance evidence.
+
+## React Task Dashboard curriculum (Phase 5 in progress)
+
+The six React topics follow Weather in their saved order and are currently authored as the Phase 5 scope: component planning and stack tradeoffs; React setup; props and layout; task state and interactions; effects, persistence, and errors; and testing and export. Each topic has three readings, two guided-coding activities, two blanks, 24 reviewed questions (six per reasoning category), and exactly three independent apply/debug/combine challenges. React contributes 30 activities, 12 blanks, 144 questions, and 18 challenges. Together with the published Todo and Weather content, the current published inventory is 21 topics, 105 activities, 44 blanks, 512 questions, and 63 challenges. Phase 5 remains in progress pending integration and acceptance checks.
+
+React prerequisites are taught in sequence: planning and component responsibilities precede JSX setup; setup precedes props and accessible layout; layout precedes state updates; state precedes effects and persistence; and those foundations precede testing and export. The first React topic is unlocked by completed Weather work. Existing Todo and Weather workspaces, saved source, checkpoints, mastery, challenge work, schema-1 data, and scoped training data remain separate and are resumed without automatic completion or replacement. App-level task-envelope migration covers validated legacy `Task[]` data into `{version:2,tasks}` while host migration/resume remains a separate persistence concern.
+
+The effects topic teaches dependency boundaries, ordinary cleanup, `AbortController`, retired-request guards on both success and error paths, ordered writes, validation, migration, and accessible loading/empty/error recovery. React task data uses deterministic local fixtures; no account sync or server runtime is added. Testing and export teach observable DOM behavior, repeatable cleanup, compiled browser output, and a static-server handoff. The runnable export is a compiled snapshot with editable `source/`, requires re-export after source changes, and is preparation for deployment rather than publication. Accounts, cloud durability, terminal workflows, real payments, and server-side React behavior remain outside this phase.

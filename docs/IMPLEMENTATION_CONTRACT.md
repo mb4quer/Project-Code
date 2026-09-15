@@ -1,4 +1,6 @@
-# Phase 1 shared contracts
+# Phase 1 shared contracts (historical)
+
+This document records the original Phase 1 implementation assignments. Its phase limits and file ownership are historical, not current continuation instructions. Read PROJECT_BRIEF.md and docs/HANDOFF.md for the active phase, then docs/ARCHITECTURE.md for the current additive runtime, storage and grading interfaces.
 
 Owner: Astra integrates and reviews. No recursive delegation. App is a local-only Vite + TypeScript workspace (host UI uses DOM, no framework required). Only Phase 1 is implemented. Node 22 is present. Shared package/config/contracts are owned by Astra.
 

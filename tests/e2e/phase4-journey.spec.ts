@@ -63,7 +63,10 @@ test('finish all eight Weather topics with resume, retired questions and prior p
     for (const [id, progress] of Object.entries(previousMastery)) expect(completed.learning.topics[id]).toEqual(progress);
     await page.locator('#dashboard-nav').click();
   }
-  const weather = curriculum.topics[15]; await expect(page.locator(`[data-topic="${weather.id}"]`)).toContainText('Unlocked');
+  const react = curriculum.topics[15];
+  await expect(page.locator(`[data-topic="${react.id}"]`)).toContainText('Available');
+  await expect(page.locator(`[data-topic="${react.id}"]`)).toContainText('0 / 10 distinct correct');
+  await expect(page.locator(`[data-open-topic="${react.id}"]`)).toBeEnabled();
   await page.screenshot({ path: 'test-results/phase4-dashboard.png', fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator('[data-open-topic="weather-testing-and-export"]').click();

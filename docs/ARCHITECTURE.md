@@ -1,5 +1,7 @@
 # Architecture
 
+Current continuation: Phase 5 React acceptance. Earlier phase sections below are historical; the Phase 5 section describes the current additions. Exact verification results are recorded in HANDOFF.md.
+
 ## Stack decision
 
 **Vite + TypeScript + a small DOM-based host**, served as static assets, with **esbuild-wasm in a Web Worker** for learner compilation. No platform backend or account in Phase 1. Pinned installed versions are in `package-lock.json`.
@@ -107,3 +109,15 @@ The eight Weather topics keep all existing outline IDs and prerequisites, follow
 Weather question banks are static reviewed content with 24 unique prompts per topic and at least two items per equivalence group. No new progression or persistence mechanism was introduced. The final app smoke saves/restores source mode and control state, refuses pending normal work, and tests observable London, invalid-input and HTTP-error paths. The full grading increment perturbs London data independently of the HTTP fixture to reject a missing result assertion.
 
 Phase 4 integration accepted 2026-09-14: 63 unit tests, valid content (15 published/14 drafts), TypeScript/Vite build, 33 development and 19 production browser scenarios passed. Serialized fixture/live adapters execute correctly in the production export. See HANDOFF.md for commands, migration and preservation evidence, the earlier isolated test timeout and the Phase 5 prompt. No Phase 5 code is implemented.
+
+## Phase 5 React dashboard
+
+GitHub commit `7999236` adds six published React topics without changing Session schema 1, learning extension version 1, the compiler, runtime capability interfaces, or dependency lockfile. `src/content/react.ts`, `reactQuestions.ts` and `reactReferences.ts` contain the lesson sequence, 144 questions and editable reference programs. `src/lesson/reactAssessment.ts` supplies browser behavior checks; the existing grader dispatches to them and gives persistence assessments isolated training-storage scenarios.
+
+The learner dashboard mounts through `main.jsx` and composes JSX components. Task updates preserve stable IDs and derive filters/counts. The durable reference restores the known legacy task array or current `{version:2,tasks}` envelope, validates records and duplicate IDs, preserves invalid data until explicit recovery, and queues writes. This version 2 is the learner task payload, not a course-session schema change. Failed saves retain visible edits. Separate project/challenge training maps continue to use the existing host capability.
+
+A local `taskApi.js` module supplies deterministic delayed task fixtures. Effects teach cleanup, cancellation, stale success/error protection, and accessible loading/empty/error feedback. This module performs no network requests and introduces no new host API. Weather retains its separate optional live capability and consent boundary.
+
+React exports use the existing compiler and ZIP exporter. The root contains bundled React and the compiled dashboard, while `source/` contains exact editable originals. Standalone persistence uses the existing project-namespaced adapter. Editing source alone does not rebuild root index.html; edit in the host and export again. No course mastery, checkpoints, or saved training-map snapshot is exported.
+
+Acceptance covers published references, unfinished starters, incorrect behavior, distinct early/full increments, storage recovery and reload, the six-topic UI journey, and standalone export. The continuation repairs defects found by those checks before sign-off; see HANDOFF.md for final evidence. Client-visible grading remains educational checking. The existing optimistic storage and limited hostile-code isolation constraints still apply. Ecommerce and accounts remain future phases.

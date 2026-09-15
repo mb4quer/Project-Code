@@ -60,18 +60,18 @@ const setup: Spec[] = [
  q('application','react-tradeoff','apply-stack','A requirement says “reusable interactive task rows.” Which stack choice fits? A) React with a local build; B) static HTML copied by hand for every row.',['A'],'Component reuse and interaction fit the selected React stack.'),
  q('application','jsx-transform','apply-fragment','Complete the self-closing list tag inside a fragment: `return <><h1>Tasks</h1><ul ____></>;`',['/'],'JSX closes the empty ul with />.' ,'code'),
  q('application','module-entry','apply-create-root','Complete the mount call: `createRoot(document.getElementById(\'root\')).____(<App />);`',['render'],'The root’s render method mounts the component tree.' ,'code'),
- q('application','dependency-boundary','apply-local-import','Complete a local component import: `import TaskList from \"./components/____.jsx\";`',['TaskList'],'The module specifier resolves to the local component file.' ,'code'),
+ q('application','dependency-boundary','apply-local-import','The file is components/TaskList.jsx and exports default TaskList. Complete its local import: `import TaskList from \"./components/____.jsx\";`',['TaskList'],'The module specifier resolves to the local component file.' ,'code'),
  q('application','import-export','apply-export','Complete the declaration for a named component export: `____ function TaskList() { return null; }`',['export'],'The export keyword exposes the named component.' ,'code'),
  q('application','build-output','apply-script','A deploy script should run the project build. Which command is correct? A) `npm run build`; B) `npm run source`.',['A'],'The build script produces the compiled deployment artifact.'),
 ];
 
 const layout: Spec[] = [
  q('prediction','props-data-flow','predict-prop','Parent passes `title="Today"` and child renders `{title}`. What text appears?',['Today'],'Props carry the parent value into the child render.'),
- q('prediction','callback-events','predict-callback','A button invokes `onDelete(task.id)` and the parent removes that id. Which record changes?',['the task with that id'],'The callback carries the selected identity back to the owner.'),
+ q('prediction','callback-events','predict-callback','A button invokes `onDelete(task.id)` and the parent removes that id. Which record changes? Answer the task with that id or every task.',['the task with that id'],'The callback carries the selected identity back to the owner.'),
  q('prediction','semantic-layout','predict-landmark','A dashboard uses `<main>` around its primary content. Does that provide a semantic landmark?',['yes'],'main identifies the document’s primary content region.'),
  q('prediction','label-association','predict-label','A `<label htmlFor="task-title">` accompanies `<input id="task-title">`. Does clicking the label target the input?',['yes'],'Matching htmlFor and id associate the label with its control.'),
  q('prediction','keyboard-accessibility','predict-button','A clickable action is rendered as a native `<button>`. Is it keyboard-operable by default?',['yes'],'Native buttons participate in keyboard focus and activation behavior.'),
- q('prediction','component-composition','predict-children','A Panel renders `{children}` inside its section. What does a nested heading become?',['content inside the Panel'],'Children let the caller compose content into the panel slot.'),
+ q('prediction','component-composition','predict-children','A Panel renders `{children}` inside its section. What does a nested heading become? Answer content inside the Panel or content outside the Panel.',['content inside the Panel'],'Children let the caller compose content into the panel slot.'),
  q('debugging','props-data-flow','debug-mutated-prop','TaskRow changes `props.task.done = true`. Choose the repair: A) call an owner callback; B) mutate the prop.',['A'],'Props are read-only inputs; state transitions belong to the owner.'),
  q('debugging','callback-events','debug-event-shape','A handler expects an id but receives the click event because `onClick={onDelete}` was passed. Choose the repair: A) wrap it as `onClick={() => onDelete(id)}`; B) parse event.target text.',['A'],'A wrapper supplies the intended record id rather than the browser event object.'),
  q('debugging','semantic-layout','debug-div-button','A clickable div is unreachable by keyboard. Choose the repair: A) add a larger margin; B) use a button.',['B'],'Native controls supply semantics and keyboard behavior.'),
@@ -94,7 +94,7 @@ const layout: Spec[] = [
 
 const state: Spec[] = [
  q('prediction','immutable-update','predict-toggle','Tasks are [{id:1,done:false},{id:2,done:false}]. Toggling id 2 should leave id 1 unchanged. Which operation fits? A) map; B) sort.',['A'],'map can replace only the matching record while preserving the others.'),
- q('prediction','functional-updater','predict-batched','Two add events use `setTasks([...tasks, item])` in one event. Can the second update lose the first item?',['yes'],'Both closures can read the same stale snapshot; a functional updater sequences from latest state.'),
+ q('prediction','functional-updater','predict-batched','One handler queues two calls to `setTasks([...tasks, item])` using the same render snapshot. Can the second update lose the first item?',['yes'],'Both closures can read the same stale snapshot; a functional updater sequences from latest state.'),
  q('prediction','stable-key','predict-key-reorder','A task moves from position 2 to position 1 but keeps id 8. Should its key change?',['no'],'The key follows record identity, not position.'),
  q('prediction','filter-derived-state','predict-filter','Three tasks exist and one is complete. Active filtering should change which rows render or mutate the task array?',['which rows render','the projection'],'Filtering is derived view state and leaves source records intact.'),
  q('prediction','controlled-input','predict-input','An input has `value={draft}` and `onChange={e => setDraft(e.target.value)}`. What is its source of truth?',['draft state','React state'],'The controlled value comes from component state.'),
@@ -121,7 +121,7 @@ const state: Spec[] = [
 
 const effects: Spec[] = [
  q('prediction','effect-dependencies','predict-effect','An effect reads `userId` and lists `[userId]` as dependencies. When userId changes, should it rerun?',['yes'],'A changed dependency schedules the effect again.'),
- q('prediction','cleanup-cancellation','predict-cleanup','A request effect uses an abort-aware fixture and cleanup calls `controller.abort()` before the next request. What should the fixture do?',['reject or stop the old request','cancel the old request'],'An abort-aware operation cooperates with cleanup and should not complete normally.'),
+ q('prediction','cleanup-cancellation','predict-cleanup','A request effect uses an abort-aware fixture and cleanup calls `controller.abort()` before the next request. Choose: cancel the old request or complete the old request.',['reject or stop the old request','cancel the old request'],'An abort-aware operation cooperates with cleanup and should not complete normally.'),
  q('prediction','stale-async','predict-stale','Search A starts, then Search B starts and resolves first. With request identity guarding, which result remains?',['B'],'The latest request is allowed to commit; A is stale.'),
  q('prediction','storage-serialization','predict-save','Tasks are `[A]` and storage accepts strings. What representation should setItem receive?',['JSON.stringify(tasks)','a JSON string'],'The persistence boundary stores a serialized snapshot.'),
  q('prediction','validation-recovery','predict-bad-save','Stored JSON parses to `{version:2,tasks:"wrong"}`. Is this a valid current envelope?',['no'],'The envelope version is current, but tasks must still be a validated array.'),

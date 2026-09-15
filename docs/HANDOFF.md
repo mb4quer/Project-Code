@@ -1,30 +1,50 @@
-# Handoff — Phase 4
+# Handoff — Phase 5 React acceptance
 
-Updated 2026-09-14. **Phase 4 is complete and accepted.** Stop after Phase 4. Phase 5 remains unimplemented.
+Updated 2026-09-15. This continuation follows GitHub commit `799923694269cec1c257b597e9b28349eeda4cee` (Add React curriculum assessment flow). The checkout was clean and matched origin/main; a fetch and remote head check found no newer branches or pull-request heads. The prior handoff described Phase 4, while the code already contained Phase 5. This task verifies and finishes that implementation, then stops after Phase 5. Phase 6 is not implemented.
 
-## Verified starting point and preserved work
+## Preserved baseline
 
-Before any change, Astra read the five continuity files and verified the Phase 3 repository: 44 unit tests, content inventory 4 projects / 7 published topics / 22 drafts, and all 24 existing Edge scenarios passed. The app files were already untracked. No commits, branch changes, dependency upgrades, deployment or user-browser data modifications were made.
+The initial continuation check found 70 passing unit tests and one preservation failure, valid content (4 projects / 21 published topics / 8 drafts), and a passing production build. The failure was caused by Git checkout line endings: all 18 protected files matched the pre-React commit after LF/CRLF normalization, and all existing expected hashes matched CRLF text. The test now normalizes only line endings to the immutable manifest format. Expected hashes and protected source files were not changed. The corrected suite passed all 71 tests.
 
-Phase 1 vanilla/React execution, editor, compilation errors, common-loop guard, console, Run/Stop, assets, resizing, autosave, checkpoints, reset, backup/restore and stale-tab behavior remain covered. Phase 2/3 Todo IDs, identities, question banks and reference source are unchanged. SHA-256 checks in tests/fixtures/phase3-preserved.json protect the original content, engine, store, compiler, loop instrumentation, training-storage module and lockfile.
+Session schema 1, learning extension version 1, Todo and Weather published identities/mastery, demo/project/challenge drafts, checkpoints, scoped training maps, the runtime/compiler and dependency lockfile remain protected. React initializes only missing workspaces. Weather fixtures and explicit optional live permission retain their existing behavior. Local persistence remains optimistic rather than atomic across tabs.
 
-Schema 1 and learning extension version 1 are unchanged. Existing demo, project and challenge files, selected files, versions, checkpoints, training maps and mastery remain separate and survive migration/resume. Entering Weather initializes only missing workspaces. Later React/ecommerce drafts are not auto-completed. Browser tests use isolated Edge profiles rather than the user's ordinary profile.
+## React scope
 
-## Completed Weather scope
+Six published topics retain their saved order: component planning and stack tradeoffs; React setup; props/layout; task state; effects/persistence/error recovery; testing/export. They contain 30 interleaved activities, 12 blanks, 144 questions (24 per topic, six per reasoning category), and exactly 18 independent apply/debug/combine challenges. Combined inventory: 21 published topics, 105 activities, 44 blanks, 512 questions, and 63 challenges. Eight ecommerce topics remain drafts.
 
-Eight published topics retain the outlined sequence and IDs: scope/data contract; modules/request stack; setup/search form; promises/async control flow; fetch/render; loading/empty/error states; stale responses/validation; testing/export. They follow the complete Todo curriculum and unlock the first React draft only after Weather completion.
+The unchanged progression engine requires activities/blanks, ten distinct correct credits and three challenge passes. Misses preserve credit; reveal retires the identity and requires a fresh equivalent. Entering a lesson never replaces existing project source. React completion unlocks only the first ecommerce draft.
 
-Weather contains 40 interleaved activities (24 readings and 16 graded guided increments), 16 conceptual/code blanks, 192 reviewed questions (24 per topic; six each of prediction/debugging/explanation/application), and exactly 24 separate behavior-graded challenges (three per topic). Combined published inventory: 15 topics, 75 activities, 32 blanks, 368 reviewed questions and 45 challenges; 14 later topics remain drafts. Gates require activities/blanks, ten distinct correct credits and all three challenges. Misses preserve credits; revealed identities are retired and require fresh equivalents. Review notes are in WEATHER_QUESTION_REVIEW.md.
+The reference uses real JSX components, immutable task updates, duplicate-safe identity, derived filters/counts, labelled controls and live feedback. Persistence recognizes a validated legacy array or `{version:2,tasks}` learner payload; unknown versions, duplicate IDs, malformed JSON and read failures require explicit recovery. This payload version is independent of the course-session schema. Writes are ordered; failure retains visible edits. Local async task fixtures teach cleanup and stale success/error protection without network access.
 
-The reference app validates trimmed city length 2–80, checks HTTP success before reading JSON, validates normalized fields including finite temperatures, renders literal data, separates loading/no-match/HTTP/malformed/offline states and guards success/error completions with request identity. Invalid submissions and mode changes retire pending work. Smoke runs real form success, invalid-input no-call and HTTP-error assertions, restores all prior form/output/mode/control state, and refuses to interrupt a pending normal lookup.
+## Continuation fixes and verification
 
-## Deterministic fixtures and optional live data
+The continuation corrects grading assumptions about seeded completion counts, requires the full scope flow, separates setup's first and full increments, and makes unfinished starters fail for concrete behavioral defects. State mutants now remain valid JavaScript so their behavior can be assessed. Layout lessons name the supplied static fixture labels used by their checks.
 
-Run begins in Fixture mode. London is 18°C/Cloudy; Paris 22°C/Clear; Empty and unknown cities return null; Error/Error503 resolves HTTP 503; Offline rejects; Malformed has invalid field types; Slow resolves after 80 ms; Fast after 5 ms; SlowError rejects after 80 ms; Literal exercises zero Celsius and HTML-looking text. These are simulated fixtures, not current observations. All grading is fixture-only and needs no network.
+Async fixture output is separate from saved dashboard tasks. Hiding the panel retires pending requests and clears its output; callbacks that ignore abort are guarded. Smoke exercises blank rejection, literal add, completion, filtering and a persisted result. It snapshots existing data before changing anything, refuses startup/pending sync, prevents overlapping interaction, drains queued writes, and restores task/input/filter/error/storage state before reporting completion. Failed initial snapshot reads never trigger destructive cleanup. The standalone export tests inject read/write failures and verify the original saved record remains intact.
 
-Optional Live requires the host checkbox **Allow optional live weather for this Run**, followed by the app opt-in and Live selection. The host sends searched cities through fixed Open-Meteo geocoding/forecast adapters. It omits cookies/referrers, rejects redirects, validates responses, limits each streamed body to 65,536 bytes, and uses a six-second deadline. The bridge validates current frame/run/nonce/request identity, bounds replies, allows four pending and six live lookups per minute per run, and aborts requests on Stop. Navigation/Stop/reload revoke host consent. Direct iframe networking remains blocked by the original opaque sandbox/CSP.
+The UI now accurately lists Todo, Weather and React as available, and labels React breadcrumbs, lesson headers, resume controls and project files correctly. The older Weather journey assertion is updated to expect the now-published React topic to be available with zero earned credits, rather than an unpublished unlocked draft. Question clarifications preserve IDs and accepted answers. The six-topic journey adds mid-challenge reload with no autorun and explicit React project/challenge checkpoint, notes and training-map preservation.
 
-Open-Meteo and GeoNames attribution and noncommercial-use terms are labeled in the UI, content and export. Live uses the first geocoding match; city ambiguity, service availability and changing observations remain limitations. A real public London request succeeded through the actual adapter on 2026-09-14 (HTTP 200). Automated browser live tests control provider HTTP responses; they do not depend on current weather.
+| Check | Exact result |
+| --- | --- |
+| npm test | 71 passed across 12 files |
+| npm run validate:content | 4 projects; 21 published topics; 8 drafts |
+| npm run build | TypeScript and Vite production build passed; main-bundle size warning remains at about 530 kB |
+| Focused React browser checks | 5 passed (2.7 minutes) |
+| Full development regression | 37/38 passed (6.2 minutes); only the outdated React-draft assertion failed |
+| Corrected Weather journey | 1 passed (45.6 seconds); all 38 development scenarios now verified across those runs |
+| Production browser acceptance | In progress |
+| Independent ZIP check | CRC passed; 10 readable entries, including the export test's notes.txt source |
+| Visual inspection | Desktop dashboard, 390px React lesson and 390px standalone dashboard inspected; no page overflow |
+
+The full development run passed every runtime, grading, storage, export and React journey check. Its sole failure was an expectation that React remained an unpublished draft after Weather. The corrected test explicitly requires an enabled React topic and zero earned credits. No runtime change was needed for that failure.
+
+Production acceptance command (run after build; source-import matrix tests belong to development):
+
+```powershell
+$env:PROJECT_CODE_TEST_URL = 'http://127.0.0.1:4173'
+npx playwright test tests/e2e/workspace.spec.ts tests/e2e/lesson.spec.ts tests/e2e/phase3-journey.spec.ts tests/e2e/phase3-runtime.spec.ts tests/e2e/phase4-journey.spec.ts tests/e2e/weather-export.spec.ts tests/e2e/phase5-journey.spec.ts tests/e2e/react-export.spec.ts --output=test-results/production
+```
+
 
 ## Run and export
 
@@ -33,53 +53,26 @@ npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:5173. Continue through Dashboard. Existing mastery unlocks Weather after Todo; references are read-only comparisons and should be merged into continuing project work. Nothing runs automatically after reload.
+Open http://127.0.0.1:5173 and use Dashboard. React follows completed Todo and Weather mastery. References are read-only comparisons to merge into continuing work. Reload never runs source automatically.
 
-Export runnable ZIP compiles the selected draft into root index.html and includes exact editable originals under source/ plus README.md. Weather exports include the fixture/default and optional live adapters. Extract the archive, run `python -m http.server 8080` in its root, and open http://localhost:8080. Any static HTTP server works. Editing source/ alone does not rebuild the root; edit in Project Code and export again. Source-only execution needs an adapter. Exports contain no session, mastery, host credentials or saved training-data snapshot and do not constitute publication.
+Export runnable ZIP creates compiled root `index.html`, exact editable files under `source/`, and README instructions. Extract it and run `python -m http.server 8080` from the root, then open http://localhost:8080. The React bundle and scoped standalone storage adapter are included. Source-only JSX requires a build; editing `source/` alone does not rebuild root index.html. Edit in Project Code and export again. Exports contain no course session, mastery, checkpoints, host credentials or saved training-map snapshot. Export is not publication.
 
-## Acceptance evidence
-
-| Check | Result |
-| --- | --- |
-| `npm test` | 63 passed across 10 files |
-| `npm run validate:content` | 4 projects, 15 published topics, 14 drafts |
-| `npm run build` | TypeScript and Vite production build passed |
-| Full development Edge suite | 33 passed (3.3 minutes), final source |
-| Production Edge suite | 19 passed (1.8 minutes), built production app |
-| Independent ZIP CRC/source check | Python zipfile CRC passed; 7 readable entries each for Weather and Todo |
-| Desktop/mobile visual inspection | Completed desktop dashboard, 390px lesson and 390px standalone Weather inspected; no page overflow |
-
-Weather matrix covers all 40 guided/challenge reference programs and all 40 unfinished starters, 12 representative incorrect programs and eight first-increment partial programs. First increments pass their own checks and fail full contracts. Full smoke grading substitutes incorrect London data to prove a missing assertion fails. Original Todo matrices and compiler/loop examples remain in the suite. The export check also verifies pending-lookup smoke refusal, explicit standalone Live selection using controlled HTTP, and restoration of Live mode after temporary fixture smoke tests.
-
-The eight-topic UI journey retires an answer, earns ten distinct credits, reloads at five credits in every topic, completes all 24 challenges, preserves Todo mastery/source/training data and demo/project notes, and verifies React draft unlock. Unit tests stress reveal exhaustion/misses and migration/resume without changing existing workspaces.
-
-Production command after build (source-import matrix/capability tests run on Vite development):
-
-```powershell
-$env:PROJECT_CODE_TEST_URL = 'http://127.0.0.1:4173'
-npx playwright test tests/e2e/workspace.spec.ts tests/e2e/lesson.spec.ts tests/e2e/phase3-journey.spec.ts tests/e2e/phase3-runtime.spec.ts tests/e2e/phase4-journey.spec.ts tests/e2e/weather-export.spec.ts
-```
-
-An earlier full run passed 32/33 with an isolated storage-probe console timeout. The unchanged test then passed three consecutive reruns and the final full suite; no storage implementation was altered for it.
-
-Do not edit source or run prepare:runtime during browser acceptance; Vite reloads invalidate in-progress tests. This Windows host requires process sandbox escalation for esbuild/build/Edge. No new dependency audit result is claimed.
+This Windows host needs process sandbox escalation for esbuild/build/Edge. Browser acceptance uses isolated profiles. Do not edit source or run prepare:runtime while browser tests run: Vite reloads invalidate in-progress checks. Dependencies were not upgraded and no new dependency audit is claimed.
 
 ## File map
 
-- Curriculum/reference/questions: src/content/weather.ts, weatherReferences.ts, weatherQuestions.ts; integration in curriculum.ts.
-- Capability: src/runtime/weatherApi.ts; additive wiring in runtime/index.ts and contracts.ts.
-- Grading: src/lesson/weatherAssessment.ts and grader.ts.
-- Host/export: src/main.ts, src/lesson/ui.ts, src/style.css, src/exportProject.ts.
-- Unit acceptance: tests/weather-api.test.ts, phase4-progression.test.ts, phase4-preservation.test.ts.
-- Browser acceptance: tests/e2e/weather-matrix.spec.ts, weather-capability.spec.ts, weather-export.spec.ts, phase4-journey.spec.ts.
-- Preserved regression suite and Phase 1–3 continuity remain in their existing locations.
+- Content: src/content/react.ts, reactQuestions.ts, reactReferences.ts; integration in curriculum.ts.
+- Grading: src/lesson/reactAssessment.ts and additive dispatch/storage scenarios in grader.ts.
+- Acceptance: tests/phase5-progression.test.ts, phase5-preservation.test.ts; tests/e2e/react-matrix.spec.ts, phase5-journey.spec.ts, react-export.spec.ts.
+- Question review: docs/REACT_QUESTION_REVIEW.md.
+- Earlier phase history and acceptance: docs/PHASES.md.
 
 ## Limitations and delegation
 
-Grading is client-visible educational checking, not tamper-proof assessment. Scope/file-plan prose checks verify declared terms and responsibilities, with editorial review supplying semantic judgment. The runtime guards common loops/timeouts but has no complete hostile-code CPU/memory quotas. Local persistence retains optimistic revision checks, not atomic cross-tab transactions or cloud durability. Browser quota/private mode/data clearing can still affect saves; JSON backup remains the recovery route. Optional live service is external, first-match and noncommercial; fixtures remain the acceptance basis. Export is a compiled snapshot requiring re-export after source changes. No accounts, backend, terminal, real payments, deployment or Phase 5 implementation was added.
+Grading is client-visible educational checking, not tamper-proof assessment. Planning checks inspect declared terms and responsibilities; semantic content review supplies additional judgment. Common-loop guards do not provide complete hostile-code CPU/memory isolation. Browser quota/private mode/data clearing can affect local saves; JSON backup remains the recovery route. There is no account sync, backend, terminal, real payment collection or deployment. Weather live data retains its external service and noncommercial-use limits. React task API examples are deterministic local simulations.
 
-Astra planned, reviewed, integrated and accepted the work. Terra handled scoped Weather engineering/reference/grader/tests; Luna supplied bounded question drafts. Astra corrected the final banks and integration. No recursive delegation occurred and at most three workers were active together. After the Terra worker reached its usage limit, Astra completed remaining fixes and acceptance locally.
+Astra owns planning, integration and acceptance. Terra handles bounded React engineering and browser tests; Luna reviews content and drafts the curriculum inventory; Astra reviews and integrates their work. At most three agents run together, with no recursive delegation. The model choices follow the repository brief and user instructions.
 
-## Phase 5 prompt
+## Phase 6 prompt
 
-Continue Project Code in this same repository with Phase 5 only, using GPT-6 Astra as planner, orchestrator and integration/acceptance owner. Read PROJECT_BRIEF.md, docs/ARCHITECTURE.md, docs/CURRICULUM.md, docs/PHASES.md and docs/HANDOFF.md first, and verify the repository matches the Phase 4 handoff before changing anything. Preserve the verified Phase 1 runtime, every Phase 2–4 published ID and earned mastery, every saved demo/project/challenge draft and checkpoint, schema-1 compatibility, scoped training data, deterministic Weather fixtures, the explicit optional live-data capability and runnable export. Complete the six React Task Dashboard topics in their saved order: component planning and stack tradeoffs, React setup, props/layout, task state, effects/persistence/error recovery, and testing/export. Teach prerequisites before use, effect cleanup and stale async work, accessible loading/empty/error states, migration/resume and runnable React export. Use reviewed banks of at least 20 distinct questions per topic, cumulative ten-distinct-correct mastery, fresh equivalents after reveal, and exactly three behavior-graded challenges per topic. Use Terra for scoped engineering/tests and Luna for bounded drafts, with Astra reviewing and integrating; at most three simultaneous workers and no recursive delegation. Implement, run and verify references, representative incorrect programs, migration/resume and progression while preserving the complete regression suite. Update all five continuity files, report exact check results and limitations, include the Phase 6 prompt, and stop after Phase 5.
+Continue Project Code in this repository with Phase 6 only. Use GPT-6 Astra for planning, integration and acceptance, Terra for scoped engineering/tests and Luna for bounded content drafts; at most three agents and no recursive delegation. Read PROJECT_BRIEF.md, docs/ARCHITECTURE.md, docs/CURRICULUM.md, docs/PHASES.md and docs/HANDOFF.md first, and verify the accepted Phase 5 baseline before edits. Preserve Phase 1 runtime, every Phase 2–5 published ID/identity and earned mastery, all demo/project/challenge source and checkpoints, schema-1 migration/resume, scoped training maps, Weather fixtures/live consent, React persistence and runnable exports. Complete only the eight existing ecommerce topics in order: original catalog/scope; stack/routes; storefront setup; details and client/server/API/database/auth boundaries; search/filter; cart persistence; simulated checkout validation; testing/export plus an independent feature milestone. Teach prerequisites before use, use original branding and deterministic local product fixtures, distinguish simulations from backend capabilities, collect no real payment data, and leave durable accounts/auth/backend implementation for Phase 7. Each topic needs at least 20 reviewed distinct questions, cumulative ten-distinct-correct mastery, fresh equivalents after reveal, and exactly three behavior-graded challenges. Verify reference programs, unfinished starters, representative incorrect programs, early/full increments, progression, reload/migration, prior-work preservation, responsive accessibility and independent runnable export. Update all five continuity files with exact results and limitations, include the Phase 7 prompt, and stop after Phase 6.

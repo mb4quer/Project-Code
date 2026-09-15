@@ -21,7 +21,7 @@ const layoutApp = String.raw`const tasks = [{ id: 'plan', text: 'Plan components
 export default function App() {
   return <main>
     <h1>Task dashboard</h1>
-    <p id="task-count" role="status" aria-live="polite">0 of {tasks.length} complete</p>
+    <p id="task-count" role="status" aria-live="polite">1 of {tasks.length} complete</p>
     <form onSubmit={event => event.preventDefault()}><label htmlFor="task-input">New task<input id="task-input" defaultValue="" /></label><button>Add task</button></form><p id="input-error" role="alert"></p>
     <div className="filters" aria-label="Task filters"><button type="button" aria-pressed="true">All</button><button type="button" aria-pressed="false">Active</button><button type="button" aria-pressed="false">Completed</button></div>
     <TaskList tasks={tasks} onToggle={() => {}} onDelete={() => {}} />
@@ -80,18 +80,76 @@ import { TaskForm, TaskList } from './components.jsx';
 import { load } from './taskApi.js';
 import { restoreTasks, saveTasks } from './taskStorage.js';
 export default function App() {
-  const [tasks, setTasks] = useState([]); const [draft, setDraft] = useState(''); const [filter, setFilter] = useState('all'); const [error, setError] = useState(''); const [ready, setReady] = useState(false); const [fault, setFault] = useState(false); const [restoreAttempt, setRestoreAttempt] = useState(0); const [saveStatus, setSaveStatus] = useState('Loading saved tasks…'); const [request, setRequest] = useState({ name: '', generation: 0 }); const [syncStatus, setSyncStatus] = useState('Choose a deterministic sync fixture.'); const latest = useRef(0); const writes = useRef(Promise.resolve());
+  const [tasks, setTasks] = useState([]); const [draft, setDraft] = useState(''); const [filter, setFilter] = useState('all'); const [error, setError] = useState(''); const [ready, setReady] = useState(false); const [fault, setFault] = useState(false); const [restoreAttempt, setRestoreAttempt] = useState(0); const [saveStatus, setSaveStatus] = useState('Loading saved tasks…'); const [request, setRequest] = useState({ name: '', generation: 0 }); const [syncStatus, setSyncStatus] = useState('Choose a deterministic sync fixture.'); const [fixtureTasks, setFixtureTasks] = useState([]); const [showSync, setShowSync] = useState(true); const latest = useRef(0); const writes = useRef(Promise.resolve());
   useEffect(() => { let cancelled = false; setReady(false); restoreTasks().then(snapshot => { if (!cancelled) { setTasks(snapshot.tasks); setFault(false); setSaveStatus(snapshot.tasks.length ? 'Saved tasks restored.' : 'No saved tasks yet.'); setReady(true); } }).catch(() => { if (!cancelled) { setFault(true); setSaveStatus('Saved tasks are unavailable. Recover explicitly to start empty.'); setReady(true); } }); return () => { cancelled = true; }; }, [restoreAttempt]);
   useEffect(() => { if (!ready || fault) return; writes.current = writes.current.catch(() => undefined).then(() => saveTasks(tasks)).then(() => setSaveStatus('Saved locally.'), () => setSaveStatus('Could not save changes; tasks are still visible.')); }, [tasks, ready, fault]);
-  useEffect(() => { if (!request.name) return; const controller = new AbortController(); const requestId = ++latest.current; setSyncStatus('Loading ' + request.name + '…'); load(request.name, controller.signal).then(snapshot => { if (requestId !== latest.current) return; if (snapshot === null) { setSyncStatus('No tasks were returned.'); return; } setTasks(snapshot); setSyncStatus('Loaded ' + request.name + '.'); }).catch(caught => { if (caught.name === 'AbortError' || requestId !== latest.current) return; setSyncStatus('Task service is unavailable. Try again.'); }); return () => { controller.abort(); }; }, [request]);
+  useEffect(() => { if (!request.name || !showSync) return; const controller = new AbortController(); const requestId = ++latest.current; setFixtureTasks([]); setSyncStatus('Loading ' + request.name + '…'); load(request.name, controller.signal).then(snapshot => { if (requestId !== latest.current) return; if (snapshot === null) { setSyncStatus('No tasks were returned.'); return; } setFixtureTasks(snapshot); setSyncStatus('Loaded ' + request.name + '.'); }).catch(caught => { if (caught.name === 'AbortError' || requestId !== latest.current) return; setFixtureTasks([]); setSyncStatus('Task service is unavailable. Try again.'); }); return () => { latest.current += 1; controller.abort(); }; }, [request, showSync]);
   const recover = () => { setTasks([]); setFault(false); setSaveStatus('Recovery started with an empty dashboard.'); };
   const addTask = () => { const text = draft.trim(); if (!text) { setError('Enter a task before adding it.'); return; } const id = Date.now().toString(36) + '-' + Math.random().toString(36).slice(2); setTasks(previous => [...previous, { id, text, done: false }]); setDraft(''); setError(''); };
   const shown = tasks.filter(task => filter === 'active' ? !task.done : filter === 'completed' ? task.done : true); const complete = tasks.filter(task => task.done).length; const disabled = !ready || fault;
-  return <main><h1>Task dashboard</h1><p id="task-count" role="status" aria-live="polite">{complete} of {tasks.length} complete</p><TaskForm draft={draft} onDraftChange={setDraft} onAdd={addTask} disabled={disabled} /><p id="input-error" role="alert">{error}</p><div className="filters" aria-label="Task filters">{['all','active','completed'].map(name => <button key={name} type="button" disabled={disabled} data-filter={name} aria-pressed={filter === name} onClick={() => setFilter(name)}>{name[0].toUpperCase() + name.slice(1)}</button>)}</div><TaskList tasks={shown} onToggle={id => setTasks(previous => previous.map(task => task.id === id ? { ...task, done: !task.done } : task))} onDelete={id => setTasks(previous => previous.filter(task => task.id !== id))} /><p id="empty-state" aria-live="polite">{shown.length ? '' : tasks.length ? 'No tasks match this filter.' : 'No tasks yet.'}</p><p id="save-status" role="status" aria-live="polite">{saveStatus}</p>{fault && <div><button id="recover-storage" type="button" onClick={recover}>Recover with empty dashboard</button><button id="retry-restore" type="button" onClick={() => setRestoreAttempt(value => value + 1)}>Retry saved tasks</button></div>}<section aria-labelledby="sync-title"><h2 id="sync-title">Effect fixture</h2><div className="sync-controls">{['Slow','Fast','SlowError','IgnoreSlow','Empty','Error'].map(name => <button key={name} type="button" disabled={disabled} onClick={() => setRequest(current => ({ name, generation: current.generation + 1 }))}>Load {name}</button>)}<button id="retry-sync" type="button" disabled={disabled || !request.name} onClick={() => setRequest(current => ({ ...current, generation: current.generation + 1 }))}>Retry load</button></div><p id="sync-status" role="status" aria-live="polite">{syncStatus}</p></section></main>;
+  return <main><h1>Task dashboard</h1><p id="task-count" role="status" aria-live="polite">{complete} of {tasks.length} complete</p><TaskForm draft={draft} onDraftChange={setDraft} onAdd={addTask} disabled={disabled} /><p id="input-error" role="alert">{error}</p><div className="filters" aria-label="Task filters">{['all','active','completed'].map(name => <button key={name} type="button" disabled={disabled} data-filter={name} aria-pressed={filter === name} onClick={() => setFilter(name)}>{name[0].toUpperCase() + name.slice(1)}</button>)}</div><TaskList tasks={shown} onToggle={id => setTasks(previous => previous.map(task => task.id === id ? { ...task, done: !task.done } : task))} onDelete={id => setTasks(previous => previous.filter(task => task.id !== id))} /><p id="empty-state" aria-live="polite">{shown.length ? '' : tasks.length ? 'No tasks match this filter.' : 'No tasks yet.'}</p><p id="save-status" role="status" aria-live="polite">{saveStatus}</p>{fault && <div><button id="recover-storage" type="button" onClick={recover}>Recover with empty dashboard</button><button id="retry-restore" type="button" onClick={() => setRestoreAttempt(value => value + 1)}>Retry saved tasks</button></div>}{showSync ? <section id="sync-fixture" aria-labelledby="sync-title"><h2 id="sync-title">Effect fixture</h2><div className="sync-controls">{['Slow','Fast','SlowError','IgnoreSlow','Empty','Error'].map(name => <button key={name} type="button" disabled={disabled} onClick={() => setRequest(current => ({ name, generation: current.generation + 1 }))}>Load {name}</button>)}<button id="retry-sync" type="button" disabled={disabled || !request.name} onClick={() => setRequest(current => ({ ...current, generation: current.generation + 1 }))}>Retry load</button><button id="hide-sync" type="button" disabled={disabled} onClick={() => { setShowSync(false); setRequest(current => ({ name: '', generation: current.generation + 1 })); setFixtureTasks([]); setSyncStatus('Effect fixture hidden.'); }}>Hide effect fixture</button></div><p id="sync-status" role="status" aria-live="polite">{syncStatus}</p><ul id="sync-results">{fixtureTasks.map(task => <li key={task.id}>{task.text}</li>)}</ul></section> : <section><button id="show-sync" type="button" disabled={disabled} onClick={() => setShowSync(true)}>Show effect fixture</button><p id="sync-hidden-status" role="status" aria-live="polite">Effect fixture hidden.</p></section>}</main>;
 }`;
 
-const smokeApp = durableEffectsApp.replace("const shown = tasks.filter", String.raw`const [smokeStatus, setSmokeStatus] = useState(''); const runSmoke = async () => { const prior = tasks.map(task => ({ ...task })); const priorDraft = draft; const priorFilter = filter; const priorSaved = await trainingStorage.getItem('tasks'); try { setTasks([{ id: 'smoke', text: 'Smoke task', done: false }]); setFilter('all'); await new Promise(resolve => setTimeout(resolve, 0)); setTasks([{ id: 'smoke', text: 'Smoke task', done: true }]); await saveTasks([{ id: 'smoke', text: 'Smoke task', done: true }]); setSmokeStatus('Smoke test passed: add, complete, and saved state were observed.'); } catch (caught) { setSmokeStatus('Smoke test failed: ' + (caught instanceof Error ? caught.message : String(caught))); } finally { setTasks(prior); setDraft(priorDraft); setFilter(priorFilter); try { if (priorSaved === null) await trainingStorage.removeItem('tasks'); else await trainingStorage.setItem('tasks', priorSaved); } catch { setSmokeStatus('Smoke test failed: cleanup could not restore saved state.'); } } };
-  const shown = tasks.filter`).replace('<p id="save-status"', '<section><button type="button" id="run-react-smoke" onClick={runSmoke}>Run React smoke test</button><p id="react-smoke-status" role="status" aria-live="polite">{smokeStatus}</p><p className="hint" id="react-export-handoff">Export runnable ZIP creates a compiled root index.html plus exact source files. Keep index.html, styles.css, main.jsx, App.jsx, components.jsx, taskApi.js, and taskStorage.js together in source; edit in Project Code and export again to rebuild the root. Serve the extracted root with python -m http.server 8080.</p></section><p id="save-status"');
+const smokeApp = durableEffectsApp.replace("const shown = tasks.filter", String.raw`
+  const [smokeStatus, setSmokeStatus] = useState('');
+  const [smokeRunning, setSmokeRunning] = useState(false);
+  const smokeLock = useRef(false);
+  const smokeWait = () => new Promise(resolve => setTimeout(resolve, 0));
+  const runSmoke = async () => {
+    if (smokeLock.current) return;
+    if (!ready || fault || /^Loading /.test(syncStatus)) {
+      setSmokeStatus('Wait for startup or sync to finish before running smoke.'); return;
+    }
+    smokeLock.current = true; setSmokeRunning(true); setSmokeStatus('Running smoke test…');
+    const prior = tasks.map(task => ({ ...task })), priorDraft = draft, priorFilter = filter, priorError = error, priorSaveStatus = saveStatus;
+    const surface = document.querySelector('main'); const priorInert = surface?.inert || false;
+    if (surface) surface.inert = true;
+    let priorSaved = null, captured = false, failure = '';
+    const assert = (condition, message) => { if (!condition) throw new Error(message); };
+    const settle = async () => { await smokeWait(); await smokeWait(); await writes.current; };
+    try {
+      await settle(); priorSaved = await trainingStorage.getItem('tasks'); captured = true;
+      setFilter('all'); await settle();
+      const field = document.querySelector('#task-input'), currentForm = field?.closest('form');
+      assert(field && currentForm, 'Task form is unavailable.');
+      const rows = () => Array.from(document.querySelectorAll('#task-list li'));
+      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set;
+      const submit = async value => {
+        setter?.call(field, value); field.dispatchEvent(new Event('input', { bubbles: true })); field.dispatchEvent(new Event('change', { bubbles: true }));
+        await settle(); const event = new Event('submit', { bubbles: true, cancelable: true }); currentForm.dispatchEvent(event);
+        assert(event.defaultPrevented, 'Task form navigated.'); await settle();
+      };
+      const count = rows().length;
+      await submit('   ');
+      assert(rows().length === count && document.querySelector('#input-error')?.textContent, 'Blank input must be rejected with feedback.');
+      const label = '<strong>Smoke ' + Date.now() + '</strong>';
+      await submit('  ' + label + '  ');
+      const row = rows().find(item => item.querySelector('label')?.textContent?.trim() === label);
+      assert(rows().length === count + 1 && row && !row.querySelector('strong'), 'Add must render exactly one trimmed literal task.');
+      assert(field.value === '', 'Valid add must clear the input.');
+      const checkbox = row.querySelector('input[type="checkbox"]'); assert(checkbox && !checkbox.checked, 'New task must start incomplete.');
+      checkbox.click(); await settle(); assert(checkbox.checked, 'Smoke task did not complete.');
+      const saved = JSON.parse(await trainingStorage.getItem('tasks'));
+      assert(saved?.version === 2 && saved.tasks?.some(task => task.text === label && task.done), 'Completed task was not saved.');
+      document.querySelector('[data-filter="completed"]')?.click(); await settle();
+      assert(rows().some(item => item.querySelector('label')?.textContent?.trim() === label) && rows().every(item => item.querySelector('input[type="checkbox"]')?.checked), 'Completed filter must preserve the completed task.');
+    } catch (caught) { failure = caught instanceof Error ? caught.message : String(caught); }
+    finally {
+      if (captured) {
+        setTasks(prior); setDraft(priorDraft); setFilter(priorFilter); setError(priorError);
+        try {
+          await settle();
+          if (priorSaved === null) await trainingStorage.removeItem('tasks'); else await trainingStorage.setItem('tasks', priorSaved);
+          assert(await trainingStorage.getItem('tasks') === priorSaved, 'Saved cleanup differs from its snapshot.');
+          setSaveStatus(priorSaveStatus);
+        } catch { failure = 'Cleanup could not restore saved state; keep the visible tasks and retry saving.'; }
+      }
+      if (surface) surface.inert = priorInert;
+      setSmokeStatus(failure ? 'Smoke test failed: ' + failure : 'Smoke test passed: add, complete, filter, and saved state were observed.');
+      setSmokeRunning(false); smokeLock.current = false;
+    }
+  };
+  const shown = tasks.filter`).replace('<p id="save-status"', '<section><button type="button" id="run-react-smoke" disabled={disabled || smokeRunning} onClick={runSmoke}>Run React smoke test</button><p id="react-smoke-status" role="status" aria-live="polite">{smokeStatus}</p><p className="hint" id="react-export-handoff">Export runnable ZIP creates a compiled root index.html plus exact source files. Keep index.html, styles.css, main.jsx, App.jsx, components.jsx, taskApi.js, and taskStorage.js together in source; edit in Project Code and export again to rebuild the root. Serve the extracted root with python -m http.server 8080.</p></section><p id="save-status"');
 
 const scope: Files = { 'index.html': scopeHtml, 'styles.css': css };
 const setup: Files = { 'index.html': setupIndex, 'styles.css': css, 'main.jsx': main, 'App.jsx': layoutApp };
@@ -115,8 +173,8 @@ export const reactBasicReferenceByTopic: Record<string, Files> = {
   'react-dashboard-scope-and-component-map': { ...scope, 'index.html': scopeBasic },
   'react-stack-and-project-setup': { ...setup, 'index.html': index },
   'react-components-props-and-layout': presentationBasic,
-  'react-task-state-and-interactions': { ...state, 'App.jsx': stateApp.replace('task.id === id ? { ...task, done: !task.done } : task', '{ ...task, done: !task.done }') },
-  'react-effects-persistence-and-errors': { ...effects, 'App.jsx': durableEffectsApp.replace('return () => { controller.abort(); };', 'return () => {};') },
+  'react-task-state-and-interactions': { ...state, 'App.jsx': stateApp.replace('task.id === id ? { ...task, done: !task.done } : task', '({ ...task, done: !task.done })') },
+  'react-effects-persistence-and-errors': { ...effects, 'App.jsx': durableEffectsApp.replace('return () => { latest.current += 1; controller.abort(); };', 'return () => {};') },
   'react-testing-and-export': { ...testFiles, 'App.jsx': testFiles['App.jsx'].replace('id="react-export-handoff"', 'id="react-handoff"') },
 };
 
@@ -125,12 +183,12 @@ function copy(files: Files): Files { return Object.fromEntries(Object.entries(fi
 export function reactStarter(topicId: string, kind: 'apply' | 'debug' | 'combine'): Files {
   const files = copy(reactReferenceByTopic[topicId] ?? {});
   if (!files['index.html']) throw new Error('Unknown React topic: ' + topicId);
-  if (topicId === 'react-dashboard-scope-and-component-map') files['index.html'] = files['index.html'].replace(kind === 'apply' ? 'adds, completes, deletes, and filters' : kind === 'debug' ? 'TaskForm receives onAdd' : 'App owns tasks', kind === 'apply' ? 'adds tasks' : kind === 'debug' ? 'TaskForm has no callback' : 'App displays tasks');
-  else if (topicId === 'react-stack-and-project-setup') files[kind === 'apply' ? 'main.jsx' : 'index.html'] = kind === 'apply' ? 'document.querySelector(\'#root\').textContent = \'No React mount\';' : files['index.html'].replace(kind === 'debug' ? 'id="root"' : 'Vite React', kind === 'debug' ? 'id="app"' : 'plain script');
+  if (topicId === 'react-dashboard-scope-and-component-map') files['index.html'] = files['index.html'].replace(kind === 'apply' ? 'adds, completes, deletes, and filters' : kind === 'debug' ? 'TaskForm receives onAdd' : 'App owns tasks', kind === 'apply' ? 'adds tasks' : kind === 'debug' ? 'Form receives onAdd' : 'App displays tasks');
+  else if (topicId === 'react-stack-and-project-setup') files[kind === 'apply' ? 'main.jsx' : 'index.html'] = kind === 'apply' ? 'document.querySelector(\'#root\').textContent = \'No React mount\';' : files['index.html'].replace(kind === 'debug' ? 'id="root"' : 'id="stack-plan"', kind === 'debug' ? 'id="app"' : 'id="missing-stack-plan"');
   else if (topicId === 'react-components-props-and-layout') files['App.jsx'] = files['App.jsx'].replace(kind === 'apply' ? 'htmlFor="task-input"' : kind === 'debug' ? "{task.text}" : 'aria-live="polite"', kind === 'apply' ? 'htmlFor="missing-input"' : kind === 'debug' ? "{'row'}" : '');
-  else if (topicId === 'react-task-state-and-interactions') files['App.jsx'] = files['App.jsx'].replace(kind === 'apply' ? 'setTasks(previous => [...previous, { id, text, done: false }]);' : kind === 'debug' ? 'task.id === id ? { ...task, done: !task.done } : task' : 'previous.filter(task => task.id !== id)', kind === 'apply' ? 'setTasks(previous => previous);' : kind === 'debug' ? '{ ...task, done: !task.done }' : 'previous.filter(() => false)');
-  else if (topicId === 'react-effects-persistence-and-errors') files['App.jsx'] = files['App.jsx'].replace(kind === 'apply' ? 'id="save-status"' : kind === 'debug' ? 'setFault(true)' : 'return () => { controller.abort(); };', kind === 'apply' ? 'id="save-message"' : kind === 'debug' ? 'setFault(false)' : 'return () => {};');
-  else files['App.jsx'] = files['App.jsx'].replace(kind === 'apply' ? 'id="run-react-smoke"' : kind === 'debug' ? "setSmokeStatus('Smoke test passed: add, complete, and saved state were observed.');" : 'id="react-export-handoff"', kind === 'apply' ? 'id="missing-smoke"' : kind === 'debug' ? "setSmokeStatus('Smoke test passed.');" : 'id="missing-handoff"');
+  else if (topicId === 'react-task-state-and-interactions') files['App.jsx'] = files['App.jsx'].replace(kind === 'apply' ? 'setTasks(previous => [...previous, { id, text, done: false }]);' : kind === 'debug' ? 'task.id === id ? { ...task, done: !task.done } : task' : 'previous.filter(task => task.id !== id)', kind === 'apply' ? 'setTasks(previous => previous);' : kind === 'debug' ? '({ ...task, done: !task.done })' : 'previous.filter(() => false)');
+  else if (topicId === 'react-effects-persistence-and-errors') files['App.jsx'] = files['App.jsx'].replace(kind === 'apply' ? 'id="save-status"' : kind === 'debug' ? 'setFault(true)' : 'return () => { latest.current += 1; controller.abort(); };', kind === 'apply' ? 'id="save-message"' : kind === 'debug' ? 'setFault(false)' : 'return () => {};');
+  else files['App.jsx'] = files['App.jsx'].replace(kind === 'apply' ? 'id="run-react-smoke"' : kind === 'debug' ? 'onClick={runSmoke}' : 'id="react-export-handoff"', kind === 'apply' ? 'id="missing-smoke"' : kind === 'debug' ? "onClick={() => setSmokeStatus('Smoke test passed.')}" : 'id="missing-handoff"');
   return files;
 }
 

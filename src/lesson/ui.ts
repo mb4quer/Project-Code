@@ -15,7 +15,7 @@ export function createLessonUI(host: Host) {
   const $ = <T extends HTMLElement = HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
   host.setSession(ensureLearning(host.getSession()));
   const nav = document.createElement('nav'); nav.className = 'lesson-nav'; nav.setAttribute('aria-label', 'Course views');
-  nav.innerHTML = '<button id="dashboard-nav">Dashboard</button><button id="resume-lesson">Resume lesson</button><button id="runtime-nav">Runtime lab</button><span>Phase 4 · Todo and Weather</span>';
+  nav.innerHTML = '<button id="dashboard-nav">Dashboard</button><button id="resume-lesson">Resume lesson</button><button id="runtime-nav">Runtime lab</button><span>Todo, Weather and React</span>';
   $('.page-heading').before(nav);
   const dashboard = document.createElement('section'); dashboard.id = 'dashboard'; dashboard.className = 'hidden'; $('.workspace').before(dashboard);
   const gradingContainer = document.createElement('div'); gradingContainer.className = 'grading-sandbox'; gradingContainer.setAttribute('aria-hidden', 'true'); document.body.append(gradingContainer);
@@ -27,6 +27,7 @@ export function createLessonUI(host: Host) {
   const learning = () => session().learning!;
   const topic = () => curriculum.topics.find(item => item.id === learning().location.topicId);
   const progress = (item: Topic) => learning().topics[item.id];
+  const projectLabel = (projectId = topic()?.projectId) => projectId === 'vanilla-todo' ? 'DOM / Todo' : curriculum.projects.find(project => project.id === projectId)?.title ?? 'DOM / Todo';
   const commit = (value: Session) => { host.setSession(value); host.save(); };
   const cancelGrading = () => { generation++; grading = false; grader.cancel(); };
   const cancel = () => { cancelGrading(); host.stop(); };
@@ -48,8 +49,8 @@ export function createLessonUI(host: Host) {
   $('#runtime-nav').onclick = showLab;
   $('#resume-lesson').onclick = () => open(topic() ?? first(), learning().location.stepId);
   $('#roadmap').addEventListener('click', event => { event.stopImmediatePropagation(); showDashboard(); }, true);
-  $('.sidebar-note').innerHTML = '<strong>Build understanding through practice.</strong>Vanilla Todo and Async Weather are available in sequence. React and ecommerce remain planned.';
-  $('.under-workspace span').firstChild!.textContent = 'Phase 4 · Lessons and local execution ';
+  $('.sidebar-note').innerHTML = '<strong>Build understanding through practice.</strong>Vanilla Todo, Async Weather and React Task Dashboard are available in sequence. Ecommerce is next.';
+  $('.under-workspace span').firstChild!.textContent = 'Lessons and local execution ';
   window.addEventListener('pagehide', () => grader.dispose());
 
   function workspace() {
@@ -92,8 +93,8 @@ export function createLessonUI(host: Host) {
   }
   function renderDashboard() {
     const item = first(), state = progress(item);
-    const resumeName = topic()?.projectId === 'async-weather' ? 'Async Weather' : 'DOM / Todo';
-    dashboard.innerHTML = `<div class="dashboard-intro"><div><p class="eyebrow">Your learning path</p><h2>Build working projects, one feature at a time.</h2><p>Short readings, guided practice, and three independent checks. Your files and progress save in this browser.</p></div><button class="primary" id="dashboard-resume">${state ? 'Resume ' + resumeName : 'Start DOM / Todo'}</button></div><div class="topic-grid">${curriculum.projects.map(project => `<section class="project-card"><div class="eyebrow">Project ${project.order}</div><h3>${escape(project.title)}</h3><p class="project-progress">${project.topicIds.every(id => topicGateStatus(curriculum.topics.find(t => t.id === id)!, session()).complete) ? "Project complete - available for review" : `${project.topicIds.filter(id => topicGateStatus(curriculum.topics.find(t => t.id === id)!, session()).complete).length} / ${project.topicIds.length} topics complete`}</p>${project.topicIds.map(id => { const entry = curriculum.topics.find(t => t.id === id)!; const gate = topicGateStatus(entry, session()); const unlocked = isTopicUnlocked(entry, session(), curriculum); return `<div class="topic-card" data-topic="${id}"><strong>${escape(entry.title)}</strong><span>${gate.complete ? 'Completed · available for review' : unlocked ? entry.status === 'published' ? 'Available' : 'Unlocked · content planned for a later phase' : 'Locked · finish the preceding topic'}</span>${entry.status === 'published' ? `<p>${progress(entry)?.activityIds.length ?? 0} / ${entry.activities.length} activities · ${topicGateStatus(entry, session()).creditedCount} / 10 distinct correct</p><button data-open-topic="${id}" ${unlocked ? '' : 'disabled'}>${gate.complete ? 'Review topic' : 'Open topic'}</button>` : ''}</div>`; }).join('')}</section>`).join('')}</div>`;
+    const resumeName = projectLabel();
+    dashboard.innerHTML = `<div class="dashboard-intro"><div><p class="eyebrow">Your learning path</p><h2>Build working projects, one feature at a time.</h2><p>Short readings, guided practice, and three independent checks. Your files and progress save in this browser.</p></div><button class="primary" id="dashboard-resume">${state ? 'Resume ' + escape(resumeName) : 'Start DOM / Todo'}</button></div><div class="topic-grid">${curriculum.projects.map(project => `<section class="project-card"><div class="eyebrow">Project ${project.order}</div><h3>${escape(project.title)}</h3><p class="project-progress">${project.topicIds.every(id => topicGateStatus(curriculum.topics.find(t => t.id === id)!, session()).complete) ? "Project complete - available for review" : `${project.topicIds.filter(id => topicGateStatus(curriculum.topics.find(t => t.id === id)!, session()).complete).length} / ${project.topicIds.length} topics complete`}</p>${project.topicIds.map(id => { const entry = curriculum.topics.find(t => t.id === id)!; const gate = topicGateStatus(entry, session()); const unlocked = isTopicUnlocked(entry, session(), curriculum); return `<div class="topic-card" data-topic="${id}"><strong>${escape(entry.title)}</strong><span>${gate.complete ? 'Completed · available for review' : unlocked ? entry.status === 'published' ? 'Available' : 'Unlocked · content planned for a later phase' : 'Locked · finish the preceding topic'}</span>${entry.status === 'published' ? `<p>${progress(entry)?.activityIds.length ?? 0} / ${entry.activities.length} activities · ${topicGateStatus(entry, session()).creditedCount} / 10 distinct correct</p><button data-open-topic="${id}" ${unlocked ? '' : 'disabled'}>${gate.complete ? 'Review topic' : 'Open topic'}</button>` : ''}</div>`; }).join('')}</section>`).join('')}</div>`;
     $('#dashboard-resume').onclick = () => open(topic() ?? item, learning().location.stepId);
     dashboard.querySelectorAll<HTMLButtonElement>('[data-open-topic]').forEach(button => button.onclick = () => open(curriculum.topics.find(entry => entry.id === button.dataset.openTopic)!));
   }
@@ -104,7 +105,7 @@ export function createLessonUI(host: Host) {
     $('.mode-switch').classList.toggle('hidden', view !== 'lab');
     $('#dashboard-nav').setAttribute('aria-pressed', String(view === 'dashboard'));
     $('#runtime-nav').setAttribute('aria-pressed', String(view === 'lab'));
-    $('.breadcrumbs strong').textContent = view === 'lab' ? 'Runtime lab' : view === 'dashboard' ? 'Dashboard' : topic()?.projectId === 'async-weather' ? 'Async Weather' : 'DOM / Todo';
+    $('.breadcrumbs strong').textContent = view === 'lab' ? 'Runtime lab' : view === 'dashboard' ? 'Dashboard' : projectLabel();
     $('h1').textContent = view === 'lab' ? 'A small project. A real workspace.' : view === 'dashboard' ? 'Keep building, one topic at a time.' : topic()?.title ?? 'DOM / Todo';
     $('.page-heading p').textContent = view === 'lab' ? 'Edit a file, run your code, and see what changes.' : 'Learn a concept. Try it in code. Prove the behavior.';
     $('.reading-footer').textContent = view === 'lab' ? 'Practice space · no lesson credit' : 'Local progress · no account sync';
@@ -116,8 +117,8 @@ export function createLessonUI(host: Host) {
     const activity = item.activities.find(entry => entry.id === stepId);
     const challenge = item.challenges.find(entry => entry.id === stepId);
     const state = progress(item);
-    $('.reading .panel-heading').innerHTML = `<span>Lesson</span><span>${item.projectId === 'async-weather' ? 'Async Weather' : 'DOM / Todo'}</span>`;
-    $('#tree-title').textContent = challenge ? 'CHALLENGE DRAFT' : item.projectId === 'async-weather' ? 'WEATHER PROJECT' : 'TODO PROJECT';
+    $('.reading .panel-heading').innerHTML = `<span>Lesson</span><span>${escape(projectLabel(item.projectId))}</span>`;
+    $('#tree-title').textContent = challenge ? 'CHALLENGE DRAFT' : item.projectId === 'async-weather' ? 'WEATHER PROJECT' : item.projectId === 'react-task-dashboard' ? 'REACT PROJECT' : 'TODO PROJECT';
     let body = '';
     if (activity) body = `<div class="eyebrow">${activity.kind === 'reading' ? 'Read & reason' : 'Guided coding'}</div><h2>${escape(activity.title)}</h2><p><strong>${escape(activity.objective)}</strong></p>${paragraphs(activity.explanation!)}${list(activity.instructions!)}${hints(activity.hints)}${activity.kind === 'guided-coding' ? `<p class="note">Extend your saved project files. Check runs a separate copy of the current draft.</p><h3>Check criteria</h3>${list(activity.validation?.checks ?? [])}<button class="primary" id="check-activity" ${grading ? 'disabled' : ''}>Check guided code</button>${solutions(activity.referenceSolution)}` : '<button class="primary" id="complete-reading">Mark reading complete</button>'}<p>${state?.activityIds.includes(activity.id) ? 'Activity complete ✓' : ''}</p>`;
     else if (stepId === 'blanks') body = `<h2>Practice the missing pieces</h2><p>All blanks are required. Code answers preserve case and internal spacing; conceptual answers ignore case.</p>${item.blanks.map(blank => `<form class="blank-form" data-blank="${blank.id}"><label for="${blank.id}">${escape(blank.prompt)}</label><input id="${blank.id}" autocomplete="off" required maxlength="1000"><button>Check blank</button><p>${state?.blankAttempts[blank.id]?.some(attempt => attempt.correct) ? `Correct ✓ ${escape(blank.explanation)}` : ''}</p></form>`).join('')}`;

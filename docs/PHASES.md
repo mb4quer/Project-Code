@@ -1,6 +1,6 @@
 # Phase acceptance
 
-Updated 2026-09-14. Phases 1–3 are preserved and accepted. Phase 4 is complete and accepted. This continuation stops after Phase 4.
+Updated 2026-09-15. Phases 1–4 are historically accepted. The current continuation verifies and finishes the Phase 5 React implementation from GitHub commit 7999236. Phase 5 acceptance results are recorded below; stop after Phase 5.
 
 ## Phase 1 — Complete
 
@@ -84,9 +84,9 @@ The grader matrix checks two guided references and three challenge references, r
 
 The final refinements made early checks accept only their taught increment, added explicit accessibility/full CRUD checks, rejected smoke implementations that only print success, bounded grade storage snapshots and invalidated whole multi-frame runs on cancellation. No dependency change or new audit result is claimed. Detailed commands and limits are in HANDOFF.md.
 
-## Later phases - Not implemented
+## Later-phase roadmap (updated for the current continuation)
 
-- [ ] **Phase 5:** React transition dashboard curriculum, stack tradeoffs, components/state/effects, browser build and export.
+- [ ] **Phase 5 acceptance in progress:** React dashboard implementation is present; verify curriculum, grading, migration/resume and runnable export before sign-off.
 - [ ] **Phase 6:** original ecommerce capstone, routing/catalog/cart/simulated checkout, independent feature milestone and tests.
 - [ ] **Phase 7:** durable accounts, auth/authorization, guest migration, conflict recovery, cross-device resume, full browser/accessibility/security/content release checks and deployment.
 
@@ -119,3 +119,31 @@ Phase 3 does not implement cloud accounts, server execution, external Weather AP
 | Visual review | Desktop dashboard, 390px lesson and standalone Weather inspected; no horizontal overflow |
 
 One earlier full run had an isolated storage-probe console timeout (32/33 passed). That unchanged storage test then passed three consecutive reruns and the final full suite. No storage logic was changed in response. Browser acceptance ran after source edits settled. No dependencies, commits, branches, deployment or Phase 5 implementation changed. The runnable export is a compiled snapshot; live service availability, client-visible grading, optimistic local saves and limited hostile-code isolation remain documented limitations. See HANDOFF.md for exact commands and the Phase 5 prompt.
+
+
+## Phase 5 — React continuation acceptance (2026-09-15)
+
+The continuation started from clean GitHub main at `7999236`. Code already contained the six React topics, but all five continuity documents still described Phase 4. Initial validation found 70/71 unit tests passing, a valid 21-published/8-draft inventory, and a passing build. The preservation failure was only checkout line endings; all 18 immutable manifest hashes match normalized CRLF text, and the protected files match the prior Git commit after line-ending normalization.
+
+- [x] Preserve Phase 1–4 content identities, engine, runtime, storage/schema, Weather capability and dependency lockfile.
+- [x] Review six React topics, 30 activities, 12 blanks, 144 questions and exactly 18 challenges.
+- [x] Correct grading counts, setup increment boundaries, concrete starter defects, literal layout fixtures and valid-JavaScript mutants.
+- [x] Keep local async fixture results separate from saved tasks; clear prior output, clean up replaced/hidden effects and reject stale completions.
+- [x] Run real smoke interactions and assertions; preserve prior state through repeat runs and failed snapshot reads/writes, and refuse pending sync.
+- [x] Verify all six topic journeys, five-credit reloads, retired identities, mid-challenge draft reloads, checkpoints and separate training data.
+- [x] Verify standalone compiled React export, exact originals, reload persistence, migration/recovery and narrow layout.
+- [x] Update current availability, project breadcrumbs/labels and continuity guidance.
+- [ ] Complete final full-development and production-browser sign-off.
+
+| Check | Result |
+| --- | --- |
+| Final unit tests | 71 passed across 12 files |
+| Content validation | 4 projects; 21 published topics; 8 drafts |
+| Production build | TypeScript and Vite passed; existing large-chunk warning remains (about 530 kB main bundle) |
+| Focused React development checks | 5 passed (2.7 minutes), followed by final project-label refinement |
+| Development regression | 37/38 passed (6.2 minutes); the only failure was the stale React-draft label assertion. Corrected Weather journey then passed (45.6 seconds), covering all 38 scenarios |
+| Production browser suite | Pending |
+| Independent ZIP validation | CRC passed; 10 entries including the test's notes.txt source file |
+| Visual review | Desktop dashboard, 390px lesson and 390px standalone export inspected; no page overflow |
+
+The React matrix passes all 30 full reference/assessment combinations, rejects all 30 unfinished starters, checks all six first-increment references against their basic and full contracts, and rejects seven representative incorrect programs. The course session remains schema 1; version 2 refers only to the learner task payload. Source edits require re-export to update the compiled root. Client-visible grading, optimistic local saves and limited hostile-code isolation remain constraints. No dependency upgrades, deployment or ecommerce implementation were added.
