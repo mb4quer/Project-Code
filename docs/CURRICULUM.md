@@ -1,6 +1,6 @@
 # Curriculum outline
 
-Curriculum version `1`, learning path `javascript-to-projects`, now contains seven published Vanilla Todo topics, eight published Async Weather topics, six in-progress React Task Dashboard topics, and eight later draft topics across four projects. The current inventory is 21 published topics, 105 activities, 44 blanks, 512 questions, and 63 challenges. The two runtime demos in `src/data/demos.ts` remain executable proofs, separate from course content. Published IDs are now durable; future edits must preserve assessment identities.
+Curriculum version `1`, learning path `javascript-to-projects`, contains seven Vanilla Todo, eight Async Weather, six React Task Dashboard and eight original ecommerce topics across four projects. Current authored inventory: 29 published topics, 145 activities, 60 blanks, 704 questions and 87 challenges; no draft topics remain. Phase 6 browser acceptance is pending. Runtime demos remain separate executable proofs. Published IDs and identities are durable.
 
 The four project sequence is cumulative:
 
@@ -11,7 +11,7 @@ The four project sequence is cumulative:
 
 The self-contained DOM/Todo pilot is first, with no prerequisite topic. It teaches the planning, stack and setup foundations it uses. The remaining published Todo topics follow: scope/user flows, web stack/file plan, setup/static layout, filters/input errors, storage/recovery, testing/export. Each subsequent topic depends on the topic immediately before it, including transitions between projects. This means planning, stack choice, and setup are taught before the features that use them; failure states come before the testing and export work that verifies them.
 
-Each of the 14 remaining draft topics has a reading outline, a guided-coding outline, a follow-up reading, and three ordered challenge slots. A published topic must instead provide interleaved reading and guided work with non-draft explanations, instructions, hints, and—where code is guided—starter files, observable validation, and a reference solution. A published challenge has actual `Files` starter and reference-solution maps, not a prose substitute.
+The original draft outlines have now been authored. Every published topic must provide interleaved reading and guided work with non-draft explanations, instructions, hints, and—where code is guided—starter files, observable validation, and a reference solution. A published challenge has actual `Files` starter and reference-solution maps, not a prose substitute.
 
 Published topics require conceptual and code blanks. Normalization trims outer whitespace and normalizes line endings to LF. Conceptual answers may ignore case and collapse whitespace. Code answers must preserve case and internal whitespace; equivalent spellings are enumerated explicitly so different identifiers and string values are not falsely accepted. Questions have stable IDs and identities, a reasoning category (`prediction`, `debugging`, `explanation`, or `application`), and misconception feedback. At least 20 reviewed question IDs and identities must be distinct, with all four reasoning categories represented.
 
@@ -19,7 +19,7 @@ The topic gate records every guided activity ID and all three challenge IDs. It 
 
 Run `npm run validate:content` to validate paths, stable IDs, references, prerequisites, ordering, challenge/gate coverage, and published-content completeness. The validator rejects a draft placeholder promoted to published status.
 
-Content validation covers 4 projects / 29 topics: 21 authored Todo/Weather/React topics and eight later drafts. The original pilot bank and IDs are preserved. No draft receives automatic completion.
+Content validation covers 4 projects / 29 authored topics, including all eight ecommerce capstone topics. The original pilot bank and IDs are preserved. No draft receives automatic completion.
 
 ## Published DOM/Todo pilot
 
@@ -73,10 +73,31 @@ The injected fetch-like API is not unrestricted network fetch. Fixture names are
 
 All seven Todo topics remain byte-for-byte preserved. Weather's cumulative ten-distinct-correct rule uses the unchanged engine: misses retain credits, reveals retire identities and schedule unseen concept equivalents, reserve guards preserve attainability, and completed work remains reviewable. Weather completion unlocks the first React draft without publishing or completing it. See WEATHER_QUESTION_REVIEW.md for final editorial review and HANDOFF.md for acceptance evidence.
 
-## React Task Dashboard curriculum (Phase 5 in progress)
+## React Task Dashboard curriculum (Phase 5 accepted)
 
-The six React topics follow Weather in their saved order and are currently authored as the Phase 5 scope: component planning and stack tradeoffs; React setup; props and layout; task state and interactions; effects, persistence, and errors; and testing and export. Each topic has three readings, two guided-coding activities, two blanks, 24 reviewed questions (six per reasoning category), and exactly three independent apply/debug/combine challenges. React contributes 30 activities, 12 blanks, 144 questions, and 18 challenges. Together with the published Todo and Weather content, the current published inventory is 21 topics, 105 activities, 44 blanks, 512 questions, and 63 challenges. Phase 5 remains in progress pending integration and acceptance checks.
+The six React topics follow Weather in their saved order and are currently authored as the Phase 5 scope: component planning and stack tradeoffs; React setup; props and layout; task state and interactions; effects, persistence, and errors; and testing and export. Each topic has three readings, two guided-coding activities, two blanks, 24 reviewed questions (six per reasoning category), and exactly three independent apply/debug/combine challenges. React contributes 30 activities, 12 blanks, 144 questions, and 18 challenges. Together with the published Todo and Weather content, the current published inventory is 21 topics, 105 activities, 44 blanks, 512 questions, and 63 challenges. Phase 5 is accepted on 2026-09-15. Reference/starter/incorrect-program checks, cumulative progression and resume, prior-work preservation, standalone export, development regression and production acceptance are recorded in HANDOFF.md and PHASES.md.
 
 React prerequisites are taught in sequence: planning and component responsibilities precede JSX setup; setup precedes props and accessible layout; layout precedes state updates; state precedes effects and persistence; and those foundations precede testing and export. The first React topic is unlocked by completed Weather work. Existing Todo and Weather workspaces, saved source, checkpoints, mastery, challenge work, schema-1 data, and scoped training data remain separate and are resumed without automatic completion or replacement. App-level task-envelope migration covers validated legacy `Task[]` data into `{version:2,tasks}` while host migration/resume remains a separate persistence concern.
 
 The effects topic teaches dependency boundaries, ordinary cleanup, `AbortController`, retired-request guards on both success and error paths, ordered writes, validation, migration, and accessible loading/empty/error recovery. React task data uses deterministic local fixtures; no account sync or server runtime is added. Testing and export teach observable DOM behavior, repeatable cleanup, compiled browser output, and a static-server handoff. The runnable export is a compiled snapshot with editable `source/`, requires re-export after source changes, and is preparation for deployment rather than publication. Accounts, cloud durability, terminal workflows, real payments, and server-side React behavior remain outside this phase.
+
+## Original ecommerce capstone (Phase 6)
+
+The eight existing topic identities and order are preserved. Cedar & Thread supplies original text, styling and deterministic local products. Each topic has three readings, two guided increments, two blanks, 24 questions across the four reasoning categories and exactly three apply/debug/combine challenges: 40 activities, 16 blanks, 192 questions and 24 independent challenges in this phase.
+
+| Existing topic | Taught increment |
+| --- | --- |
+| shop-scope-catalog-and-originality | Original brand/catalog contract, shopper flow and explicit simulation/exclusions |
+| shop-stack-data-and-route-plan | Plain modules / Vite React / full-stack comparison, selected vanilla modules, hash routes and data/file ownership |
+| shop-setup-navigation-and-catalog | Semantic responsive shell, keyboard navigation, stable fixture cards and literal text |
+| shop-product-details-and-client-server-boundaries | Detail lookup, direct hash/not-found recovery and conceptual API/database/authentication/authorization boundaries |
+| shop-product-search-and-filters | Normalized name query, category/maximum-price intersection, derived counts and reversible empty results |
+| shop-cart-quantity-and-persistence | Stable cart lines, bounded integer quantities/cents totals, startup restore, ordered writes and explicit recovery |
+| shop-checkout-validation-and-failure-states | Fictional delivery/consent, pending guard, decline/retry and confirmation only after successful simulation/save |
+| shop-testing-export-and-handoff | Real repeatable smoke assertions/cleanup, independent compiled export and an in-memory wishlist combine milestone |
+
+Modules and hashchange precede routing; records and integer cents precede totals; the prior async/storage lessons are recapped before restore/write queues. Checkout is a local delayed simulation and never collects real customer/payment data. Wishlist uses already-taught stable identity, sets, events and rendering, with an independent acceptance plan and explicit reset-on-reload boundary. Durable accounts/auth/backend implementation belongs to Phase 7.
+
+The unchanged mastery engine requires activities, blanks, ten distinct correct question IDs/identities and all three challenges. Reveals retire the original identity and require a fresh same-concept scenario, with reserves guarding attainability. Failed review attempts retain earned mastery. Source and training maps remain scoped; entering a topic never replaces an existing project. The wishlist milestone is earned through the final independent combine challenge and is preserved by the same sticky pass semantics.
+
+Question editorial corrections and final acceptance are recorded in ECOMMERCE_QUESTION_REVIEW.md, PHASES.md and HANDOFF.md. Earlier inventory figures in phase-specific sections above are historical snapshots.

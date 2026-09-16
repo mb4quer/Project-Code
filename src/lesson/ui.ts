@@ -15,7 +15,7 @@ export function createLessonUI(host: Host) {
   const $ = <T extends HTMLElement = HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
   host.setSession(ensureLearning(host.getSession()));
   const nav = document.createElement('nav'); nav.className = 'lesson-nav'; nav.setAttribute('aria-label', 'Course views');
-  nav.innerHTML = '<button id="dashboard-nav">Dashboard</button><button id="resume-lesson">Resume lesson</button><button id="runtime-nav">Runtime lab</button><span>Todo, Weather and React</span>';
+  nav.innerHTML = '<button id="dashboard-nav">Dashboard</button><button id="resume-lesson">Resume lesson</button><button id="runtime-nav">Runtime lab</button><span>Todo, Weather, React and Ecommerce</span>';
   $('.page-heading').before(nav);
   const dashboard = document.createElement('section'); dashboard.id = 'dashboard'; dashboard.className = 'hidden'; $('.workspace').before(dashboard);
   const gradingContainer = document.createElement('div'); gradingContainer.className = 'grading-sandbox'; gradingContainer.setAttribute('aria-hidden', 'true'); document.body.append(gradingContainer);
@@ -49,7 +49,7 @@ export function createLessonUI(host: Host) {
   $('#runtime-nav').onclick = showLab;
   $('#resume-lesson').onclick = () => open(topic() ?? first(), learning().location.stepId);
   $('#roadmap').addEventListener('click', event => { event.stopImmediatePropagation(); showDashboard(); }, true);
-  $('.sidebar-note').innerHTML = '<strong>Build understanding through practice.</strong>Vanilla Todo, Async Weather and React Task Dashboard are available in sequence. Ecommerce is next.';
+  $('.sidebar-note').innerHTML = '<strong>Build understanding through practice.</strong>Vanilla Todo, Async Weather, React Task Dashboard and the original Ecommerce capstone are available in sequence.';
   $('.under-workspace span').firstChild!.textContent = 'Lessons and local execution ';
   window.addEventListener('pagehide', () => grader.dispose());
 
@@ -118,7 +118,7 @@ export function createLessonUI(host: Host) {
     const challenge = item.challenges.find(entry => entry.id === stepId);
     const state = progress(item);
     $('.reading .panel-heading').innerHTML = `<span>Lesson</span><span>${escape(projectLabel(item.projectId))}</span>`;
-    $('#tree-title').textContent = challenge ? 'CHALLENGE DRAFT' : item.projectId === 'async-weather' ? 'WEATHER PROJECT' : item.projectId === 'react-task-dashboard' ? 'REACT PROJECT' : 'TODO PROJECT';
+    $('#tree-title').textContent = challenge ? 'CHALLENGE DRAFT' : item.projectId === 'async-weather' ? 'WEATHER PROJECT' : item.projectId === 'react-task-dashboard' ? 'REACT PROJECT' : item.projectId === 'amazon-inspired-ecommerce' ? 'ECOMMERCE PROJECT' : 'TODO PROJECT';
     let body = '';
     if (activity) body = `<div class="eyebrow">${activity.kind === 'reading' ? 'Read & reason' : 'Guided coding'}</div><h2>${escape(activity.title)}</h2><p><strong>${escape(activity.objective)}</strong></p>${paragraphs(activity.explanation!)}${list(activity.instructions!)}${hints(activity.hints)}${activity.kind === 'guided-coding' ? `<p class="note">Extend your saved project files. Check runs a separate copy of the current draft.</p><h3>Check criteria</h3>${list(activity.validation?.checks ?? [])}<button class="primary" id="check-activity" ${grading ? 'disabled' : ''}>Check guided code</button>${solutions(activity.referenceSolution)}` : '<button class="primary" id="complete-reading">Mark reading complete</button>'}<p>${state?.activityIds.includes(activity.id) ? 'Activity complete ✓' : ''}</p>`;
     else if (stepId === 'blanks') body = `<h2>Practice the missing pieces</h2><p>All blanks are required. Code answers preserve case and internal spacing; conceptual answers ignore case.</p>${item.blanks.map(blank => `<form class="blank-form" data-blank="${blank.id}"><label for="${blank.id}">${escape(blank.prompt)}</label><input id="${blank.id}" autocomplete="off" required maxlength="1000"><button>Check blank</button><p>${state?.blankAttempts[blank.id]?.some(attempt => attempt.correct) ? `Correct ✓ ${escape(blank.explanation)}` : ''}</p></form>`).join('')}`;

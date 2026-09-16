@@ -1,0 +1,4559 @@
+[
+  {
+    "id": "todo-dom-events-and-task-state",
+    "projectId": "vanilla-todo",
+    "order": 1,
+    "prerequisiteTopicIds": [],
+    "activities": [
+      "todo-dom-planning-stack-setup",
+      "todo-dom-guided-add",
+      "todo-dom-state-render",
+      "todo-dom-guided-render",
+      "todo-dom-debug-independence"
+    ],
+    "blanks": [
+      "todo-dom-blank-trim-validation",
+      "todo-dom-blank-text-content",
+      "todo-dom-blank-stable-id",
+      "todo-dom-blank-toggle-return"
+    ],
+    "questions": [
+      {
+        "id": "todo-dom-q-predict-empty",
+        "identity": "todo-dom-q-predict-empty",
+        "acceptedAnswers": [
+          "2",
+          "two"
+        ]
+      },
+      {
+        "id": "todo-dom-q-predict-trim",
+        "identity": "todo-dom-q-predict-trim",
+        "acceptedAnswers": [
+          "Buy  milk"
+        ]
+      },
+      {
+        "id": "todo-dom-q-predict-count",
+        "identity": "todo-dom-q-predict-count",
+        "acceptedAnswers": [
+          "1 of 2 complete"
+        ]
+      },
+      {
+        "id": "todo-dom-q-predict-literal",
+        "identity": "todo-dom-q-predict-literal",
+        "acceptedAnswers": [
+          "<em>Plan</em>"
+        ]
+      },
+      {
+        "id": "todo-dom-q-predict-toggle",
+        "identity": "todo-dom-q-predict-toggle",
+        "acceptedAnswers": [
+          "false"
+        ]
+      },
+      {
+        "id": "todo-dom-q-predict-input",
+        "identity": "todo-dom-q-predict-input",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-dom-q-debug-id-type",
+        "identity": "todo-dom-q-debug-id-type",
+        "acceptedAnswers": [
+          "id"
+        ]
+      },
+      {
+        "id": "todo-dom-q-debug-inner-html",
+        "identity": "todo-dom-q-debug-inner-html",
+        "acceptedAnswers": [
+          "textContent"
+        ]
+      },
+      {
+        "id": "todo-dom-q-debug-stale-count",
+        "identity": "todo-dom-q-debug-stale-count",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-dom-q-debug-submit",
+        "identity": "todo-dom-q-debug-submit",
+        "acceptedAnswers": [
+          "preventDefault"
+        ]
+      },
+      {
+        "id": "todo-dom-q-debug-replace",
+        "identity": "todo-dom-q-debug-replace",
+        "acceptedAnswers": [
+          "replaceChildren"
+        ]
+      },
+      {
+        "id": "todo-dom-q-debug-invalid-clear",
+        "identity": "todo-dom-q-debug-invalid-clear",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-dom-q-explain-array",
+        "identity": "todo-dom-q-explain-array",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-dom-q-explain-render",
+        "identity": "todo-dom-q-explain-render",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-dom-q-explain-text",
+        "identity": "todo-dom-q-explain-text",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-dom-q-explain-id",
+        "identity": "todo-dom-q-explain-id",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-dom-q-explain-count",
+        "identity": "todo-dom-q-explain-count",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-dom-q-explain-scope",
+        "identity": "todo-dom-q-explain-scope",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-dom-q-apply-add",
+        "identity": "todo-dom-q-apply-add",
+        "acceptedAnswers": [
+          "trim"
+        ]
+      },
+      {
+        "id": "todo-dom-q-apply-new-task",
+        "identity": "todo-dom-q-apply-new-task",
+        "acceptedAnswers": [
+          "false"
+        ]
+      },
+      {
+        "id": "todo-dom-q-apply-toggle",
+        "identity": "todo-dom-q-apply-toggle",
+        "acceptedAnswers": [
+          "!task.done"
+        ]
+      },
+      {
+        "id": "todo-dom-q-apply-delete",
+        "identity": "todo-dom-q-apply-delete",
+        "acceptedAnswers": [
+          "!=="
+        ]
+      },
+      {
+        "id": "todo-dom-q-apply-count",
+        "identity": "todo-dom-q-apply-count",
+        "acceptedAnswers": [
+          "length"
+        ]
+      },
+      {
+        "id": "todo-dom-q-apply-label",
+        "identity": "todo-dom-q-apply-label",
+        "acceptedAnswers": [
+          "'task-label'",
+          "\"task-label\"",
+          "`task-label`"
+        ]
+      },
+      {
+        "id": "todo-dom-q-equivalent-predict-count",
+        "identity": "todo-dom-q-equivalent-predict-count",
+        "acceptedAnswers": [
+          "2",
+          "two"
+        ]
+      },
+      {
+        "id": "todo-dom-q-equivalent-predict-toggle",
+        "identity": "todo-dom-q-equivalent-predict-toggle",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "todo-dom-q-equivalent-debug-duplicate",
+        "identity": "todo-dom-q-equivalent-debug-duplicate",
+        "acceptedAnswers": [
+          "id"
+        ]
+      },
+      {
+        "id": "todo-dom-q-equivalent-debug-render",
+        "identity": "todo-dom-q-equivalent-debug-render",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-dom-q-equivalent-explain-state",
+        "identity": "todo-dom-q-equivalent-explain-state",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-dom-q-equivalent-explain-immutability",
+        "identity": "todo-dom-q-equivalent-explain-immutability",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-dom-q-equivalent-apply-empty",
+        "identity": "todo-dom-q-equivalent-apply-empty",
+        "acceptedAnswers": [
+          "return"
+        ]
+      },
+      {
+        "id": "todo-dom-q-equivalent-apply-checkbox",
+        "identity": "todo-dom-q-equivalent-apply-checkbox",
+        "acceptedAnswers": [
+          "1 of 2 complete"
+        ]
+      }
+    ],
+    "challenges": [
+      "todo-dom-apply",
+      "todo-dom-debug",
+      "todo-dom-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "todo-dom-guided-add",
+        "todo-dom-guided-render"
+      ],
+      "requiredChallengeIds": [
+        "todo-dom-apply",
+        "todo-dom-debug",
+        "todo-dom-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "todo-scope-and-user-flows",
+    "projectId": "vanilla-todo",
+    "order": 2,
+    "prerequisiteTopicIds": [
+      "todo-dom-events-and-task-state"
+    ],
+    "activities": [
+      "todo-scope-and-user-flows-read-1",
+      "todo-scope-and-user-flows-guided-1",
+      "todo-scope-and-user-flows-read-2",
+      "todo-scope-and-user-flows-guided-2",
+      "todo-scope-and-user-flows-read-3"
+    ],
+    "blanks": [
+      "scope-observable-contract",
+      "scope-filter-state"
+    ],
+    "questions": [
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-empty-add-count",
+        "identity": "todo-phase3-scope-and-user-flows-q-empty-add-count",
+        "acceptedAnswers": [
+          "1",
+          "one"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-toggle-then-filter",
+        "identity": "todo-phase3-scope-and-user-flows-q-toggle-then-filter",
+        "acceptedAnswers": [
+          "A, C",
+          "A and C"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-delete-visible-id",
+        "identity": "todo-phase3-scope-and-user-flows-q-delete-visible-id",
+        "acceptedAnswers": [
+          "7, 12",
+          "7 and 12"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-all-view-after-toggle",
+        "identity": "todo-phase3-scope-and-user-flows-q-all-view-after-toggle",
+        "acceptedAnswers": [
+          "2",
+          "two"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-last-delete-empty",
+        "identity": "todo-phase3-scope-and-user-flows-q-last-delete-empty",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-invalid-preserves-flow",
+        "identity": "todo-phase3-scope-and-user-flows-q-invalid-preserves-flow",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-debug-blank-requirement",
+        "identity": "todo-phase3-scope-and-user-flows-q-debug-blank-requirement",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-debug-filter-index",
+        "identity": "todo-phase3-scope-and-user-flows-q-debug-filter-index",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-debug-toggle-all",
+        "identity": "todo-phase3-scope-and-user-flows-q-debug-toggle-all",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-debug-empty-derived",
+        "identity": "todo-phase3-scope-and-user-flows-q-debug-empty-derived",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-debug-double-submit",
+        "identity": "todo-phase3-scope-and-user-flows-q-debug-double-submit",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-debug-filter-state",
+        "identity": "todo-phase3-scope-and-user-flows-q-debug-filter-state",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-explain-source-view",
+        "identity": "todo-phase3-scope-and-user-flows-q-explain-source-view",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-explain-stable-id",
+        "identity": "todo-phase3-scope-and-user-flows-q-explain-stable-id",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-explain-invalid-noop",
+        "identity": "todo-phase3-scope-and-user-flows-q-explain-invalid-noop",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-explain-empty-vs-filter",
+        "identity": "todo-phase3-scope-and-user-flows-q-explain-empty-vs-filter",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-explain-acceptance",
+        "identity": "todo-phase3-scope-and-user-flows-q-explain-acceptance",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-explain-filter-no-mutation",
+        "identity": "todo-phase3-scope-and-user-flows-q-explain-filter-no-mutation",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-apply-visible-filter",
+        "identity": "todo-phase3-scope-and-user-flows-q-apply-visible-filter",
+        "acceptedAnswers": [
+          "!task.done",
+          "task.done === false",
+          "task.done===false"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-apply-delete-by-id",
+        "identity": "todo-phase3-scope-and-user-flows-q-apply-delete-by-id",
+        "acceptedAnswers": [
+          "!=="
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-apply-empty-check",
+        "identity": "todo-phase3-scope-and-user-flows-q-apply-empty-check",
+        "acceptedAnswers": [
+          "visible.length"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-apply-submit-boundary",
+        "identity": "todo-phase3-scope-and-user-flows-q-apply-submit-boundary",
+        "acceptedAnswers": [
+          "preventDefault"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-apply-toggle-match",
+        "identity": "todo-phase3-scope-and-user-flows-q-apply-toggle-match",
+        "acceptedAnswers": [
+          "!task.done",
+          "task.done === false",
+          "task.done===false"
+        ]
+      },
+      {
+        "id": "todo-phase3-scope-and-user-flows-q-apply-flow-count",
+        "identity": "todo-phase3-scope-and-user-flows-q-apply-flow-count",
+        "acceptedAnswers": [
+          "1",
+          "one"
+        ]
+      }
+    ],
+    "challenges": [
+      "todo-scope-and-user-flows-apply",
+      "todo-scope-and-user-flows-debug",
+      "todo-scope-and-user-flows-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "todo-scope-and-user-flows-guided-1",
+        "todo-scope-and-user-flows-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "todo-scope-and-user-flows-apply",
+        "todo-scope-and-user-flows-debug",
+        "todo-scope-and-user-flows-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "todo-web-stack-and-file-plan",
+    "projectId": "vanilla-todo",
+    "order": 3,
+    "prerequisiteTopicIds": [
+      "todo-scope-and-user-flows"
+    ],
+    "activities": [
+      "todo-web-stack-and-file-plan-read-1",
+      "todo-web-stack-and-file-plan-guided-1",
+      "todo-web-stack-and-file-plan-read-2",
+      "todo-web-stack-and-file-plan-guided-2",
+      "todo-web-stack-and-file-plan-read-3"
+    ],
+    "blanks": [
+      "stack-module-boundary",
+      "stack-relative-import"
+    ],
+    "questions": [
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-module-script",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-module-script",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-relative-import",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-relative-import",
+        "acceptedAnswers": [
+          "./model/state.js"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-react-jsx-browser",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-react-jsx-browser",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-vite-role",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-vite-role",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-storage-boundary",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-storage-boundary",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-file-responsibility",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-file-responsibility",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-debug-import-directory",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-debug-import-directory",
+        "acceptedAnswers": [
+          "../state/state.js"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-debug-jsx-plain",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-debug-jsx-plain",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-debug-css-relative",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-debug-css-relative",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-debug-vite-source-host",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-debug-vite-source-host",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-debug-circular-ownership",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-debug-circular-ownership",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-debug-external-package",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-debug-external-package",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-explain-plain-choice",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-explain-plain-choice",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-explain-vite-choice",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-explain-vite-choice",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-explain-react-tradeoff",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-explain-react-tradeoff",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-explain-relative",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-explain-relative",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-explain-separation",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-explain-separation",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-explain-static-boundary",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-explain-static-boundary",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-apply-export",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-apply-export",
+        "acceptedAnswers": [
+          "export"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-apply-import-path",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-apply-import-path",
+        "acceptedAnswers": [
+          "as"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-apply-module-script",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-apply-module-script",
+        "acceptedAnswers": [
+          "type=\"module\"",
+          "type='module'"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-apply-file-boundary",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-apply-file-boundary",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-apply-static-choice",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-apply-static-choice",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-web-stack-and-file-plan-q-apply-react-scope",
+        "identity": "todo-phase3-web-stack-and-file-plan-q-apply-react-scope",
+        "acceptedAnswers": [
+          "A"
+        ]
+      }
+    ],
+    "challenges": [
+      "todo-web-stack-and-file-plan-apply",
+      "todo-web-stack-and-file-plan-debug",
+      "todo-web-stack-and-file-plan-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "todo-web-stack-and-file-plan-guided-1",
+        "todo-web-stack-and-file-plan-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "todo-web-stack-and-file-plan-apply",
+        "todo-web-stack-and-file-plan-debug",
+        "todo-web-stack-and-file-plan-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "todo-setup-and-static-layout",
+    "projectId": "vanilla-todo",
+    "order": 4,
+    "prerequisiteTopicIds": [
+      "todo-web-stack-and-file-plan"
+    ],
+    "activities": [
+      "todo-setup-and-static-layout-read-1",
+      "todo-setup-and-static-layout-guided-1",
+      "todo-setup-and-static-layout-read-2",
+      "todo-setup-and-static-layout-guided-2",
+      "todo-setup-and-static-layout-read-3"
+    ],
+    "blanks": [
+      "layout-label-purpose",
+      "layout-prevent-submit"
+    ],
+    "questions": [
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-label-association",
+        "identity": "todo-phase3-setup-and-static-layout-q-label-association",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-form-submit",
+        "identity": "todo-phase3-setup-and-static-layout-q-form-submit",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-button-default",
+        "identity": "todo-phase3-setup-and-static-layout-q-button-default",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-live-status",
+        "identity": "todo-phase3-setup-and-static-layout-q-live-status",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-list-semantics",
+        "identity": "todo-phase3-setup-and-static-layout-q-list-semantics",
+        "acceptedAnswers": [
+          "3",
+          "three"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-flex-wrap",
+        "identity": "todo-phase3-setup-and-static-layout-q-flex-wrap",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-debug-label-id",
+        "identity": "todo-phase3-setup-and-static-layout-q-debug-label-id",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-debug-button-submit",
+        "identity": "todo-phase3-setup-and-static-layout-q-debug-button-submit",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-debug-script-path",
+        "identity": "todo-phase3-setup-and-static-layout-q-debug-script-path",
+        "acceptedAnswers": [
+          "./src/main.js"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-debug-hidden-feedback",
+        "identity": "todo-phase3-setup-and-static-layout-q-debug-hidden-feedback",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-debug-list-wrapper",
+        "identity": "todo-phase3-setup-and-static-layout-q-debug-list-wrapper",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-debug-css-selector",
+        "identity": "todo-phase3-setup-and-static-layout-q-debug-css-selector",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-explain-semantic-form",
+        "identity": "todo-phase3-setup-and-static-layout-q-explain-semantic-form",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-explain-label",
+        "identity": "todo-phase3-setup-and-static-layout-q-explain-label",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-explain-heading",
+        "identity": "todo-phase3-setup-and-static-layout-q-explain-heading",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-explain-live-region",
+        "identity": "todo-phase3-setup-and-static-layout-q-explain-live-region",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-explain-layout-css",
+        "identity": "todo-phase3-setup-and-static-layout-q-explain-layout-css",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-explain-focus",
+        "identity": "todo-phase3-setup-and-static-layout-q-explain-focus",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-apply-label-for",
+        "identity": "todo-phase3-setup-and-static-layout-q-apply-label-for",
+        "acceptedAnswers": [
+          "for"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-apply-input-id",
+        "identity": "todo-phase3-setup-and-static-layout-q-apply-input-id",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-apply-live-aria",
+        "identity": "todo-phase3-setup-and-static-layout-q-apply-live-aria",
+        "acceptedAnswers": [
+          "polite"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-apply-button-type",
+        "identity": "todo-phase3-setup-and-static-layout-q-apply-button-type",
+        "acceptedAnswers": [
+          "button"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-apply-list-element",
+        "identity": "todo-phase3-setup-and-static-layout-q-apply-list-element",
+        "acceptedAnswers": [
+          "ul"
+        ]
+      },
+      {
+        "id": "todo-phase3-setup-and-static-layout-q-apply-module-src",
+        "identity": "todo-phase3-setup-and-static-layout-q-apply-module-src",
+        "acceptedAnswers": [
+          "A"
+        ]
+      }
+    ],
+    "challenges": [
+      "todo-setup-and-static-layout-apply",
+      "todo-setup-and-static-layout-debug",
+      "todo-setup-and-static-layout-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "todo-setup-and-static-layout-guided-1",
+        "todo-setup-and-static-layout-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "todo-setup-and-static-layout-apply",
+        "todo-setup-and-static-layout-debug",
+        "todo-setup-and-static-layout-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "todo-filter-empty-and-input-errors",
+    "projectId": "vanilla-todo",
+    "order": 5,
+    "prerequisiteTopicIds": [
+      "todo-setup-and-static-layout"
+    ],
+    "activities": [
+      "todo-filter-empty-and-input-errors-read-1",
+      "todo-filter-empty-and-input-errors-guided-1",
+      "todo-filter-empty-and-input-errors-read-2",
+      "todo-filter-empty-and-input-errors-guided-2",
+      "todo-filter-empty-and-input-errors-read-3"
+    ],
+    "blanks": [
+      "filter-derived-view",
+      "filter-empty-predicate"
+    ],
+    "questions": [
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-active-visible",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-active-visible",
+        "acceptedAnswers": [
+          "2",
+          "two"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-completed-visible",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-completed-visible",
+        "acceptedAnswers": [
+          "B, C",
+          "B and C"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-spaces-rejected",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-spaces-rejected",
+        "acceptedAnswers": [
+          "no",
+          "invalid"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-no-match-message",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-no-match-message",
+        "acceptedAnswers": [
+          "No active tasks"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-error-cleared-valid",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-error-cleared-valid",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-filter-delete-source",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-filter-delete-source",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-debug-untrimmed",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-debug-untrimmed",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-debug-inverted-filter",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-debug-inverted-filter",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-debug-stale-error",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-debug-stale-error",
+        "acceptedAnswers": [
+          "clear the error",
+          "set error.textContent to an empty string",
+          "error.textContent = ''"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-debug-filter-mutation",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-debug-filter-mutation",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-debug-empty-source",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-debug-empty-source",
+        "acceptedAnswers": [
+          "check source emptiness before no-match emptiness",
+          "distinguish empty source from empty filtered view"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-debug-filtered-delete",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-debug-filtered-delete",
+        "acceptedAnswers": [
+          "the matching stable id",
+          "delete by id"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-explain-derived",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-explain-derived",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-explain-empty",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-explain-empty",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-explain-validation",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-explain-validation",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-explain-error",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-explain-error",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-explain-filter-control",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-explain-filter-control",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-explain-invalid-preserve",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-explain-invalid-preserve",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-apply-trim",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-apply-trim",
+        "acceptedAnswers": [
+          "trim"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-apply-active",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-apply-active",
+        "acceptedAnswers": [
+          "!task.done",
+          "task.done === false",
+          "task.done===false"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-apply-completed",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-apply-completed",
+        "acceptedAnswers": [
+          "done"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-apply-error-clear",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-apply-error-clear",
+        "acceptedAnswers": [
+          "''",
+          "\"\""
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-apply-no-match",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-apply-no-match",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-filter-empty-and-input-errors-q-apply-preserve-source",
+        "identity": "todo-phase3-filter-empty-and-input-errors-q-apply-preserve-source",
+        "acceptedAnswers": [
+          "!=="
+        ]
+      }
+    ],
+    "challenges": [
+      "todo-filter-empty-and-input-errors-apply",
+      "todo-filter-empty-and-input-errors-debug",
+      "todo-filter-empty-and-input-errors-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "todo-filter-empty-and-input-errors-guided-1",
+        "todo-filter-empty-and-input-errors-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "todo-filter-empty-and-input-errors-apply",
+        "todo-filter-empty-and-input-errors-debug",
+        "todo-filter-empty-and-input-errors-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "todo-storage-and-recovery",
+    "projectId": "vanilla-todo",
+    "order": 6,
+    "prerequisiteTopicIds": [
+      "todo-filter-empty-and-input-errors"
+    ],
+    "activities": [
+      "todo-storage-and-recovery-read-1",
+      "todo-storage-and-recovery-guided-1",
+      "todo-storage-and-recovery-read-2",
+      "todo-storage-and-recovery-guided-2",
+      "todo-storage-and-recovery-read-3"
+    ],
+    "blanks": [
+      "storage-missing-value",
+      "storage-serialize"
+    ],
+    "questions": [
+      {
+        "id": "todo-phase3-storage-and-recovery-q-missing-get",
+        "identity": "todo-phase3-storage-and-recovery-q-missing-get",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-valid-json",
+        "identity": "todo-phase3-storage-and-recovery-q-valid-json",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-malformed-json",
+        "identity": "todo-phase3-storage-and-recovery-q-malformed-json",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-set-string",
+        "identity": "todo-phase3-storage-and-recovery-q-set-string",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-remove-result",
+        "identity": "todo-phase3-storage-and-recovery-q-remove-result",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-local-scope",
+        "identity": "todo-phase3-storage-and-recovery-q-local-scope",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-debug-parse-null",
+        "identity": "todo-phase3-storage-and-recovery-q-debug-parse-null",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-debug-uncaught-parse",
+        "identity": "todo-phase3-storage-and-recovery-q-debug-uncaught-parse",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-debug-shape",
+        "identity": "todo-phase3-storage-and-recovery-q-debug-shape",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-debug-await-write",
+        "identity": "todo-phase3-storage-and-recovery-q-debug-await-write",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-debug-cloud-claim",
+        "identity": "todo-phase3-storage-and-recovery-q-debug-cloud-claim",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-debug-wrong-key",
+        "identity": "todo-phase3-storage-and-recovery-q-debug-wrong-key",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-explain-boundary",
+        "identity": "todo-phase3-storage-and-recovery-q-explain-boundary",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-explain-json",
+        "identity": "todo-phase3-storage-and-recovery-q-explain-json",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-explain-parse",
+        "identity": "todo-phase3-storage-and-recovery-q-explain-parse",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-explain-shape",
+        "identity": "todo-phase3-storage-and-recovery-q-explain-shape",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-explain-missing",
+        "identity": "todo-phase3-storage-and-recovery-q-explain-missing",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-explain-recovery",
+        "identity": "todo-phase3-storage-and-recovery-q-explain-recovery",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-apply-get",
+        "identity": "todo-phase3-storage-and-recovery-q-apply-get",
+        "acceptedAnswers": [
+          "await"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-apply-null",
+        "identity": "todo-phase3-storage-and-recovery-q-apply-null",
+        "acceptedAnswers": [
+          "[]"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-apply-parse",
+        "identity": "todo-phase3-storage-and-recovery-q-apply-parse",
+        "acceptedAnswers": [
+          "parse"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-apply-array-check",
+        "identity": "todo-phase3-storage-and-recovery-q-apply-array-check",
+        "acceptedAnswers": [
+          "Array.isArray"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-apply-write",
+        "identity": "todo-phase3-storage-and-recovery-q-apply-write",
+        "acceptedAnswers": [
+          "stringify"
+        ]
+      },
+      {
+        "id": "todo-phase3-storage-and-recovery-q-apply-remove",
+        "identity": "todo-phase3-storage-and-recovery-q-apply-remove",
+        "acceptedAnswers": [
+          "removeItem"
+        ]
+      }
+    ],
+    "challenges": [
+      "todo-storage-and-recovery-apply",
+      "todo-storage-and-recovery-debug",
+      "todo-storage-and-recovery-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "todo-storage-and-recovery-guided-1",
+        "todo-storage-and-recovery-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "todo-storage-and-recovery-apply",
+        "todo-storage-and-recovery-debug",
+        "todo-storage-and-recovery-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "todo-testing-and-export",
+    "projectId": "vanilla-todo",
+    "order": 7,
+    "prerequisiteTopicIds": [
+      "todo-storage-and-recovery"
+    ],
+    "activities": [
+      "todo-testing-and-export-read-1",
+      "todo-testing-and-export-guided-1",
+      "todo-testing-and-export-read-2",
+      "todo-testing-and-export-guided-2",
+      "todo-testing-and-export-read-3"
+    ],
+    "blanks": [
+      "test-observed-behavior",
+      "export-file-map"
+    ],
+    "questions": [
+      {
+        "id": "todo-phase3-testing-and-export-q-add-test-result",
+        "identity": "todo-phase3-testing-and-export-q-add-test-result",
+        "acceptedAnswers": [
+          "1",
+          "one"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-invalid-test-result",
+        "identity": "todo-phase3-testing-and-export-q-invalid-test-result",
+        "acceptedAnswers": [
+          "1",
+          "one"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-toggle-test-result",
+        "identity": "todo-phase3-testing-and-export-q-toggle-test-result",
+        "acceptedAnswers": [
+          "true"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-relative-export",
+        "identity": "todo-phase3-testing-and-export-q-relative-export",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-static-server",
+        "identity": "todo-phase3-testing-and-export-q-static-server",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-zip-entry",
+        "identity": "todo-phase3-testing-and-export-q-zip-entry",
+        "acceptedAnswers": [
+          "index.html"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-debug-implementation-test",
+        "identity": "todo-phase3-testing-and-export-q-debug-implementation-test",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-debug-selector-test",
+        "identity": "todo-phase3-testing-and-export-q-debug-selector-test",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-debug-await-test",
+        "identity": "todo-phase3-testing-and-export-q-debug-await-test",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-debug-export-missing",
+        "identity": "todo-phase3-testing-and-export-q-debug-export-missing",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-debug-server-assumption",
+        "identity": "todo-phase3-testing-and-export-q-debug-server-assumption",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-debug-flaky-test",
+        "identity": "todo-phase3-testing-and-export-q-debug-flaky-test",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-explain-behavior",
+        "identity": "todo-phase3-testing-and-export-q-explain-behavior",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-explain-invalid-test",
+        "identity": "todo-phase3-testing-and-export-q-explain-invalid-test",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-explain-fixture",
+        "identity": "todo-phase3-testing-and-export-q-explain-fixture",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-explain-static",
+        "identity": "todo-phase3-testing-and-export-q-explain-static",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-explain-zip",
+        "identity": "todo-phase3-testing-and-export-q-explain-zip",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-explain-regression",
+        "identity": "todo-phase3-testing-and-export-q-explain-regression",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-apply-count-test",
+        "identity": "todo-phase3-testing-and-export-q-apply-count-test",
+        "acceptedAnswers": [
+          "length"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-apply-invalid-test",
+        "identity": "todo-phase3-testing-and-export-q-apply-invalid-test",
+        "acceptedAnswers": [
+          "length"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-apply-checkbox-test",
+        "identity": "todo-phase3-testing-and-export-q-apply-checkbox-test",
+        "acceptedAnswers": [
+          "checked"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-apply-reset-fixture",
+        "identity": "todo-phase3-testing-and-export-q-apply-reset-fixture",
+        "acceptedAnswers": [
+          "removeItem"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-apply-export-files",
+        "identity": "todo-phase3-testing-and-export-q-apply-export-files",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "todo-phase3-testing-and-export-q-apply-static-check",
+        "identity": "todo-phase3-testing-and-export-q-apply-static-check",
+        "acceptedAnswers": [
+          "B"
+        ]
+      }
+    ],
+    "challenges": [
+      "todo-testing-and-export-apply",
+      "todo-testing-and-export-debug",
+      "todo-testing-and-export-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "todo-testing-and-export-guided-1",
+        "todo-testing-and-export-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "todo-testing-and-export-apply",
+        "todo-testing-and-export-debug",
+        "todo-testing-and-export-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "weather-scope-and-data-contract",
+    "projectId": "async-weather",
+    "order": 1,
+    "prerequisiteTopicIds": [
+      "todo-testing-and-export"
+    ],
+    "activities": [
+      "weather-scope-and-data-contract-read-1",
+      "weather-scope-and-data-contract-guided-1",
+      "weather-scope-and-data-contract-read-2",
+      "weather-scope-and-data-contract-guided-2",
+      "weather-scope-and-data-contract-read-3"
+    ],
+    "blanks": [
+      "weather-scope-contract-null",
+      "weather-scope-contract-field"
+    ],
+    "questions": [
+      {
+        "id": "weather-scope-and-data-contract-q-predict-london-fields",
+        "identity": "weather-scope-and-data-contract-q-predict-london-fields",
+        "acceptedAnswers": [
+          "London, 18, Cloudy",
+          "city London, temperatureC 18, condition Cloudy"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-predict-empty-result",
+        "identity": "weather-scope-and-data-contract-q-predict-empty-result",
+        "acceptedAnswers": [
+          "unavailable-location message",
+          "unavailable",
+          "empty message"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-predict-invalid-short",
+        "identity": "weather-scope-and-data-contract-q-predict-invalid-short",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-predict-trimmed-city",
+        "identity": "weather-scope-and-data-contract-q-predict-trimmed-city",
+        "acceptedAnswers": [
+          "Paris"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-predict-http-resolve",
+        "identity": "weather-scope-and-data-contract-q-predict-http-resolve",
+        "acceptedAnswers": [
+          "fulfilled HTTP failure",
+          "fulfilled response with HTTP failure"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-predict-live-default",
+        "identity": "weather-scope-and-data-contract-q-predict-live-default",
+        "acceptedAnswers": [
+          "fixture",
+          "fixtures",
+          "fixture data",
+          "deterministic fixtures"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-debug-temperature-field",
+        "identity": "weather-scope-and-data-contract-q-debug-temperature-field",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-debug-empty-branch",
+        "identity": "weather-scope-and-data-contract-q-debug-empty-branch",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-debug-short-input",
+        "identity": "weather-scope-and-data-contract-q-debug-short-input",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-debug-long-input",
+        "identity": "weather-scope-and-data-contract-q-debug-long-input",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-debug-http-rejection",
+        "identity": "weather-scope-and-data-contract-q-debug-http-rejection",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-debug-live-checkbox",
+        "identity": "weather-scope-and-data-contract-q-debug-live-checkbox",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-explain-contract",
+        "identity": "weather-scope-and-data-contract-q-explain-contract",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-explain-null",
+        "identity": "weather-scope-and-data-contract-q-explain-null",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-explain-trim",
+        "identity": "weather-scope-and-data-contract-q-explain-trim",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-explain-bounds",
+        "identity": "weather-scope-and-data-contract-q-explain-bounds",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-explain-http",
+        "identity": "weather-scope-and-data-contract-q-explain-http",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-explain-fixtures",
+        "identity": "weather-scope-and-data-contract-q-explain-fixtures",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-apply-valid-boundary",
+        "identity": "weather-scope-and-data-contract-q-apply-valid-boundary",
+        "acceptedAnswers": [
+          "80"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-apply-contract-city",
+        "identity": "weather-scope-and-data-contract-q-apply-contract-city",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-apply-contract-temp",
+        "identity": "weather-scope-and-data-contract-q-apply-contract-temp",
+        "acceptedAnswers": [
+          "temperatureC"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-apply-http-guard",
+        "identity": "weather-scope-and-data-contract-q-apply-http-guard",
+        "acceptedAnswers": [
+          "ok"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-apply-null-branch",
+        "identity": "weather-scope-and-data-contract-q-apply-null-branch",
+        "acceptedAnswers": [
+          "null"
+        ]
+      },
+      {
+        "id": "weather-scope-and-data-contract-q-apply-fixture-mode",
+        "identity": "weather-scope-and-data-contract-q-apply-fixture-mode",
+        "acceptedAnswers": [
+          "B"
+        ]
+      }
+    ],
+    "challenges": [
+      "weather-scope-and-data-contract-apply",
+      "weather-scope-and-data-contract-debug",
+      "weather-scope-and-data-contract-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "weather-scope-and-data-contract-guided-1",
+        "weather-scope-and-data-contract-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "weather-scope-and-data-contract-apply",
+        "weather-scope-and-data-contract-debug",
+        "weather-scope-and-data-contract-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "weather-modules-and-request-stack",
+    "projectId": "async-weather",
+    "order": 2,
+    "prerequisiteTopicIds": [
+      "weather-scope-and-data-contract"
+    ],
+    "activities": [
+      "weather-modules-and-request-stack-read-1",
+      "weather-modules-and-request-stack-guided-1",
+      "weather-modules-and-request-stack-read-2",
+      "weather-modules-and-request-stack-guided-2",
+      "weather-modules-and-request-stack-read-3"
+    ],
+    "blanks": [
+      "weather-modules-boundary",
+      "weather-modules-import"
+    ],
+    "questions": [
+      {
+        "id": "weather-modules-and-request-stack-q-predict-module-owner",
+        "identity": "weather-modules-and-request-stack-q-predict-module-owner",
+        "acceptedAnswers": [
+          "api.js",
+          "api module"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-predict-state-transition",
+        "identity": "weather-modules-and-request-stack-q-predict-state-transition",
+        "acceptedAnswers": [
+          "idle to loading",
+          "loading"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-predict-relative-path",
+        "identity": "weather-modules-and-request-stack-q-predict-relative-path",
+        "acceptedAnswers": [
+          "./api.js"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-predict-render-input",
+        "identity": "weather-modules-and-request-stack-q-predict-render-input",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-predict-shared-contract",
+        "identity": "weather-modules-and-request-stack-q-predict-shared-contract",
+        "acceptedAnswers": [
+          "render module",
+          "render"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-predict-request-export",
+        "identity": "weather-modules-and-request-stack-q-predict-request-export",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-debug-circular-import",
+        "identity": "weather-modules-and-request-stack-q-debug-circular-import",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-debug-wrong-relative",
+        "identity": "weather-modules-and-request-stack-q-debug-wrong-relative",
+        "acceptedAnswers": [
+          "../state.js"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-debug-default-named",
+        "identity": "weather-modules-and-request-stack-q-debug-default-named",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-debug-render-request",
+        "identity": "weather-modules-and-request-stack-q-debug-render-request",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-debug-state-local",
+        "identity": "weather-modules-and-request-stack-q-debug-state-local",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-debug-path-extension",
+        "identity": "weather-modules-and-request-stack-q-debug-path-extension",
+        "acceptedAnswers": [
+          "./weather.js"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-explain-adapter",
+        "identity": "weather-modules-and-request-stack-q-explain-adapter",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-explain-state-owner",
+        "identity": "weather-modules-and-request-stack-q-explain-state-owner",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-explain-relative",
+        "identity": "weather-modules-and-request-stack-q-explain-relative",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-explain-render-pure",
+        "identity": "weather-modules-and-request-stack-q-explain-render-pure",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-explain-named-export",
+        "identity": "weather-modules-and-request-stack-q-explain-named-export",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-explain-view-contract",
+        "identity": "weather-modules-and-request-stack-q-explain-view-contract",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-apply-api-import",
+        "identity": "weather-modules-and-request-stack-q-apply-api-import",
+        "acceptedAnswers": [
+          "./weather/api.js"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-apply-loading-state",
+        "identity": "weather-modules-and-request-stack-q-apply-loading-state",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-apply-render-status",
+        "identity": "weather-modules-and-request-stack-q-apply-render-status",
+        "acceptedAnswers": [
+          "condition"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-apply-named-syntax",
+        "identity": "weather-modules-and-request-stack-q-apply-named-syntax",
+        "acceptedAnswers": [
+          "as"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-apply-state-render",
+        "identity": "weather-modules-and-request-stack-q-apply-state-render",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-modules-and-request-stack-q-apply-api-boundary",
+        "identity": "weather-modules-and-request-stack-q-apply-api-boundary",
+        "acceptedAnswers": [
+          "B"
+        ]
+      }
+    ],
+    "challenges": [
+      "weather-modules-and-request-stack-apply",
+      "weather-modules-and-request-stack-debug",
+      "weather-modules-and-request-stack-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "weather-modules-and-request-stack-guided-1",
+        "weather-modules-and-request-stack-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "weather-modules-and-request-stack-apply",
+        "weather-modules-and-request-stack-debug",
+        "weather-modules-and-request-stack-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "weather-setup-and-search-form",
+    "projectId": "async-weather",
+    "order": 3,
+    "prerequisiteTopicIds": [
+      "weather-modules-and-request-stack"
+    ],
+    "activities": [
+      "weather-setup-and-search-form-read-1",
+      "weather-setup-and-search-form-guided-1",
+      "weather-setup-and-search-form-read-2",
+      "weather-setup-and-search-form-guided-2",
+      "weather-setup-and-search-form-read-3"
+    ],
+    "blanks": [
+      "weather-setup-accessibility",
+      "weather-setup-submit"
+    ],
+    "questions": [
+      {
+        "id": "weather-setup-and-search-form-q-predict-form-submit",
+        "identity": "weather-setup-and-search-form-q-predict-form-submit",
+        "acceptedAnswers": [
+          "form submit handler",
+          "submit handler"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-predict-input-trim",
+        "identity": "weather-setup-and-search-form-q-predict-input-trim",
+        "acceptedAnswers": [
+          "London"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-predict-live-region",
+        "identity": "weather-setup-and-search-form-q-predict-live-region",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-predict-submit-control",
+        "identity": "weather-setup-and-search-form-q-predict-submit-control",
+        "acceptedAnswers": [
+          "submit"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-predict-result-start",
+        "identity": "weather-setup-and-search-form-q-predict-result-start",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-predict-invalid-message",
+        "identity": "weather-setup-and-search-form-q-predict-invalid-message",
+        "acceptedAnswers": [
+          "an input validation message",
+          "validation message"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-debug-click-only",
+        "identity": "weather-setup-and-search-form-q-debug-click-only",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-debug-missing-label",
+        "identity": "weather-setup-and-search-form-q-debug-missing-label",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-debug-live-role",
+        "identity": "weather-setup-and-search-form-q-debug-live-role",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-debug-invalid-fetch",
+        "identity": "weather-setup-and-search-form-q-debug-invalid-fetch",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-debug-submit-duplicate",
+        "identity": "weather-setup-and-search-form-q-debug-submit-duplicate",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-debug-result-target",
+        "identity": "weather-setup-and-search-form-q-debug-result-target",
+        "acceptedAnswers": [
+          "#weather-status"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-explain-prevent-default",
+        "identity": "weather-setup-and-search-form-q-explain-prevent-default",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-explain-label",
+        "identity": "weather-setup-and-search-form-q-explain-label",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-explain-live",
+        "identity": "weather-setup-and-search-form-q-explain-live",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-explain-single-submit",
+        "identity": "weather-setup-and-search-form-q-explain-single-submit",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-explain-validation-copy",
+        "identity": "weather-setup-and-search-form-q-explain-validation-copy",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-explain-initial-state",
+        "identity": "weather-setup-and-search-form-q-explain-initial-state",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-apply-submit-prevent",
+        "identity": "weather-setup-and-search-form-q-apply-submit-prevent",
+        "acceptedAnswers": [
+          "preventDefault"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-apply-input-id",
+        "identity": "weather-setup-and-search-form-q-apply-input-id",
+        "acceptedAnswers": [
+          "city-input"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-apply-live-attribute",
+        "identity": "weather-setup-and-search-form-q-apply-live-attribute",
+        "acceptedAnswers": [
+          "polite"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-apply-min-check",
+        "identity": "weather-setup-and-search-form-q-apply-min-check",
+        "acceptedAnswers": [
+          "2"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-apply-result-region",
+        "identity": "weather-setup-and-search-form-q-apply-result-region",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-setup-and-search-form-q-apply-button-type",
+        "identity": "weather-setup-and-search-form-q-apply-button-type",
+        "acceptedAnswers": [
+          "button"
+        ]
+      }
+    ],
+    "challenges": [
+      "weather-setup-and-search-form-apply",
+      "weather-setup-and-search-form-debug",
+      "weather-setup-and-search-form-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "weather-setup-and-search-form-guided-1",
+        "weather-setup-and-search-form-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "weather-setup-and-search-form-apply",
+        "weather-setup-and-search-form-debug",
+        "weather-setup-and-search-form-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "weather-promises-and-async-control-flow",
+    "projectId": "async-weather",
+    "order": 4,
+    "prerequisiteTopicIds": [
+      "weather-setup-and-search-form"
+    ],
+    "activities": [
+      "weather-promises-and-async-control-flow-read-1",
+      "weather-promises-and-async-control-flow-guided-1",
+      "weather-promises-and-async-control-flow-read-2",
+      "weather-promises-and-async-control-flow-guided-2",
+      "weather-promises-and-async-control-flow-read-3"
+    ],
+    "blanks": [
+      "weather-promises-state",
+      "weather-promises-await"
+    ],
+    "questions": [
+      {
+        "id": "weather-promises-and-async-control-flow-q-predict-promise-state",
+        "identity": "weather-promises-and-async-control-flow-q-predict-promise-state",
+        "acceptedAnswers": [
+          "pending"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-predict-await-value",
+        "identity": "weather-promises-and-async-control-flow-q-predict-await-value",
+        "acceptedAnswers": [
+          "18"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-predict-catch",
+        "identity": "weather-promises-and-async-control-flow-q-predict-catch",
+        "acceptedAnswers": [
+          "catch",
+          "catch branch"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-predict-async-return",
+        "identity": "weather-promises-and-async-control-flow-q-predict-async-return",
+        "acceptedAnswers": [
+          "a promise",
+          "promise"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-predict-sequential-await",
+        "identity": "weather-promises-and-async-control-flow-q-predict-sequential-await",
+        "acceptedAnswers": [
+          "Slow",
+          "slow"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-predict-finally",
+        "identity": "weather-promises-and-async-control-flow-q-predict-finally",
+        "acceptedAnswers": [
+          "[\"catch\",\"cleanup\"]",
+          "[\"catch\", \"cleanup\"]",
+          "['catch','cleanup']",
+          "['catch', 'cleanup']",
+          "catch, cleanup"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-debug-no-catch",
+        "identity": "weather-promises-and-async-control-flow-q-debug-no-catch",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-debug-await-outside",
+        "identity": "weather-promises-and-async-control-flow-q-debug-await-outside",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-debug-missing-return",
+        "identity": "weather-promises-and-async-control-flow-q-debug-missing-return",
+        "acceptedAnswers": [
+          "return"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-debug-await-order",
+        "identity": "weather-promises-and-async-control-flow-q-debug-await-order",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-debug-catch-scope",
+        "identity": "weather-promises-and-async-control-flow-q-debug-catch-scope",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-debug-promise-json",
+        "identity": "weather-promises-and-async-control-flow-q-debug-promise-json",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-explain-pending",
+        "identity": "weather-promises-and-async-control-flow-q-explain-pending",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-explain-await",
+        "identity": "weather-promises-and-async-control-flow-q-explain-await",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-explain-rejection",
+        "identity": "weather-promises-and-async-control-flow-q-explain-rejection",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-explain-async",
+        "identity": "weather-promises-and-async-control-flow-q-explain-async",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-explain-concurrency",
+        "identity": "weather-promises-and-async-control-flow-q-explain-concurrency",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-explain-finally",
+        "identity": "weather-promises-and-async-control-flow-q-explain-finally",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-apply-await-json",
+        "identity": "weather-promises-and-async-control-flow-q-apply-await-json",
+        "acceptedAnswers": [
+          "await"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-apply-catch",
+        "identity": "weather-promises-and-async-control-flow-q-apply-catch",
+        "acceptedAnswers": [
+          "catch"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-apply-return-promise",
+        "identity": "weather-promises-and-async-control-flow-q-apply-return-promise",
+        "acceptedAnswers": [
+          "return"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-apply-concurrent-start",
+        "identity": "weather-promises-and-async-control-flow-q-apply-concurrent-start",
+        "acceptedAnswers": [
+          "delayedPreview(\"Fast\")",
+          "delayedPreview('Fast')"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-apply-finally-cleanup",
+        "identity": "weather-promises-and-async-control-flow-q-apply-finally-cleanup",
+        "acceptedAnswers": [
+          "finally"
+        ]
+      },
+      {
+        "id": "weather-promises-and-async-control-flow-q-apply-async-callback",
+        "identity": "weather-promises-and-async-control-flow-q-apply-async-callback",
+        "acceptedAnswers": [
+          "async"
+        ]
+      }
+    ],
+    "challenges": [
+      "weather-promises-and-async-control-flow-apply",
+      "weather-promises-and-async-control-flow-debug",
+      "weather-promises-and-async-control-flow-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "weather-promises-and-async-control-flow-guided-1",
+        "weather-promises-and-async-control-flow-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "weather-promises-and-async-control-flow-apply",
+        "weather-promises-and-async-control-flow-debug",
+        "weather-promises-and-async-control-flow-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "weather-fetch-and-render",
+    "projectId": "async-weather",
+    "order": 5,
+    "prerequisiteTopicIds": [
+      "weather-promises-and-async-control-flow"
+    ],
+    "activities": [
+      "weather-fetch-and-render-read-1",
+      "weather-fetch-and-render-guided-1",
+      "weather-fetch-and-render-read-2",
+      "weather-fetch-and-render-guided-2",
+      "weather-fetch-and-render-read-3"
+    ],
+    "blanks": [
+      "weather-fetch-response",
+      "weather-fetch-json"
+    ],
+    "questions": [
+      {
+        "id": "weather-fetch-and-render-q-predict-london-success",
+        "identity": "weather-fetch-and-render-q-predict-london-success",
+        "acceptedAnswers": [
+          "success"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-predict-paris-success",
+        "identity": "weather-fetch-and-render-q-predict-paris-success",
+        "acceptedAnswers": [
+          "22"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-predict-parse-step",
+        "identity": "weather-fetch-and-render-q-predict-parse-step",
+        "acceptedAnswers": [
+          "await response.json()",
+          "response.json()"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-predict-http-status",
+        "identity": "weather-fetch-and-render-q-predict-http-status",
+        "acceptedAnswers": [
+          "error"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-predict-render-after-success",
+        "identity": "weather-fetch-and-render-q-predict-render-after-success",
+        "acceptedAnswers": [
+          "1",
+          "one"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-predict-no-auto-fetch",
+        "identity": "weather-fetch-and-render-q-predict-no-auto-fetch",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-debug-no-ok-check",
+        "identity": "weather-fetch-and-render-q-debug-no-ok-check",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-debug-forget-json-call",
+        "identity": "weather-fetch-and-render-q-debug-forget-json-call",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-debug-stale-success",
+        "identity": "weather-fetch-and-render-q-debug-stale-success",
+        "acceptedAnswers": [
+          "textContent"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-debug-success-before-state",
+        "identity": "weather-fetch-and-render-q-debug-success-before-state",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-debug-city-source",
+        "identity": "weather-fetch-and-render-q-debug-city-source",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-debug-double-render",
+        "identity": "weather-fetch-and-render-q-debug-double-render",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-explain-ok",
+        "identity": "weather-fetch-and-render-q-explain-ok",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-explain-json",
+        "identity": "weather-fetch-and-render-q-explain-json",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-explain-request-token",
+        "identity": "weather-fetch-and-render-q-explain-request-token",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-explain-state-render",
+        "identity": "weather-fetch-and-render-q-explain-state-render",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-explain-user-trigger",
+        "identity": "weather-fetch-and-render-q-explain-user-trigger",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-explain-single-renderer",
+        "identity": "weather-fetch-and-render-q-explain-single-renderer",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-apply-fetch-call",
+        "identity": "weather-fetch-and-render-q-apply-fetch-call",
+        "acceptedAnswers": [
+          "fetch"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-apply-response-json",
+        "identity": "weather-fetch-and-render-q-apply-response-json",
+        "acceptedAnswers": [
+          "json"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-apply-success-state",
+        "identity": "weather-fetch-and-render-q-apply-success-state",
+        "acceptedAnswers": [
+          "data"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-apply-status-error",
+        "identity": "weather-fetch-and-render-q-apply-status-error",
+        "acceptedAnswers": [
+          "error"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-apply-render-call",
+        "identity": "weather-fetch-and-render-q-apply-render-call",
+        "acceptedAnswers": [
+          "render"
+        ]
+      },
+      {
+        "id": "weather-fetch-and-render-q-apply-active-token",
+        "identity": "weather-fetch-and-render-q-apply-active-token",
+        "acceptedAnswers": [
+          "B"
+        ]
+      }
+    ],
+    "challenges": [
+      "weather-fetch-and-render-apply",
+      "weather-fetch-and-render-debug",
+      "weather-fetch-and-render-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "weather-fetch-and-render-guided-1",
+        "weather-fetch-and-render-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "weather-fetch-and-render-apply",
+        "weather-fetch-and-render-debug",
+        "weather-fetch-and-render-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "weather-loading-empty-and-error-states",
+    "projectId": "async-weather",
+    "order": 6,
+    "prerequisiteTopicIds": [
+      "weather-fetch-and-render"
+    ],
+    "activities": [
+      "weather-loading-empty-and-error-states-read-1",
+      "weather-loading-empty-and-error-states-guided-1",
+      "weather-loading-empty-and-error-states-read-2",
+      "weather-loading-empty-and-error-states-guided-2",
+      "weather-loading-empty-and-error-states-read-3"
+    ],
+    "blanks": [
+      "weather-states-empty",
+      "weather-states-clear"
+    ],
+    "questions": [
+      {
+        "id": "weather-loading-empty-and-error-states-q-predict-slow-loading",
+        "identity": "weather-loading-empty-and-error-states-q-predict-slow-loading",
+        "acceptedAnswers": [
+          "loading"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-predict-empty-state",
+        "identity": "weather-loading-empty-and-error-states-q-predict-empty-state",
+        "acceptedAnswers": [
+          "empty"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-predict-offline-state",
+        "identity": "weather-loading-empty-and-error-states-q-predict-offline-state",
+        "acceptedAnswers": [
+          "error"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-predict-malformed-state",
+        "identity": "weather-loading-empty-and-error-states-q-predict-malformed-state",
+        "acceptedAnswers": [
+          "data-validation error",
+          "validation error",
+          "error"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-predict-retry",
+        "identity": "weather-loading-empty-and-error-states-q-predict-retry",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-predict-success-to-loading",
+        "identity": "weather-loading-empty-and-error-states-q-predict-success-to-loading",
+        "acceptedAnswers": [
+          "no weather text",
+          "empty",
+          "nothing"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-debug-error-as-empty",
+        "identity": "weather-loading-empty-and-error-states-q-debug-error-as-empty",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-debug-malformed-success",
+        "identity": "weather-loading-empty-and-error-states-q-debug-malformed-success",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-debug-loading-stuck",
+        "identity": "weather-loading-empty-and-error-states-q-debug-loading-stuck",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-debug-error-cleared-too-soon",
+        "identity": "weather-loading-empty-and-error-states-q-debug-error-cleared-too-soon",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-debug-null-crash",
+        "identity": "weather-loading-empty-and-error-states-q-debug-null-crash",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-debug-success-error-mix",
+        "identity": "weather-loading-empty-and-error-states-q-debug-success-error-mix",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-explain-state-machine",
+        "identity": "weather-loading-empty-and-error-states-q-explain-state-machine",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-explain-empty-error",
+        "identity": "weather-loading-empty-and-error-states-q-explain-empty-error",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-explain-validation",
+        "identity": "weather-loading-empty-and-error-states-q-explain-validation",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-explain-loading",
+        "identity": "weather-loading-empty-and-error-states-q-explain-loading",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-explain-retry",
+        "identity": "weather-loading-empty-and-error-states-q-explain-retry",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-explain-clear-data",
+        "identity": "weather-loading-empty-and-error-states-q-explain-clear-data",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-apply-loading-status",
+        "identity": "weather-loading-empty-and-error-states-q-apply-loading-status",
+        "acceptedAnswers": [
+          "===",
+          "=="
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-apply-empty-status",
+        "identity": "weather-loading-empty-and-error-states-q-apply-empty-status",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-apply-error-status",
+        "identity": "weather-loading-empty-and-error-states-q-apply-error-status",
+        "acceptedAnswers": [
+          "textContent"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-apply-shape-check",
+        "identity": "weather-loading-empty-and-error-states-q-apply-shape-check",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-apply-clear-on-error",
+        "identity": "weather-loading-empty-and-error-states-q-apply-clear-on-error",
+        "acceptedAnswers": [
+          "null"
+        ]
+      },
+      {
+        "id": "weather-loading-empty-and-error-states-q-apply-success-message",
+        "identity": "weather-loading-empty-and-error-states-q-apply-success-message",
+        "acceptedAnswers": [
+          "B"
+        ]
+      }
+    ],
+    "challenges": [
+      "weather-loading-empty-and-error-states-apply",
+      "weather-loading-empty-and-error-states-debug",
+      "weather-loading-empty-and-error-states-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "weather-loading-empty-and-error-states-guided-1",
+        "weather-loading-empty-and-error-states-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "weather-loading-empty-and-error-states-apply",
+        "weather-loading-empty-and-error-states-debug",
+        "weather-loading-empty-and-error-states-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "weather-stale-responses-and-validation",
+    "projectId": "async-weather",
+    "order": 7,
+    "prerequisiteTopicIds": [
+      "weather-loading-empty-and-error-states"
+    ],
+    "activities": [
+      "weather-stale-responses-and-validation-read-1",
+      "weather-stale-responses-and-validation-guided-1",
+      "weather-stale-responses-and-validation-read-2",
+      "weather-stale-responses-and-validation-guided-2",
+      "weather-stale-responses-and-validation-read-3"
+    ],
+    "blanks": [
+      "weather-stale-latest",
+      "weather-stale-guard"
+    ],
+    "questions": [
+      {
+        "id": "weather-stale-responses-and-validation-q-predict-slow-then-fast",
+        "identity": "weather-stale-responses-and-validation-q-predict-slow-then-fast",
+        "acceptedAnswers": [
+          "Paris"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-predict-invalid-no-request",
+        "identity": "weather-stale-responses-and-validation-q-predict-invalid-no-request",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-predict-stale-error",
+        "identity": "weather-stale-responses-and-validation-q-predict-stale-error",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-predict-sequence",
+        "identity": "weather-stale-responses-and-validation-q-predict-sequence",
+        "acceptedAnswers": [
+          "4",
+          "four"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-predict-validation-before-id",
+        "identity": "weather-stale-responses-and-validation-q-predict-validation-before-id",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-predict-current-guard",
+        "identity": "weather-stale-responses-and-validation-q-predict-current-guard",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-debug-latest-settle",
+        "identity": "weather-stale-responses-and-validation-q-debug-latest-settle",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-debug-id-after-validation",
+        "identity": "weather-stale-responses-and-validation-q-debug-id-after-validation",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-debug-stale-rejection",
+        "identity": "weather-stale-responses-and-validation-q-debug-stale-rejection",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-debug-token-capture",
+        "identity": "weather-stale-responses-and-validation-q-debug-token-capture",
+        "acceptedAnswers": [
+          "request"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-debug-old-loading",
+        "identity": "weather-stale-responses-and-validation-q-debug-old-loading",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-debug-render-stale",
+        "identity": "weather-stale-responses-and-validation-q-debug-render-stale",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-explain-stale",
+        "identity": "weather-stale-responses-and-validation-q-explain-stale",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-explain-error-invalidation",
+        "identity": "weather-stale-responses-and-validation-q-explain-error-invalidation",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-explain-sequence",
+        "identity": "weather-stale-responses-and-validation-q-explain-sequence",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-explain-validation-order",
+        "identity": "weather-stale-responses-and-validation-q-explain-validation-order",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-explain-active-cleanup",
+        "identity": "weather-stale-responses-and-validation-q-explain-active-cleanup",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-explain-captured-id",
+        "identity": "weather-stale-responses-and-validation-q-explain-captured-id",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-apply-increment-id",
+        "identity": "weather-stale-responses-and-validation-q-apply-increment-id",
+        "acceptedAnswers": [
+          "++newest"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-apply-stale-guard",
+        "identity": "weather-stale-responses-and-validation-q-apply-stale-guard",
+        "acceptedAnswers": [
+          "return"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-apply-invalid-return",
+        "identity": "weather-stale-responses-and-validation-q-apply-invalid-return",
+        "acceptedAnswers": [
+          "return"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-apply-catch-guard",
+        "identity": "weather-stale-responses-and-validation-q-apply-catch-guard",
+        "acceptedAnswers": [
+          "return"
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-apply-active-assign",
+        "identity": "weather-stale-responses-and-validation-q-apply-active-assign",
+        "acceptedAnswers": [
+          "+="
+        ]
+      },
+      {
+        "id": "weather-stale-responses-and-validation-q-apply-finally-guard",
+        "identity": "weather-stale-responses-and-validation-q-apply-finally-guard",
+        "acceptedAnswers": [
+          "request === newest",
+          "newest === request"
+        ]
+      }
+    ],
+    "challenges": [
+      "weather-stale-responses-and-validation-apply",
+      "weather-stale-responses-and-validation-debug",
+      "weather-stale-responses-and-validation-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "weather-stale-responses-and-validation-guided-1",
+        "weather-stale-responses-and-validation-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "weather-stale-responses-and-validation-apply",
+        "weather-stale-responses-and-validation-debug",
+        "weather-stale-responses-and-validation-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "weather-testing-and-export",
+    "projectId": "async-weather",
+    "order": 8,
+    "prerequisiteTopicIds": [
+      "weather-stale-responses-and-validation"
+    ],
+    "activities": [
+      "weather-testing-and-export-read-1",
+      "weather-testing-and-export-guided-1",
+      "weather-testing-and-export-read-2",
+      "weather-testing-and-export-guided-2",
+      "weather-testing-and-export-read-3"
+    ],
+    "blanks": [
+      "weather-testing-fixture",
+      "weather-testing-assert"
+    ],
+    "questions": [
+      {
+        "id": "weather-testing-and-export-q-predict-london-fixture",
+        "identity": "weather-testing-and-export-q-predict-london-fixture",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-predict-slow-duration",
+        "identity": "weather-testing-and-export-q-predict-slow-duration",
+        "acceptedAnswers": [
+          "index.html",
+          "root index.html"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-predict-error-status",
+        "identity": "weather-testing-and-export-q-predict-error-status",
+        "acceptedAnswers": [
+          "503",
+          "HTTP 503"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-predict-export-default",
+        "identity": "weather-testing-and-export-q-predict-export-default",
+        "acceptedAnswers": [
+          "fixtures",
+          "fixture mode"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-predict-offline-test",
+        "identity": "weather-testing-and-export-q-predict-offline-test",
+        "acceptedAnswers": [
+          "rejection/error-state assertion",
+          "error-state assertion"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-predict-cleanup",
+        "identity": "weather-testing-and-export-q-predict-cleanup",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-debug-live-flaky",
+        "identity": "weather-testing-and-export-q-debug-live-flaky",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-debug-no-loading-assert",
+        "identity": "weather-testing-and-export-q-debug-no-loading-assert",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-debug-error-kind",
+        "identity": "weather-testing-and-export-q-debug-error-kind",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-debug-no-cleanup",
+        "identity": "weather-testing-and-export-q-debug-no-cleanup",
+        "acceptedAnswers": [
+          "finally"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-debug-null-assert",
+        "identity": "weather-testing-and-export-q-debug-null-assert",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-debug-smoke-only-console",
+        "identity": "weather-testing-and-export-q-debug-smoke-only-console",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-explain-fixture-value",
+        "identity": "weather-testing-and-export-q-explain-fixture-value",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-explain-timing",
+        "identity": "weather-testing-and-export-q-explain-timing",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-explain-http-reject",
+        "identity": "weather-testing-and-export-q-explain-http-reject",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-explain-live-optin",
+        "identity": "weather-testing-and-export-q-explain-live-optin",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-explain-cleanup",
+        "identity": "weather-testing-and-export-q-explain-cleanup",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-explain-behavior-assert",
+        "identity": "weather-testing-and-export-q-explain-behavior-assert",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-apply-fixture-temperature",
+        "identity": "weather-testing-and-export-q-apply-fixture-temperature",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-apply-slow-name",
+        "identity": "weather-testing-and-export-q-apply-slow-name",
+        "acceptedAnswers": [
+          "server"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-apply-http-status",
+        "identity": "weather-testing-and-export-q-apply-http-status",
+        "acceptedAnswers": [
+          "503"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-apply-mode-reset",
+        "identity": "weather-testing-and-export-q-apply-mode-reset",
+        "acceptedAnswers": [
+          "fixture"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-apply-dom-assert",
+        "identity": "weather-testing-and-export-q-apply-dom-assert",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "weather-testing-and-export-q-apply-offline-error",
+        "identity": "weather-testing-and-export-q-apply-offline-error",
+        "acceptedAnswers": [
+          "A"
+        ]
+      }
+    ],
+    "challenges": [
+      "weather-testing-and-export-apply",
+      "weather-testing-and-export-debug",
+      "weather-testing-and-export-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "weather-testing-and-export-guided-1",
+        "weather-testing-and-export-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "weather-testing-and-export-apply",
+        "weather-testing-and-export-debug",
+        "weather-testing-and-export-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "react-dashboard-scope-and-component-map",
+    "projectId": "react-task-dashboard",
+    "order": 1,
+    "prerequisiteTopicIds": [
+      "weather-testing-and-export"
+    ],
+    "activities": [
+      "react-dashboard-scope-and-component-map-read-1",
+      "react-dashboard-scope-and-component-map-guided-1",
+      "react-dashboard-scope-and-component-map-read-2",
+      "react-dashboard-scope-and-component-map-guided-2",
+      "react-dashboard-scope-and-component-map-read-3"
+    ],
+    "blanks": [
+      "react-dashboard-scope-and-component-map-blank-1",
+      "react-dashboard-scope-and-component-map-blank-2"
+    ],
+    "questions": [
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-predict-filter-owner",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-predict-filter-owner",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-predict-row-boundary",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-predict-row-boundary",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-predict-loading-owner",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-predict-loading-owner",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-predict-count",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-predict-count",
+        "acceptedAnswers": [
+          "1",
+          "one"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-predict-reorder",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-predict-reorder",
+        "acceptedAnswers": [
+          "id",
+          "task.id",
+          "4 and 9"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-predict-add-flow",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-predict-add-flow",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-debug-scope-creep",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-debug-scope-creep",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-debug-row-fetch",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-debug-row-fetch",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-debug-duplicate-query",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-debug-duplicate-query",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-debug-mutating-filter",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-debug-mutating-filter",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-debug-index-key",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-debug-index-key",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-debug-child-mutation",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-debug-child-mutation",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-explain-boundary",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-explain-boundary",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-explain-boundary-row",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-explain-boundary-row",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-explain-lift",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-explain-lift",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-explain-derived",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-explain-derived",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-explain-key",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-explain-key",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-explain-callback",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-explain-callback",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-apply-flow-contract",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-apply-flow-contract",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-apply-boundary",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-apply-boundary",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-apply-owner",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-apply-owner",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-apply-empty-distinction",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-apply-empty-distinction",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-apply-delete-target",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-apply-delete-target",
+        "acceptedAnswers": [
+          "12",
+          "task.id"
+        ]
+      },
+      {
+        "id": "react-dashboard-dashboard-scope-and-component-map-q-apply-flow-sequence",
+        "identity": "react-dashboard-dashboard-scope-and-component-map-q-apply-flow-sequence",
+        "acceptedAnswers": [
+          "A"
+        ]
+      }
+    ],
+    "challenges": [
+      "react-dashboard-scope-and-component-map-apply",
+      "react-dashboard-scope-and-component-map-debug",
+      "react-dashboard-scope-and-component-map-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "react-dashboard-scope-and-component-map-guided-1",
+        "react-dashboard-scope-and-component-map-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "react-dashboard-scope-and-component-map-apply",
+        "react-dashboard-scope-and-component-map-debug",
+        "react-dashboard-scope-and-component-map-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "react-stack-and-project-setup",
+    "projectId": "react-task-dashboard",
+    "order": 2,
+    "prerequisiteTopicIds": [
+      "react-dashboard-scope-and-component-map"
+    ],
+    "activities": [
+      "react-stack-and-project-setup-read-1",
+      "react-stack-and-project-setup-guided-1",
+      "react-stack-and-project-setup-read-2",
+      "react-stack-and-project-setup-guided-2",
+      "react-stack-and-project-setup-read-3"
+    ],
+    "blanks": [
+      "react-stack-and-project-setup-blank-1",
+      "react-stack-and-project-setup-blank-2"
+    ],
+    "questions": [
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-predict-vanilla",
+        "identity": "react-dashboard-stack-and-project-setup-q-predict-vanilla",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-predict-jsx",
+        "identity": "react-dashboard-stack-and-project-setup-q-predict-jsx",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-predict-entry",
+        "identity": "react-dashboard-stack-and-project-setup-q-predict-entry",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-predict-package",
+        "identity": "react-dashboard-stack-and-project-setup-q-predict-package",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-predict-named-import",
+        "identity": "react-dashboard-stack-and-project-setup-q-predict-named-import",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-predict-build",
+        "identity": "react-dashboard-stack-and-project-setup-q-predict-build",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-debug-unneeded-framework",
+        "identity": "react-dashboard-stack-and-project-setup-q-debug-unneeded-framework",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-debug-jsx-token",
+        "identity": "react-dashboard-stack-and-project-setup-q-debug-jsx-token",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-debug-wrong-entry",
+        "identity": "react-dashboard-stack-and-project-setup-q-debug-wrong-entry",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-debug-cdn",
+        "identity": "react-dashboard-stack-and-project-setup-q-debug-cdn",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-debug-default-mismatch",
+        "identity": "react-dashboard-stack-and-project-setup-q-debug-default-mismatch",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-debug-host-source",
+        "identity": "react-dashboard-stack-and-project-setup-q-debug-host-source",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-explain-react-choice",
+        "identity": "react-dashboard-stack-and-project-setup-q-explain-react-choice",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-explain-transform",
+        "identity": "react-dashboard-stack-and-project-setup-q-explain-transform",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-explain-entry",
+        "identity": "react-dashboard-stack-and-project-setup-q-explain-entry",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-explain-deps",
+        "identity": "react-dashboard-stack-and-project-setup-q-explain-deps",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-explain-named",
+        "identity": "react-dashboard-stack-and-project-setup-q-explain-named",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-explain-dist",
+        "identity": "react-dashboard-stack-and-project-setup-q-explain-dist",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-apply-stack",
+        "identity": "react-dashboard-stack-and-project-setup-q-apply-stack",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-apply-fragment",
+        "identity": "react-dashboard-stack-and-project-setup-q-apply-fragment",
+        "acceptedAnswers": [
+          "/"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-apply-create-root",
+        "identity": "react-dashboard-stack-and-project-setup-q-apply-create-root",
+        "acceptedAnswers": [
+          "render"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-apply-local-import",
+        "identity": "react-dashboard-stack-and-project-setup-q-apply-local-import",
+        "acceptedAnswers": [
+          "TaskList"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-apply-export",
+        "identity": "react-dashboard-stack-and-project-setup-q-apply-export",
+        "acceptedAnswers": [
+          "export"
+        ]
+      },
+      {
+        "id": "react-dashboard-stack-and-project-setup-q-apply-script",
+        "identity": "react-dashboard-stack-and-project-setup-q-apply-script",
+        "acceptedAnswers": [
+          "A"
+        ]
+      }
+    ],
+    "challenges": [
+      "react-stack-and-project-setup-apply",
+      "react-stack-and-project-setup-debug",
+      "react-stack-and-project-setup-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "react-stack-and-project-setup-guided-1",
+        "react-stack-and-project-setup-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "react-stack-and-project-setup-apply",
+        "react-stack-and-project-setup-debug",
+        "react-stack-and-project-setup-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "react-components-props-and-layout",
+    "projectId": "react-task-dashboard",
+    "order": 3,
+    "prerequisiteTopicIds": [
+      "react-stack-and-project-setup"
+    ],
+    "activities": [
+      "react-components-props-and-layout-read-1",
+      "react-components-props-and-layout-guided-1",
+      "react-components-props-and-layout-read-2",
+      "react-components-props-and-layout-guided-2",
+      "react-components-props-and-layout-read-3"
+    ],
+    "blanks": [
+      "react-components-props-and-layout-blank-1",
+      "react-components-props-and-layout-blank-2"
+    ],
+    "questions": [
+      {
+        "id": "react-dashboard-components-props-and-layout-q-predict-prop",
+        "identity": "react-dashboard-components-props-and-layout-q-predict-prop",
+        "acceptedAnswers": [
+          "Today"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-predict-callback",
+        "identity": "react-dashboard-components-props-and-layout-q-predict-callback",
+        "acceptedAnswers": [
+          "the task with that id"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-predict-landmark",
+        "identity": "react-dashboard-components-props-and-layout-q-predict-landmark",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-predict-label",
+        "identity": "react-dashboard-components-props-and-layout-q-predict-label",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-predict-button",
+        "identity": "react-dashboard-components-props-and-layout-q-predict-button",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-predict-children",
+        "identity": "react-dashboard-components-props-and-layout-q-predict-children",
+        "acceptedAnswers": [
+          "content inside the Panel"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-debug-mutated-prop",
+        "identity": "react-dashboard-components-props-and-layout-q-debug-mutated-prop",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-debug-event-shape",
+        "identity": "react-dashboard-components-props-and-layout-q-debug-event-shape",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-debug-div-button",
+        "identity": "react-dashboard-components-props-and-layout-q-debug-div-button",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-debug-label",
+        "identity": "react-dashboard-components-props-and-layout-q-debug-label",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-debug-focus",
+        "identity": "react-dashboard-components-props-and-layout-q-debug-focus",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-debug-children",
+        "identity": "react-dashboard-components-props-and-layout-q-debug-children",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-explain-props",
+        "identity": "react-dashboard-components-props-and-layout-q-explain-props",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-explain-callback",
+        "identity": "react-dashboard-components-props-and-layout-q-explain-callback",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-explain-main",
+        "identity": "react-dashboard-components-props-and-layout-q-explain-main",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-explain-label",
+        "identity": "react-dashboard-components-props-and-layout-q-explain-label",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-explain-native",
+        "identity": "react-dashboard-components-props-and-layout-q-explain-native",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-explain-children",
+        "identity": "react-dashboard-components-props-and-layout-q-explain-children",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-apply-prop",
+        "identity": "react-dashboard-components-props-and-layout-q-apply-prop",
+        "acceptedAnswers": [
+          "title"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-apply-handler",
+        "identity": "react-dashboard-components-props-and-layout-q-apply-handler",
+        "acceptedAnswers": [
+          "onDelete"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-apply-landmark",
+        "identity": "react-dashboard-components-props-and-layout-q-apply-landmark",
+        "acceptedAnswers": [
+          "alert"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-apply-htmlfor",
+        "identity": "react-dashboard-components-props-and-layout-q-apply-htmlfor",
+        "acceptedAnswers": [
+          "htmlFor"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-apply-control",
+        "identity": "react-dashboard-components-props-and-layout-q-apply-control",
+        "acceptedAnswers": [
+          "button"
+        ]
+      },
+      {
+        "id": "react-dashboard-components-props-and-layout-q-apply-children",
+        "identity": "react-dashboard-components-props-and-layout-q-apply-children",
+        "acceptedAnswers": [
+          "children"
+        ]
+      }
+    ],
+    "challenges": [
+      "react-components-props-and-layout-apply",
+      "react-components-props-and-layout-debug",
+      "react-components-props-and-layout-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "react-components-props-and-layout-guided-1",
+        "react-components-props-and-layout-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "react-components-props-and-layout-apply",
+        "react-components-props-and-layout-debug",
+        "react-components-props-and-layout-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "react-task-state-and-interactions",
+    "projectId": "react-task-dashboard",
+    "order": 4,
+    "prerequisiteTopicIds": [
+      "react-components-props-and-layout"
+    ],
+    "activities": [
+      "react-task-state-and-interactions-read-1",
+      "react-task-state-and-interactions-guided-1",
+      "react-task-state-and-interactions-read-2",
+      "react-task-state-and-interactions-guided-2",
+      "react-task-state-and-interactions-read-3"
+    ],
+    "blanks": [
+      "react-task-state-and-interactions-blank-1",
+      "react-task-state-and-interactions-blank-2"
+    ],
+    "questions": [
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-predict-toggle",
+        "identity": "react-dashboard-task-state-and-interactions-q-predict-toggle",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-predict-batched",
+        "identity": "react-dashboard-task-state-and-interactions-q-predict-batched",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-predict-key-reorder",
+        "identity": "react-dashboard-task-state-and-interactions-q-predict-key-reorder",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-predict-filter",
+        "identity": "react-dashboard-task-state-and-interactions-q-predict-filter",
+        "acceptedAnswers": [
+          "which rows render",
+          "the projection"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-predict-input",
+        "identity": "react-dashboard-task-state-and-interactions-q-predict-input",
+        "acceptedAnswers": [
+          "draft state",
+          "React state"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-predict-submit",
+        "identity": "react-dashboard-task-state-and-interactions-q-predict-submit",
+        "acceptedAnswers": [
+          "two"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-debug-mutate",
+        "identity": "react-dashboard-task-state-and-interactions-q-debug-mutate",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-debug-stale-add",
+        "identity": "react-dashboard-task-state-and-interactions-q-debug-stale-add",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-debug-index-key-state",
+        "identity": "react-dashboard-task-state-and-interactions-q-debug-index-key-state",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-debug-filter-copy",
+        "identity": "react-dashboard-task-state-and-interactions-q-debug-filter-copy",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-debug-input",
+        "identity": "react-dashboard-task-state-and-interactions-q-debug-input",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-debug-double-add",
+        "identity": "react-dashboard-task-state-and-interactions-q-debug-double-add",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-explain-immutable",
+        "identity": "react-dashboard-task-state-and-interactions-q-explain-immutable",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-explain-functional",
+        "identity": "react-dashboard-task-state-and-interactions-q-explain-functional",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-explain-key-state",
+        "identity": "react-dashboard-task-state-and-interactions-q-explain-key-state",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-explain-filter",
+        "identity": "react-dashboard-task-state-and-interactions-q-explain-filter",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-explain-controlled",
+        "identity": "react-dashboard-task-state-and-interactions-q-explain-controlled",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-explain-submit",
+        "identity": "react-dashboard-task-state-and-interactions-q-explain-submit",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-apply-map",
+        "identity": "react-dashboard-task-state-and-interactions-q-apply-map",
+        "acceptedAnswers": [
+          "!task.done"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-apply-functional",
+        "identity": "react-dashboard-task-state-and-interactions-q-apply-functional",
+        "acceptedAnswers": [
+          "prev"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-apply-key",
+        "identity": "react-dashboard-task-state-and-interactions-q-apply-key",
+        "acceptedAnswers": [
+          "id"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-apply-filter",
+        "identity": "react-dashboard-task-state-and-interactions-q-apply-filter",
+        "acceptedAnswers": [
+          "done"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-apply-value",
+        "identity": "react-dashboard-task-state-and-interactions-q-apply-value",
+        "acceptedAnswers": [
+          "draft"
+        ]
+      },
+      {
+        "id": "react-dashboard-task-state-and-interactions-q-apply-submit",
+        "identity": "react-dashboard-task-state-and-interactions-q-apply-submit",
+        "acceptedAnswers": [
+          "preventDefault"
+        ]
+      }
+    ],
+    "challenges": [
+      "react-task-state-and-interactions-apply",
+      "react-task-state-and-interactions-debug",
+      "react-task-state-and-interactions-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "react-task-state-and-interactions-guided-1",
+        "react-task-state-and-interactions-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "react-task-state-and-interactions-apply",
+        "react-task-state-and-interactions-debug",
+        "react-task-state-and-interactions-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "react-effects-persistence-and-errors",
+    "projectId": "react-task-dashboard",
+    "order": 5,
+    "prerequisiteTopicIds": [
+      "react-task-state-and-interactions"
+    ],
+    "activities": [
+      "react-effects-persistence-and-errors-read-1",
+      "react-effects-persistence-and-errors-guided-1",
+      "react-effects-persistence-and-errors-read-2",
+      "react-effects-persistence-and-errors-guided-2",
+      "react-effects-persistence-and-errors-read-3"
+    ],
+    "blanks": [
+      "react-effects-persistence-and-errors-blank-1",
+      "react-effects-persistence-and-errors-blank-2"
+    ],
+    "questions": [
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-predict-effect",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-predict-effect",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-predict-cleanup",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-predict-cleanup",
+        "acceptedAnswers": [
+          "reject or stop the old request",
+          "cancel the old request"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-predict-stale",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-predict-stale",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-predict-save",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-predict-save",
+        "acceptedAnswers": [
+          "JSON.stringify(tasks)",
+          "a JSON string"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-predict-bad-save",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-predict-bad-save",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-predict-version",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-predict-version",
+        "acceptedAnswers": [
+          "a version-2 envelope",
+          "{version:2,tasks:[...]}"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-debug-missing-dep",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-debug-missing-dep",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-debug-no-cleanup",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-debug-no-cleanup",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-debug-race",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-debug-race",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-debug-object-save",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-debug-object-save",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-debug-unsafe-restore",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-debug-unsafe-restore",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-debug-version",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-debug-version",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-explain-deps",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-explain-deps",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-explain-cleanup",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-explain-cleanup",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-explain-race",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-explain-race",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-explain-json",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-explain-json",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-explain-recovery",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-explain-recovery",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-explain-migration",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-explain-migration",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-apply-deps",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-apply-deps",
+        "acceptedAnswers": [
+          "ready"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-apply-abort",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-apply-abort",
+        "acceptedAnswers": [
+          "abort"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-apply-request-id",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-apply-request-id",
+        "acceptedAnswers": [
+          "requestSequence"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-apply-stringify",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-apply-stringify",
+        "acceptedAnswers": [
+          "stringify"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-apply-array",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-apply-array",
+        "acceptedAnswers": [
+          "tasks"
+        ]
+      },
+      {
+        "id": "react-dashboard-effects-persistence-and-errors-q-apply-version",
+        "identity": "react-dashboard-effects-persistence-and-errors-q-apply-version",
+        "acceptedAnswers": [
+          "A"
+        ]
+      }
+    ],
+    "challenges": [
+      "react-effects-persistence-and-errors-apply",
+      "react-effects-persistence-and-errors-debug",
+      "react-effects-persistence-and-errors-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "react-effects-persistence-and-errors-guided-1",
+        "react-effects-persistence-and-errors-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "react-effects-persistence-and-errors-apply",
+        "react-effects-persistence-and-errors-debug",
+        "react-effects-persistence-and-errors-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  },
+  {
+    "id": "react-testing-and-export",
+    "projectId": "react-task-dashboard",
+    "order": 6,
+    "prerequisiteTopicIds": [
+      "react-effects-persistence-and-errors"
+    ],
+    "activities": [
+      "react-testing-and-export-read-1",
+      "react-testing-and-export-guided-1",
+      "react-testing-and-export-read-2",
+      "react-testing-and-export-guided-2",
+      "react-testing-and-export-read-3"
+    ],
+    "blanks": [
+      "react-testing-and-export-blank-1",
+      "react-testing-and-export-blank-2"
+    ],
+    "questions": [
+      {
+        "id": "react-dashboard-testing-and-export-q-predict-add-test",
+        "identity": "react-dashboard-testing-and-export-q-predict-add-test",
+        "acceptedAnswers": [
+          "no"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-predict-wait",
+        "identity": "react-dashboard-testing-and-export-q-predict-wait",
+        "acceptedAnswers": [
+          "after",
+          "after it settles"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-predict-fixture",
+        "identity": "react-dashboard-testing-and-export-q-predict-fixture",
+        "acceptedAnswers": [
+          "yes"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-predict-selector",
+        "identity": "react-dashboard-testing-and-export-q-predict-selector",
+        "acceptedAnswers": [
+          "[data-testid=\"task-row\"]"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-predict-root",
+        "identity": "react-dashboard-testing-and-export-q-predict-root",
+        "acceptedAnswers": [
+          "index.html"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-predict-handoff",
+        "identity": "react-dashboard-testing-and-export-q-predict-handoff",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-debug-private-test",
+        "identity": "react-dashboard-testing-and-export-q-debug-private-test",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-debug-early-assert",
+        "identity": "react-dashboard-testing-and-export-q-debug-early-assert",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-debug-leaked-storage",
+        "identity": "react-dashboard-testing-and-export-q-debug-leaked-storage",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-debug-brittle-selector",
+        "identity": "react-dashboard-testing-and-export-q-debug-brittle-selector",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-debug-source-deploy",
+        "identity": "react-dashboard-testing-and-export-q-debug-source-deploy",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-debug-export-stale",
+        "identity": "react-dashboard-testing-and-export-q-debug-export-stale",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-explain-ui-test",
+        "identity": "react-dashboard-testing-and-export-q-explain-ui-test",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-explain-await",
+        "identity": "react-dashboard-testing-and-export-q-explain-await",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-explain-fixture",
+        "identity": "react-dashboard-testing-and-export-q-explain-fixture",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-explain-selector",
+        "identity": "react-dashboard-testing-and-export-q-explain-selector",
+        "acceptedAnswers": [
+          "B"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-explain-build",
+        "identity": "react-dashboard-testing-and-export-q-explain-build",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-explain-handoff",
+        "identity": "react-dashboard-testing-and-export-q-explain-handoff",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-apply-native-count",
+        "identity": "react-dashboard-testing-and-export-q-apply-native-count",
+        "acceptedAnswers": [
+          "length"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-apply-poll",
+        "identity": "react-dashboard-testing-and-export-q-apply-poll",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-apply-snapshot",
+        "identity": "react-dashboard-testing-and-export-q-apply-snapshot",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-apply-selector",
+        "identity": "react-dashboard-testing-and-export-q-apply-selector",
+        "acceptedAnswers": [
+          "task-row"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-apply-root-entry",
+        "identity": "react-dashboard-testing-and-export-q-apply-root-entry",
+        "acceptedAnswers": [
+          "A"
+        ]
+      },
+      {
+        "id": "react-dashboard-testing-and-export-q-apply-server",
+        "identity": "react-dashboard-testing-and-export-q-apply-server",
+        "acceptedAnswers": [
+          "A"
+        ]
+      }
+    ],
+    "challenges": [
+      "react-testing-and-export-apply",
+      "react-testing-and-export-debug",
+      "react-testing-and-export-combine"
+    ],
+    "gate": {
+      "type": "topic-gate",
+      "guidedActivityIds": [
+        "react-testing-and-export-guided-1",
+        "react-testing-and-export-guided-2"
+      ],
+      "requiredChallengeIds": [
+        "react-testing-and-export-apply",
+        "react-testing-and-export-debug",
+        "react-testing-and-export-combine"
+      ],
+      "minimumDistinctCorrectQuestionIds": 10,
+      "revealedAnswerEarnsCredit": false,
+      "requiresFreshEquivalentAfterReveal": true,
+      "wrongAnswerResetsProgress": false,
+      "retryPolicy": "exhaust-unseen-before-missed"
+    }
+  }
+]

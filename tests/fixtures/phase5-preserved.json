@@ -1,0 +1,102 @@
+[
+  {
+    "sha256": "d730c34745cada194834ede22b6227b8c94b785871864be8b764350cdf3602a1",
+    "path": "src/content/domTodo.ts"
+  },
+  {
+    "sha256": "b012ff743b5cc6b018a8f3fbf284b8814f88a10c93ab7c2a5d8250ea8ac9be92",
+    "path": "src/content/domQuestions.ts"
+  },
+  {
+    "sha256": "a3e519e1c73838d67b6632720849a280f73209d92916e6cd77c541a0aa6feedf",
+    "path": "src/content/todoPhase3.ts"
+  },
+  {
+    "sha256": "a4390e91ea948d6ca80d83b1abd9baa182e2d7e76600cf0fede1ac033aa9bac9",
+    "path": "src/content/todoPhase3Questions.ts"
+  },
+  {
+    "sha256": "7a5e62d3fa1dc70d37f4a243ff7fba4ecd0cbdff588538d73f3e3ef6e28b9eab",
+    "path": "src/content/todoPhase3References.ts"
+  },
+  {
+    "sha256": "3e86bd984607556bc59a639bf90aa265304cceda5696a4afd626de4a19a26b8b",
+    "path": "src/content/weather.ts"
+  },
+  {
+    "sha256": "90a2405311d80e969d854c5f9e62d318b02ebaffc7660dca2307c1a5ae713db2",
+    "path": "src/content/weatherQuestions.ts"
+  },
+  {
+    "sha256": "d75d8f5686a6788938fcd3ec219bd0217f64e1df39264673a195267b68eeb21d",
+    "path": "src/content/weatherReferences.ts"
+  },
+  {
+    "sha256": "383b43ed90be41e43972ca40393f1e7e7b133aa2528a92b5d2d84c7dd98371df",
+    "path": "src/runtime/weatherApi.ts"
+  },
+  {
+    "sha256": "262a9446f82bb2afe280dc30b2cafd6accc1237dad972e2f966a4b79a3bc2623",
+    "path": "src/runtime/trainingStorage.ts"
+  },
+  {
+    "sha256": "60c99308997e274e65ad86390792d2be4b1c9c9f3c77ccd60acb0ab485b8bae6",
+    "path": "src/runtime/compiler.worker.ts"
+  },
+  {
+    "sha256": "a0559e6278cd47bd4a5a69cb9ab84aa5c53dcdcf8004f1335737ab28564b9f9a",
+    "path": "src/runtime/loopInstrumentation.ts"
+  },
+  {
+    "sha256": "d7832e1d6ea47534a82fa9bf6e8a5568d31b8c010de3e4697775f8144e806df5",
+    "path": "src/runtime/index.ts"
+  },
+  {
+    "sha256": "cc2d159e9598dcca120f1b907bdf924a42a50f7cf5bc9f6283a7e11eb0013ecb",
+    "path": "src/persistence/store.ts"
+  },
+  {
+    "sha256": "c75e679b9659bea40f0e95901b07111069ab4bc3e4b8ca61712392bbbed541ce",
+    "path": "src/lesson/engine.ts"
+  },
+  {
+    "sha256": "266f7e58cd3d3a68402dc96063bd5f282ed000197305b4e66e29bf8a5be18d93",
+    "path": "src/exportProject.ts"
+  },
+  {
+    "sha256": "cf806134b21ef1b57185eb318b5d6dcd28e238249e4a9d256a9a5e48ceca1e32",
+    "path": "src/contracts.ts"
+  },
+  {
+    "sha256": "4d7fb7c4c31953edd0409bdc0b9dd5198cb49825a5eb9a5a134d6474c2e3d638",
+    "path": "package-lock.json"
+  },
+  {
+    "sha256": "ec65e8916c6789dea9afa0f6f6a25f603045df8434d9b4f135d1d59df2994f51",
+    "path": "src/content/react.ts"
+  },
+  {
+    "sha256": "1715150fbe91a240c943f5b780ea6354c3ca33a001b110e96b6f3492431849ee",
+    "path": "src/content/reactQuestions.ts"
+  },
+  {
+    "sha256": "5ab011432e6603bd27d97b576d48afe1d5352e4f542feef04058ad68c0028971",
+    "path": "src/content/reactReferences.ts"
+  },
+  {
+    "sha256": "978ce4987343160d5ea8d619b85aff8c43d4e2ddd7b44c5c7e13c478977b22f6",
+    "path": "src/lesson/reactAssessment.ts"
+  },
+  {
+    "sha256": "18b7ef1845ed96f1a113b96861e4e9717f1262e2eb35bac071a9fbf4ed2592b9",
+    "path": "src/lesson/weatherAssessment.ts"
+  },
+  {
+    "sha256": "6c7511c63168dedb3344a72093eb274e76abdcbae49a3237394750c737051d1c",
+    "path": "src/data/demos.ts"
+  },
+  {
+    "sha256": "50278582168ff98066c79a863c9864c5c4ecae6b25759a3d46e2fc5907affc0c",
+    "path": "src/content/schema.ts"
+  }
+]

@@ -1,5 +1,7 @@
 import { reactAssessmentBody, reactAssessmentNeedsStorage } from './reactAssessment';
 import { reactStorageScenarios } from '../content/reactReferences';
+import { ecommerceAssessmentBody, ecommerceAssessmentNeedsStorage } from './ecommerceAssessment';
+import { ecommerceStorageScenarios } from '../content/ecommerceReferences';
 import { weatherAssessmentBody } from './weatherAssessment';
 import { weatherFixtureScript } from '../runtime/weatherApi';
 import type { Files } from '../contracts';
@@ -62,9 +64,9 @@ const duplicateChecks = async () => { contract(); await submit('Same'); await su
   const layoutAccess = `assert(document.querySelector('#input-error').getAttribute('role') === 'alert', 'Use role=alert on the input error.'); for (const node of [count, document.querySelector('#empty-state')]) assert(node.getAttribute('aria-live') === 'polite', 'Use aria-live=polite on count and empty feedback.'); for (const filter of ['all','active','completed']) { const button = document.querySelector('[data-filter="' + filter + '"]'); assert(button && button.getAttribute('type') === 'button', 'Each filter needs a non-submit button.'); }`;
   const smokeChecks = `contract(); const run = document.querySelector('#run-smoke-test'); const results = document.querySelector('#test-results'); assert(run && results, 'Provide #run-smoke-test and #test-results.'); await wait(); await wait(); await submit('Grader verification'); const snapshot = globalThis.__gradeStorage.value; const beforeRows = items().map(row => [label(row).textContent, checkbox(row).checked]); input.value = 'Keep my input'; let submits = 0, changes = 0; form.addEventListener('submit', () => submits++); list.addEventListener('change', () => changes++); results.textContent = ''; run.click(); for (let n = 0; n < 150 && !/passed|failed/i.test(results.textContent); n++) await wait(); assert(/passed/i.test(results.textContent), 'Run actual smoke assertions and report their result.'); assert(submits > 0 && changes > 0, 'A smoke test must exercise real submit and checkbox behavior, not only print passed.'); assert(JSON.stringify(items().map(row => [label(row).textContent, checkbox(row).checked])) === JSON.stringify(beforeRows) && globalThis.__gradeStorage.value === snapshot && input.value === 'Keep my input', 'Smoke cleanup must restore the prior visible tasks, saved data and input.'); assert(!input.disabled && items().every(row => !checkbox(row).disabled && !remove(row).disabled), 'Smoke cleanup must leave current task controls usable.');`;
   const exportChecks = `const prepare = document.querySelector('#prepare-export'), exported = document.querySelector('#export-status'); assert(prepare && exported, 'Add export guidance controls.'); prepare.click(); await wait(); assert(['index.html','styles.css','model.js','main.js'].every(name => exported.textContent.includes(name)) && /server|serve/i.test(exported.textContent), 'Export guidance must name the four files and a static server.');`;
-  const weather = weatherAssessmentBody(assessmentId); const react = reactAssessmentBody(assessmentId);
+  const weather = weatherAssessmentBody(assessmentId); const react = reactAssessmentBody(assessmentId); const ecommerce = ecommerceAssessmentBody(assessmentId);
   let body: string;
-  if (react !== undefined) body = react; else if (weather !== undefined) body = weather;
+  if (ecommerce !== undefined) body = ecommerce; else if (react !== undefined) body = react; else if (weather !== undefined) body = weather;
   else if (assessmentId === 'todo-dom-guided-add' || assessmentId === 'todo-dom-apply') body = 'await addChecks();';
   else if (assessmentId === 'todo-dom-guided-render' || assessmentId === 'todo-dom-debug' || assessmentId === 'todo-dom-combine') body = 'await stateChecks(); await duplicateChecks();';
   else if (!phase3Bodies[phase3]) body = `throw new Error('Unknown lesson assessment: ${assessmentId}');`;
@@ -73,7 +75,7 @@ const duplicateChecks = async () => { contract(); await submit('Same'); await su
   else if (phase3 === 'todo-scope-and-user-flows' || phase3 === 'todo-web-stack-and-file-plan') body = firstIncrement ? phase3 === 'todo-scope-and-user-flows' ? scopeBasic : stackBasic : `${phase3Bodies[phase3]} await stateChecks(); await duplicateChecks();`;
   else if (phase3 === 'todo-testing-and-export') body = `${smokeChecks} ${firstIncrement ? '' : exportChecks}`;
   else body = phase3Bodies[phase3];
-  return `<script>\n(() => {\nconst send = (payload) => parent.postMessage({ type: 'lesson-grade', runId: ${JSON.stringify(runId)}, nonce: ${JSON.stringify(nonce)}, ...payload }, '*');\n(async () => { const checks = []; try { ${weather === undefined && react === undefined ? shared : ''}\n${body}\nchecks.push({ id: ${JSON.stringify(assessmentId)}, passed: true, message: 'All required behavior checks passed.' }); send({ kind: 'result', assessmentId: ${JSON.stringify(assessmentId)}, passed: true, checks, storageValue: globalThis.__gradeStorage ? globalThis.__gradeStorage.value : undefined }); } catch (error) { checks.push({ id: ${JSON.stringify(assessmentId)}, passed: false, message: error instanceof Error ? error.message : String(error) }); send({ kind: 'result', assessmentId: ${JSON.stringify(assessmentId)}, passed: false, checks, storageValue: globalThis.__gradeStorage ? globalThis.__gradeStorage.value : undefined }); } })();\n})();\n</script>`;
+  return `<script>\n(() => {\nconst send = (payload) => parent.postMessage({ type: 'lesson-grade', runId: ${JSON.stringify(runId)}, nonce: ${JSON.stringify(nonce)}, ...payload }, '*');\n(async () => { const checks = []; try { ${weather === undefined && react === undefined && ecommerce === undefined ? shared : ''}\n${body}\nchecks.push({ id: ${JSON.stringify(assessmentId)}, passed: true, message: 'All required behavior checks passed.' }); send({ kind: 'result', assessmentId: ${JSON.stringify(assessmentId)}, passed: true, checks, storageValue: globalThis.__gradeStorage ? globalThis.__gradeStorage.value : undefined }); } catch (error) { checks.push({ id: ${JSON.stringify(assessmentId)}, passed: false, message: error instanceof Error ? error.message : String(error) }); send({ kind: 'result', assessmentId: ${JSON.stringify(assessmentId)}, passed: false, checks, storageValue: globalThis.__gradeStorage ? globalThis.__gradeStorage.value : undefined }); } })();\n})();\n</script>`;
 }
 
 export function isAcceptedGradeMessage(event: MessageEvent, active: Pick<ActiveGrade, 'runId' | 'nonce' | 'assessmentId' | 'frame'> | undefined): event is MessageEvent<{ type: 'lesson-grade'; runId: string; nonce: string; kind: 'result'; assessmentId: string; passed: boolean; checks: GradeCheck[]; storageValue?: string | null }> {
@@ -122,12 +124,26 @@ export function createChallengeGrader(container: HTMLElement, onEvent: (event: G
   };
   window.addEventListener('message', onMessage);
   const storageAdapter = (mode: string, seed: string | null, failWrites = false) => { const escapedSeed = JSON.stringify(seed).replace(/</g, '\\u003c'); return `<script>(() => { let value = ${escapedSeed}; const state = { mode: ${JSON.stringify(mode)}, failWrites: ${JSON.stringify(failWrites)}, get value() { return value; } }; const adapter = { async getItem(key) { if (key !== 'tasks') throw new Error('unexpected key'); if (state.mode === 'read-failure') throw new Error('seeded read failure'); return value; }, async setItem(key, next) { if (key !== 'tasks') throw new Error('unexpected key'); if (state.failWrites) throw new Error('seeded write failure'); value = next; }, async removeItem(key) { if (key !== 'tasks') throw new Error('unexpected key'); if (state.failWrites) throw new Error('seeded write failure'); value = null; } }; Object.assign(state, adapter); Object.defineProperty(globalThis, 'trainingStorage', { value: adapter, configurable: true }); Object.defineProperty(globalThis, '__gradeStorage', { value: state, configurable: true }); })();</script>`; };
+  // Isolated educational fixture; never reads or mutates the host's saved cart.
+  const ecommerceStorageAdapter = (mode: string, seed: string | null, failWrites = false) => `<script>(() => {
+    let value = ${JSON.stringify(seed).replace(/</g, '\\u003c')}, writes = 0;
+    const events = []; const state = { mode: ${JSON.stringify(mode)}, failWrites: ${JSON.stringify(failWrites)}, get value() { return value; }, events };
+    const keyCheck = key => { if (key !== 'cart') throw new Error('Unexpected ecommerce storage key'); };
+    const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+    const adapter = {
+      async getItem(key) { keyCheck(key); events.push('get'); await wait(8); if (state.mode === 'read-failure') throw new Error('Seeded cart read failure'); return value; },
+      async setItem(key, next) { keyCheck(key); events.push('set'); const write = ++writes; await wait(write % 2 ? 12 : 1); if (state.failWrites) throw new Error('Seeded cart write failure'); if (typeof next !== 'string' || next.length > 16384) throw new Error('Invalid cart snapshot'); value = next; },
+      async removeItem(key) { keyCheck(key); events.push('remove'); if (state.failWrites) throw new Error('Seeded cart write failure'); value = null; }
+    };
+    Object.assign(state, adapter); Object.defineProperty(globalThis, 'trainingStorage', {value:adapter, configurable:true}); Object.defineProperty(globalThis, '__gradeStorage', {value:state, configurable:true});
+  })();</script>`;
   const runFrame = (document: CompiledDocument, assessmentId: string, epoch: number, mode?: string, seed?: string | null, failWrites?: boolean) => new Promise<FrameResult>((resolve, reject) => {
     if (epoch !== generation) { reject(new Error('Challenge grading was cancelled.')); return; }
     const runId = token(); const nonce = token(); const frame = window.document.createElement('iframe');
     frame.title = 'Challenge grader'; frame.setAttribute('sandbox', 'allow-scripts allow-forms'); frame.setAttribute('referrerpolicy', 'no-referrer');
     const needsStorage = reactAssessmentNeedsStorage(assessmentId) || assessmentId.startsWith('todo-storage-and-recovery') || assessmentId.startsWith('todo-testing-and-export');
-    frame.srcdoc = createSrcdoc(`${assessmentId.startsWith('weather-') ? weatherFixtureScript() : ''}${needsStorage ? storageAdapter(mode || 'valid', seed === undefined ? (reactAssessmentNeedsStorage(assessmentId) ? reactStorageScenarios[0].seed : JSON.stringify([{ id: 1, text: 'Restored', done: false }])) : seed, Boolean(failWrites)) : ''}${document.html}${assessmentScript(assessmentId, runId, nonce)}`, { id: runId, nonce, stopped: false }, document.head);
+    const cartStorage = ecommerceAssessmentNeedsStorage(assessmentId) ? ecommerceStorageAdapter(mode || 'valid', seed === undefined ? ecommerceStorageScenarios[0].seed : seed, Boolean(failWrites)) : '';
+    frame.srcdoc = createSrcdoc(`${assessmentId.startsWith('weather-') ? weatherFixtureScript() : ''}${cartStorage}${needsStorage ? storageAdapter(mode || 'valid', seed === undefined ? (reactAssessmentNeedsStorage(assessmentId) ? reactStorageScenarios[0].seed : JSON.stringify([{ id: 1, text: 'Restored', done: false }])) : seed, Boolean(failWrites)) : ''}${document.html}${assessmentScript(assessmentId, runId, nonce)}`, { id: runId, nonce, stopped: false }, document.head);
     const timer = window.setTimeout(() => { if (active?.runId !== runId) return; active = undefined; frame.remove(); const error = new Error('Challenge checks timed out. Fix the running code and try again.'); report('grade-error', error.message); reject(error); }, GRADE_TIMEOUT_MS);
     active = { runId, nonce, assessmentId, frame, stopped: false, resolve, reject, timer }; container.replaceChildren(frame);
   });
@@ -154,6 +170,13 @@ export function createChallengeGrader(container: HTMLElement, onEvent: (event: G
       if (result.passed && assessmentId.startsWith('react-effects-persistence-and-errors') && fullStorage) {
         const saved = result.storageValue;
         for (const scenario of reactStorageScenarios.slice(1)) {
+          result = await runFrame(document, assessmentId, epoch, scenario.mode, scenario.mode === 'reload' ? saved : scenario.seed, scenario.failWrites);
+          if (!result.passed) break;
+        }
+      }
+      if (result.passed && assessmentId.startsWith('shop-cart-quantity-and-persistence') && fullStorage) {
+        const saved = result.storageValue;
+        for (const scenario of ecommerceStorageScenarios.slice(1)) {
           result = await runFrame(document, assessmentId, epoch, scenario.mode, scenario.mode === 'reload' ? saved : scenario.seed, scenario.failWrites);
           if (!result.passed) break;
         }

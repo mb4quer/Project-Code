@@ -1,6 +1,6 @@
 # Architecture
 
-Current continuation: Phase 5 React acceptance. Earlier phase sections below are historical; the Phase 5 section describes the current additions. Exact verification results are recorded in HANDOFF.md.
+Current accepted baseline: Phase 5 React Task Dashboard (2026-09-15). Phase 6 ecommerce integration is under acceptance; see the final section for its additive architecture. Earlier phase sections are historical. Exact verification results are recorded in HANDOFF.md.
 
 ## Stack decision
 
@@ -120,4 +120,16 @@ A local `taskApi.js` module supplies deterministic delayed task fixtures. Effect
 
 React exports use the existing compiler and ZIP exporter. The root contains bundled React and the compiled dashboard, while `source/` contains exact editable originals. Standalone persistence uses the existing project-namespaced adapter. Editing source alone does not rebuild root index.html; edit in the host and export again. No course mastery, checkpoints, or saved training-map snapshot is exported.
 
-Acceptance covers published references, unfinished starters, incorrect behavior, distinct early/full increments, storage recovery and reload, the six-topic UI journey, and standalone export. The continuation repairs defects found by those checks before sign-off; see HANDOFF.md for final evidence. Client-visible grading remains educational checking. The existing optimistic storage and limited hostile-code isolation constraints still apply. Ecommerce and accounts remain future phases.
+Acceptance covers published references, unfinished starters, incorrect behavior, distinct early/full increments, storage recovery and reload, the six-topic UI journey, and standalone export. Phase 5 is accepted after the continuation repairs: 71 unit tests, valid content, build, all 38 development scenarios across the full run and corrected Weather rerun, and all 21 selected production scenarios. See HANDOFF.md for exact evidence and limitations. Client-visible grading remains educational checking. The existing optimistic storage and limited hostile-code isolation constraints still apply. Ecommerce and accounts remain future phases.
+
+## Phase 6 original ecommerce architecture
+
+The existing project identity `amazon-inspired-ecommerce` and its eight ordered `shop-*` topic IDs remain stable. The learner storefront is original Cedar & Thread branding and deterministic local product fixtures; no marketplace assets or remote catalog dependency are introduced. `ecommerce.ts`, `ecommerceQuestions.ts` and `ecommerceReferences.ts` hold lessons, questions and incremental editable programs. `ecommerceAssessment.ts` supplies browser behavior checks through additive grader dispatch. No compiler/runtime capability, session schema, engine, host storage, Weather consent or export format change is needed.
+
+Vanilla ES modules implement browser hash routes for catalog, product detail, cart and fictional checkout. Integer `priceCents`, stable product IDs and fixture stock bounds define cart calculations. The scoped `trainingStorage` capability uses only the learner key `cart`, with an app-level `{version:1,items:[{productId,quantity}]}` envelope. This app payload is separate from course Session schema 1 and learning extension version 1. Malformed or unknown data requires explicit recovery; local storage is not server inventory or authorization.
+
+Grading injects an isolated cart-only adapter, with delayed reads and deliberately different write delays to expose ordering mistakes. It never touches actual project/challenge training maps. Full cart grading repeats across valid, missing, malformed, invalid-shape, duplicate-product, failed-read, failed-write and captured reload scenarios. Existing grading source/run/nonce and workspace-version protections remain in place.
+
+Checkout collects only enumerated fictional delivery choices, simulation acknowledgement and a deterministic success/decline choice. No customer or payment input, real order, stock reservation, durable account, database, authentication, authorization or fulfillment is implemented. The final independent combine challenge adds an in-memory stable-ID wishlist isolated from the cart. Its earned milestone is the existing sticky challenge pass, not a new session schema or fake completion flag.
+
+Runnable export uses the unchanged compiler/ZIP and standalone namespaced storage adapter. Root HTML is a compiled snapshot; exact originals remain under source/. Editing originals requires re-export. Saved cart maps, course mastery and checkpoints are not exported. Phase 7 owns durable identity/backend design and release/deployment work. Client-visible grading, optimistic local saves and limited hostile-code isolation remain the earlier documented constraints.

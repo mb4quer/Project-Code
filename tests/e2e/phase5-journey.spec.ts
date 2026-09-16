@@ -97,7 +97,9 @@ test('finish all six React topics with resume, retired questions and prior proje
     for (const [id, progress] of Object.entries(previousMastery)) expect(completed.learning.topics[id]).toEqual(progress);
     await page.locator('#dashboard-nav').click();
   }
-  const ecommerce = curriculum.topics[21]; await expect(page.locator(`[data-topic="${ecommerce.id}"]`)).toContainText('Unlocked');
+  const ecommerce = curriculum.topics[21]; await expect(page.locator(`[data-topic="${ecommerce.id}"]`)).toContainText('Available');
+  await expect(page.locator(`[data-open-topic="${ecommerce.id}"]`)).toBeEnabled();
+  await expect(page.locator(`[data-topic="${ecommerce.id}"]`)).toContainText('0 / 10 distinct correct');
   await page.screenshot({ path: 'test-results/phase5-dashboard.png', fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator('[data-open-topic="react-testing-and-export"]').click();

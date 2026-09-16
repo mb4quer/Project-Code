@@ -1,6 +1,6 @@
-# Handoff — Phase 5 React acceptance
+# Handoff — Phase 5 complete
 
-Updated 2026-09-15. This continuation follows GitHub commit `799923694269cec1c257b597e9b28349eeda4cee` (Add React curriculum assessment flow). The checkout was clean and matched origin/main; a fetch and remote head check found no newer branches or pull-request heads. The prior handoff described Phase 4, while the code already contained Phase 5. This task verifies and finishes that implementation, then stops after Phase 5. Phase 6 is not implemented.
+Updated 2026-09-15. This continuation follows GitHub commit `799923694269cec1c257b597e9b28349eeda4cee` (Add React curriculum assessment flow). The checkout was clean and matched origin/main; a fetch and remote head check found no newer branches or pull-request heads. The prior handoff described Phase 4, while the code already contained Phase 5. **Phase 5 is complete and accepted.** The implementation fixes are now in commit `cf0bfee07abdf30c322c4e154eef3f52399abac6`, confirmed on GitHub main when this task resumed. This final documentation update records the completed acceptance. Stop after Phase 5; Phase 6 is not implemented.
 
 ## Preserved baseline
 
@@ -32,11 +32,11 @@ The UI now accurately lists Todo, Weather and React as available, and labels Rea
 | Focused React browser checks | 5 passed (2.7 minutes) |
 | Full development regression | 37/38 passed (6.2 minutes); only the outdated React-draft assertion failed |
 | Corrected Weather journey | 1 passed (45.6 seconds); all 38 development scenarios now verified across those runs |
-| Production browser acceptance | In progress |
+| Production browser acceptance | All 21 selected scenarios passed; the completed Playwright result records status passed with no failed tests |
 | Independent ZIP check | CRC passed; 10 readable entries, including the export test's notes.txt source |
 | Visual inspection | Desktop dashboard, 390px React lesson and 390px standalone dashboard inspected; no page overflow |
 
-The full development run passed every runtime, grading, storage, export and React journey check. Its sole failure was an expectation that React remained an unpublished draft after Weather. The corrected test explicitly requires an enabled React topic and zero earned credits. No runtime change was needed for that failure.
+The full development run passed every runtime, grading, storage, export and React journey check. Production acceptance also passed all 21 selected scenarios, including the corrected Weather journey and the complete React journey. Its sole failure was an expectation that React remained an unpublished draft after Weather. The corrected test explicitly requires an enabled React topic and zero earned credits. No runtime change was needed for that failure.
 
 Production acceptance command (run after build; source-import matrix tests belong to development):
 

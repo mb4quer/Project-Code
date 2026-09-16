@@ -35,14 +35,14 @@ function publishCompleteFirstTopic(data: Curriculum) {
 }
 
 describe('Versioned content contract', () => {
-  it('accepts seven Todo, eight Weather and six React topics, retaining eight capstone drafts', () => {
+  it('accepts all 29 topics including the eight original ecommerce capstone topics', () => {
     const result = validateContent(curriculum);
     expect(result.success).toBe(true);
     expect(curriculum.projects.map((project) => project.title)).toEqual(['Vanilla Todo', 'Async Weather', 'React Task Dashboard', 'Original Amazon-inspired Ecommerce']);
     expect(curriculum.projects.every((project) => project.topicIds.length >= 5 && project.topicIds.length <= 8)).toBe(true);
-    expect(curriculum.topics.filter(topic => topic.status === 'published')).toHaveLength(21);
+    expect(curriculum.topics.filter(topic => topic.status === 'published')).toHaveLength(29);
     expect(curriculum.topics[0].assessmentQuestions).toHaveLength(32);
-    expect(curriculum.topics.slice(21).every((topic) => topic.status === 'draft' && topic.assessmentQuestions.length === 0)).toBe(true);
+    expect(curriculum.topics.slice(21).every((topic) => topic.status === 'published' && topic.assessmentQuestions.length >= 20)).toBe(true);
     expect(curriculum.topics.every((topic) => topic.challenges.map((challenge) => challenge.order).join(',') === '1,2,3')).toBe(true);
   });
 
@@ -70,7 +70,7 @@ describe('Versioned content contract', () => {
   it('rejects a promoted draft that still has outline-only published material', () => {
     const malformed = copy();
     malformed.projects[0].status = 'published';
-    malformed.topics.find(topic => topic.status === 'draft')!.status = 'published';
+    const incomplete = malformed.topics[21]; incomplete.status = 'published'; incomplete.assessmentQuestions = []; incomplete.activities.forEach(a => { delete a.explanation; delete a.referenceSolution; }); incomplete.challenges.forEach(c => { c.starterFiles = {}; delete c.referenceSolution; });
     const result = validateContent(malformed);
     expect(result.success).toBe(false);
     if (!result.success) {

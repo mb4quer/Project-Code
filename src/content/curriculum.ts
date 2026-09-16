@@ -1,3 +1,4 @@
+import { ecommerceTopics } from './ecommerce';
 import { reactTopics } from './react';
 import { weatherTopics } from './weather';
 import type { Curriculum } from './schema';
@@ -74,12 +75,12 @@ let precedingTopic: string | undefined;
 export const curriculum: Curriculum = {
   id: 'javascript-to-projects', title: 'From JavaScript to working projects', prerequisiteKnowledge: ['Basic HTML and CSS', 'Basic JavaScript syntax'], version: 1, status: 'draft',
   progression: { minimumDistinctCorrectQuestionIds: 10, revealedAnswerEarnsCreditOnSameId: false, freshEquivalentRequiredAfterReveal: true, wrongAnswerResetsProgress: false, retryOrder: 'exhaust-unseen-before-missed' },
-  projects: projects.map((project, order) => ({ id: project.id, path: `projects/${project.id}`, title: project.title, order: order + 1, status: order <= 2 ? 'published' as const : 'draft' as const, description: project.description, prerequisiteProjectIds: order === 0 ? [] : [projects[order - 1].id], topicIds: project.topics.map((topic) => topic.id) })),
+  projects: projects.map((project, order) => ({ id: project.id, path: `projects/${project.id}`, title: project.title, order: order + 1, status: 'published' as const, description: project.description, prerequisiteProjectIds: order === 0 ? [] : [projects[order - 1].id], topicIds: project.topics.map((topic) => topic.id) })),
   topics: projects.flatMap((project) => project.topics.map((outline, index) => {
     const prerequisiteTopicIds = precedingTopic ? [precedingTopic] : [];
     precedingTopic = outline.id;
     if (outline.id === domTodoTopic.id) return domTodoTopic;
-    const authored = [...todoPhase3Topics, ...weatherTopics, ...reactTopics].find(topic => topic.id === outline.id);
+    const authored = [...todoPhase3Topics, ...weatherTopics, ...reactTopics, ...ecommerceTopics].find(topic => topic.id === outline.id);
     if (authored) return { ...authored, order: index + 1, prerequisiteTopicIds };
     const topic = { id: outline.id, path: `projects/${project.id}/topics/${outline.id}`, projectId: project.id, title: outline.title, order: index + 1, status: 'draft' as const, summary: outline.summary, prerequisiteTopicIds, activities: activities(project.id, outline), blanks: [], assessmentQuestions: [], challenges: challenges(project.id, outline) };
     return { ...topic, gate: { type: 'topic-gate' as const, guidedActivityIds: [`${outline.id}-guided`], requiredChallengeIds: topic.challenges.map((challenge) => challenge.id), minimumDistinctCorrectQuestionIds: 10 as const, revealedAnswerEarnsCredit: false as const, requiresFreshEquivalentAfterReveal: true as const, wrongAnswerResetsProgress: false as const, retryPolicy: 'exhaust-unseen-before-missed' as const } };

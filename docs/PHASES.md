@@ -1,6 +1,6 @@
 # Phase acceptance
 
-Updated 2026-09-15. Phases 1–4 are historically accepted. The current continuation verifies and finishes the Phase 5 React implementation from GitHub commit 7999236. Phase 5 acceptance results are recorded below; stop after Phase 5.
+Updated 2026-09-15. Phases 1–5 are complete and accepted. The React continuation fixes are in GitHub commit cf0bfee. Exact Phase 5 acceptance results are recorded below. Stop after Phase 5; Phase 6 remains unimplemented.
 
 ## Phase 1 — Complete
 
@@ -86,7 +86,7 @@ The final refinements made early checks accept only their taught increment, adde
 
 ## Later-phase roadmap (updated for the current continuation)
 
-- [ ] **Phase 5 acceptance in progress:** React dashboard implementation is present; verify curriculum, grading, migration/resume and runnable export before sign-off.
+- [x] **Phase 5:** React dashboard curriculum, grading, migration/resume and runnable export accepted; see final results below.
 - [ ] **Phase 6:** original ecommerce capstone, routing/catalog/cart/simulated checkout, independent feature milestone and tests.
 - [ ] **Phase 7:** durable accounts, auth/authorization, guest migration, conflict recovery, cross-device resume, full browser/accessibility/security/content release checks and deployment.
 
@@ -133,7 +133,7 @@ The continuation started from clean GitHub main at `7999236`. Code already conta
 - [x] Verify all six topic journeys, five-credit reloads, retired identities, mid-challenge draft reloads, checkpoints and separate training data.
 - [x] Verify standalone compiled React export, exact originals, reload persistence, migration/recovery and narrow layout.
 - [x] Update current availability, project breadcrumbs/labels and continuity guidance.
-- [ ] Complete final full-development and production-browser sign-off.
+- [x] Complete development regression and production-browser sign-off, including the corrected Weather-to-React assertion.
 
 | Check | Result |
 | --- | --- |
@@ -142,7 +142,7 @@ The continuation started from clean GitHub main at `7999236`. Code already conta
 | Production build | TypeScript and Vite passed; existing large-chunk warning remains (about 530 kB main bundle) |
 | Focused React development checks | 5 passed (2.7 minutes), followed by final project-label refinement |
 | Development regression | 37/38 passed (6.2 minutes); the only failure was the stale React-draft label assertion. Corrected Weather journey then passed (45.6 seconds), covering all 38 scenarios |
-| Production browser suite | Pending |
+| Production browser suite | All 21 selected scenarios passed; final Playwright status passed, no failed tests |
 | Independent ZIP validation | CRC passed; 10 entries including the test's notes.txt source file |
 | Visual review | Desktop dashboard, 390px lesson and 390px standalone export inspected; no page overflow |
 
