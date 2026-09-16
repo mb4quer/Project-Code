@@ -35,7 +35,8 @@ test.describe('Phase 6 Cedar & Thread behavioral matrix',()=>{
       ['price filter resets instead of intersecting',topics[4],mutate(refs[topics[4]],"document.addEventListener('change',e=>{if(e.target.id==='price-filter')e.target.value='all'},true);")],
       ['cart ignores add clicks',topics[5],mutate(refs[topics[5]],"document.addEventListener('click',e=>{if(e.target.matches('[data-cart-add]'))e.stopImmediatePropagation()},true);")],
       ['cart ignores quantity changes',topics[5],mutate(refs[topics[5]],"document.addEventListener('change',e=>{if(e.target.matches('[data-cart-quantity]')){e.target.value='1';e.stopImmediatePropagation()}},true);")],
-      ['cart remove targets every row',topics[5],mutate(refs[topics[5]],"document.addEventListener('click',e=>{if(e.target.matches('[data-cart-remove]'))document.querySelector('#cart-list').replaceChildren()},true);")],
+      // Mutate cart state: clearing DOM in capture is repaired by the normal render.
+      ['cart remove targets every row',topics[5],replace(refs[topics[5]],'main.js','commit(cart.filter(row=>row.productId!==target.dataset.cartRemove))','commit([])')],
       ['checkout confirms without validation',topics[6],mutate(refs[topics[6]],"document.addEventListener('submit',e=>{e.preventDefault();e.stopImmediatePropagation();document.querySelector('#checkout-confirmation').textContent='Demo order confirmed';},true);")],
       ['smoke prints success without testing',topics[7],mutate(refs[topics[7]],"document.addEventListener('click',e=>{if(e.target.id==='run-shop-smoke'){e.stopImmediatePropagation();document.querySelector('#shop-smoke-status').textContent='Smoke test passed';}},true);")],
       ['wishlist has no reversible action',topics[7],mutate(refs[topics[7]],"document.addEventListener('click',e=>{if(e.target.matches('[data-wishlist-toggle]'))e.stopImmediatePropagation()},true);")],

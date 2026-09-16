@@ -1,6 +1,6 @@
 # Phase acceptance
 
-Updated 2026-09-15. Phases 1–5 are complete and accepted. The React continuation fixes are in GitHub commit cf0bfee. Exact Phase 5 acceptance results are recorded below. Stop after Phase 5; Phase 6 remains unimplemented.
+Updated 2026-09-16. Phases 1–6 are complete and accepted. React fixes are in GitHub commit cf0bfee and ecommerce integration in 87ef2e7. Exact Phase 6 acceptance results are recorded below; Phase 7 remains future scope.
 
 ## Phase 1 — Complete
 
@@ -87,7 +87,7 @@ The final refinements made early checks accept only their taught increment, adde
 ## Later-phase roadmap (updated for the current continuation)
 
 - [x] **Phase 5:** React dashboard curriculum, grading, migration/resume and runnable export accepted; see final results below.
-- [ ] **Phase 6:** original ecommerce capstone, routing/catalog/cart/simulated checkout, independent feature milestone and tests.
+- [x] **Phase 6:** original ecommerce capstone, routing/catalog/cart/simulated checkout, independent feature milestone and tests accepted 2026-09-16; see HANDOFF.md.
 - [ ] **Phase 7:** durable accounts, auth/authorization, guest migration, conflict recovery, cross-device resume, full browser/accessibility/security/content release checks and deployment.
 
 Phase 3 does not implement cloud accounts, server execution, external Weather APIs, a terminal or website publication. Client-visible grading is not tamper-proof. Browser storage remains local and optimistically guarded; hostile-code isolation remains limited. Export source edits need a new host export to rebuild the root bundle.

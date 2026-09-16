@@ -76,3 +76,23 @@ Astra owns planning, integration and acceptance. Terra handles bounded React eng
 ## Phase 6 prompt
 
 Continue Project Code in this repository with Phase 6 only. Use GPT-6 Astra for planning, integration and acceptance, Terra for scoped engineering/tests and Luna for bounded content drafts; at most three agents and no recursive delegation. Read PROJECT_BRIEF.md, docs/ARCHITECTURE.md, docs/CURRICULUM.md, docs/PHASES.md and docs/HANDOFF.md first, and verify the accepted Phase 5 baseline before edits. Preserve Phase 1 runtime, every Phase 2–5 published ID/identity and earned mastery, all demo/project/challenge source and checkpoints, schema-1 migration/resume, scoped training maps, Weather fixtures/live consent, React persistence and runnable exports. Complete only the eight existing ecommerce topics in order: original catalog/scope; stack/routes; storefront setup; details and client/server/API/database/auth boundaries; search/filter; cart persistence; simulated checkout validation; testing/export plus an independent feature milestone. Teach prerequisites before use, use original branding and deterministic local product fixtures, distinguish simulations from backend capabilities, collect no real payment data, and leave durable accounts/auth/backend implementation for Phase 7. Each topic needs at least 20 reviewed distinct questions, cumulative ten-distinct-correct mastery, fresh equivalents after reveal, and exactly three behavior-graded challenges. Verify reference programs, unfinished starters, representative incorrect programs, early/full increments, progression, reload/migration, prior-work preservation, responsive accessibility and independent runnable export. Update all five continuity files with exact results and limitations, include the Phase 7 prompt, and stop after Phase 6.
+
+## Phase 6 final acceptance (2026-09-16)
+
+Phase 6 is complete. GitHub `87ef2e7` supplied the ecommerce implementation; local fixes corrected two generated selectors and strengthened the cart mutant fixture. The final authored inventory is 29 published topics, 145 activities, 60 blanks, 704 reviewed questions and 87 challenges.
+
+| Check | Result |
+| --- | --- |
+| Unit tests | 88 passed across 15 files |
+| Content validation | 4 projects; 29 published topics; 0 drafts |
+| Production build | Passed; existing ~649 kB bundle warning remains |
+| Development browser suite | 42/43 passed in the full run; corrected ecommerce mutant rerun passed, verifying all 43 scenarios |
+| Production browser acceptance | 23/23 passed against rebuilt preview |
+| Ecommerce export | ZIP CRC passed; 8 entries, exact sources, isolated cart/checkout/smoke behavior |
+| Visual review | Desktop dashboard, ecommerce desktop/mobile export and 390px lesson inspected; no page overflow |
+
+Ecommerce preserves earlier IDs, mastery, workspaces, checkpoints and training maps. Cart persistence is scoped local simulation; checkout collects no personal or payment data; wishlist is in-memory and independent. Phase 7 owns durable accounts, authentication/authorization, backend services, conflict recovery, cross-device resume, security/content release checks and deployment.
+
+## Phase 7 prompt
+
+Continue Project Code with Phase 7 only. Preserve all Phase 1–6 identities, mastery, source, checkpoints, scoped maps, local fixtures and exports. Design and implement durable accounts, authentication and authorization, guest migration, conflict recovery, cross-device resume, and the full browser/accessibility/security/content release checks and deployment workflow. Do not change published learning contracts without migration evidence. Update all five continuity files with exact results and limitations, and stop after Phase 7.

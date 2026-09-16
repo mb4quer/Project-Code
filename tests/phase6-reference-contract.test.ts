@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { curriculum } from '../src/content/curriculum';
 import { ecommerceBasicReferenceByTopic, ecommerceReferenceByTopic } from '../src/content/ecommerceReferences';
+import { ecommerceAssessmentBody } from '../src/lesson/ecommerceAssessment';
 
 const topicIds = [
   'shop-scope-catalog-and-originality',
@@ -18,6 +19,17 @@ function localImports(files: Record<string, string>) {
 }
 
 describe('Phase 6 storefront reference contract', () => {
+  it('generates executable assessment bodies for every published increment and challenge', () => {
+    const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
+    for (const topic of curriculum.topics.filter(topic => topic.projectId === 'amazon-inspired-ecommerce')) {
+      for (const suffix of ['guided-1', 'guided-2', 'apply', 'debug', 'combine']) {
+        const id = `${topic.id}-${suffix}`;
+        const body = ecommerceAssessmentBody(id);
+        expect(body, id).toBeDefined();
+        expect(() => new AsyncFunction(body!), id).not.toThrow();
+      }
+    }
+  });
   it('keeps the published ecommerce prerequisites and counts stable', () => {
     const project = curriculum.projects.find(item => item.id === 'amazon-inspired-ecommerce');
     const topics = curriculum.topics.filter(item => item.projectId === 'amazon-inspired-ecommerce');

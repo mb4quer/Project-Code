@@ -31,7 +31,7 @@ for(const word of ['original','local','simulat'])assert(text($('#originality-bou
 `+(full?String.raw`
 for(const word of ['catalog','detail','cart','checkout'])assert(text($('#flow-map')).toLowerCase().includes(word),'Map the complete shopper flow.');
 for(const word of ['branding','assets','accounts','server','payment','personal'])assert(text($('#scope-exclusions')).toLowerCase().includes(word),'Explicitly exclude '+word+' from this local milestone.');
-assert(!/amazon/i.test(text(#shop-app)),'Use original storefront branding.');
+assert(!/amazon/i.test(text($('#shop-app'))),'Use original storefront branding.');
 `: '');
   else if(topic==='shop-stack-data-and-route-plan') body=String.raw`
 const stack=text($('#shop-stack-plan'));assert(/plain javascript/i.test(stack)&&/vite react/i.test(stack)&&/full.stack/i.test(stack)&&/vanilla modules/i.test(stack),'Compare three stacks and choose vanilla modules.');
@@ -57,7 +57,7 @@ assert(!visible($('#catalog-grid')),'A product route must show its view instead 
 await navigate('#/product/cedar-throw');assert(text($('#product-detail')).includes('<strong>literal</strong>')&&!$('#product-detail strong'),'Render the selected literal description without parsing it.');assert(text($('#product-detail')).includes('68.00'),'Detail agrees with catalog price.');
 await navigate('#/product/nope');assert(visible($('#product-not-found'))&&document.querySelector('a[href="#/catalog"]'),'Unknown product provides a catalog recovery path.');
 await navigate('#/unrecognised');assert(/not found|unknown route/i.test(text(document.body)),'Unknown routes need explicit recovery.');await navigate('#/catalog');assert(visible($('#catalog-grid'))&&cards().length===4,'Return to the complete catalog.');
-for(const word of ['local','server','api','database','authentication','authorization'])assert(text(#client-server-boundary).toLowerCase().includes(word),'Explain the '+word+' boundary.');
+for(const word of ['local','server','api','database','authentication','authorization'])assert(text($('#client-server-boundary')).toLowerCase().includes(word),'Explain the '+word+' boundary.');
 `: '');
   else if(topic==='shop-product-search-and-filters') body=String.raw`
 await navigate('#/catalog');input('#shop-search','  MuG  ');assert(ids().join()==='ember-mug','Trim and case-fold the name query.');input('#shop-search','no-such-product');assert(cards().length===0&&/no.*match/i.test(text($('#empty-results'))),'Distinguish an empty search projection.');input('#shop-search','');assert(cards().length===4,'Clearing query restores the source catalog.');
