@@ -147,3 +147,13 @@ The continuation started from clean GitHub main at `7999236`. Code already conta
 | Visual review | Desktop dashboard, 390px lesson and 390px standalone export inspected; no page overflow |
 
 The React matrix passes all 30 full reference/assessment combinations, rejects all 30 unfinished starters, checks all six first-increment references against their basic and full contracts, and rejects seven representative incorrect programs. The course session remains schema 1; version 2 refers only to the learner task payload. Source edits require re-export to update the compiled root. Client-visible grading, optimistic local saves and limited hostile-code isolation remain constraints. No dependency upgrades, deployment or ecommerce implementation were added.
+
+## Phase 6 continuation verification
+
+The accepted Phase 5 baseline was verified before any Phase 6 edit: 71 unit tests, 21 published/8 draft topics, production build and all 38 development Edge scenarios passed (6.1 minutes). The five continuity files already had local Phase 5 sign-off updates; those were retained. The interrupted Phase 6 draft was subsequently saved in commit 9cff795 and resumed without replacing prior work.
+
+The current authored inventory is 29 published topics, 145 activities, 60 blanks, 704 questions and 87 challenges. Phase 6 adds eight topics, 40 activities, 16 blanks, 192 reviewed distinct questions and 24 independent challenges. All original project/topic IDs remain stable. Runtime, engine, Session schema 1, learning extension 1, training capability, Weather fixtures/live consent, React persistence and exporter are preserved. The final wishlist milestone is earned by the existing independent combine challenge gate.
+
+Astra reviewed and integrated Terra engineering and Luna question drafts, using at most three workers and no recursive delegation. Draft review corrected incomplete starters, missing early/full distinctions, unsafe fixture rendering, lost earlier routes, cart write ordering and failure behavior, premature checkout confirmation, and non-behavioral smoke checks. Question review replaced ambiguous exact-sentence answers and generic distractors, corrected code answers, and restored distinct prerequisite-aligned scenarios. Initial unit checks found two test expectation errors: ecommerce must depend on React, and CSS/planning mentions are not executable future features. Those expectations were corrected; no prerequisite or runtime was weakened.
+
+Final browser acceptance is in progress. Do not treat authored status or compilation as a behavior pass; exact final results will replace this note at sign-off.

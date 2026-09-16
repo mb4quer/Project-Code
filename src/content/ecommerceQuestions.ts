@@ -14,40 +14,70 @@ let debuggingIndex = 0;
 const balanceChoice = (prompt: string, answers: string[], index: number): [string, string[]] => {
   if (!prompt.includes('A)') || !prompt.includes('B)') || answers.length !== 1 || !['A', 'B'].includes(answers[0])) return [prompt, answers];
   if (index % 2 === 0) return [prompt, answers];
-  return [prompt.replaceAll('A)', '__B__)').replaceAll('B)', 'A)').replaceAll('__B__)', 'B)'), [answers[0] === 'A' ? 'B' : 'A']];
+  const parts = prompt.match(/^([\s\S]*?)A\) ([\s\S]*?); B\) ([\s\S]*?)\.?$/);
+  if (!parts) throw new Error('A balanced choice needs explicit A/B alternatives: ' + prompt);
+  return [`${parts[1]}A) ${parts[3]}; B) ${parts[2]}.`, [answers[0] === 'A' ? 'B' : 'A']];
 };
 const d = (prompt: string, answers: string[], feedback: string): Spec => { const [nextPrompt, nextAnswers] = balanceChoice(prompt, answers, debuggingIndex++); return { category: 'debugging', prompt: nextPrompt, answers: nextAnswers, feedback }; };
 let explanationIndex = 0;
-const explanationDistractors = [
-  'copied marketplace branding is acceptable when the layout is familiar', 'the cart should own every brand decision',
-  'a loyalty program is required before catalog browsing works', 'a product name is always a unique database key',
-  'a live inventory service is required for fixed local fixtures', 'a decorative slogan is a substitute for a heading',
-  'a full-stack framework is required for every browser route', 'cart lines should copy and trust the displayed price',
-  'every view should parse and render the hash independently', 'a route parameter is a literal product id named “:id”',
-  'search text should be stored inside every product record', 'the browser build configuration authorizes stock changes',
-  'the catalog shell should be duplicated inside every card', 'a route can change without changing the rendered view',
-  'the first fixture is an acceptable replacement for any selected id', 'formatted dollars should replace integer cents in source data',
-  'an empty source and a filtered projection are the same state', 'a decorative wrapper is more accessible than a semantic landmark',
-  'the browser can guarantee a server inventory reservation', 'a local array is automatically a durable database',
-  'authentication and authorization are interchangeable terms', 'saving a password in browser storage creates secure auth',
-  'a filter should delete records that do not match', 'the total catalog count is always the visible result count',
-  'no matches means the fixture service is necessarily unavailable', 'a query must be sent to a remote search endpoint',
-  'zero quantity is a valid persisted cart line', 'visible labels are safer cart keys than stable product ids',
-  'a stale total is acceptable if each row looks correct', 'corrupt storage should be replaced silently with empty data',
-  'a cart reload should invent missing products', 'checkout can succeed without a bounded delivery choice',
-  'an unchecked consent box has no effect on a simulation', 'the review may collect real customer details',
-  'a decline should clear the cart before offering retry', 'every submit click should create another pending attempt',
-  'a private state variable proves the rendered page is correct', 'remote catalog order is a valid deterministic fixture',
-  'the third div is a stable behavior contract', 'editing source files automatically rebuilds an export',
-  'wishlist membership should be copied into cart quantities', 'reloading should make an in-memory wishlist durable',
-  'a product title is a safer wishlist key than its stable id', 'an export is verified by compilation alone',
-  'a failed smoke test should leave its fixture changes behind', 'checkout payment fields are required for a useful demo',
-  'a copied product route should always show the first item', 'a static export needs a server-side rewrite for every hash',
- ];
+// Each explanation owns a plausible misconception keyed by its correct answer.
+// Keeping these pairings explicit prevents unrelated, recycled distractors.
+const explanationDistractors: Record<string, string> = {
+  'interaction patterns are general; brand assets and content must be original': 'a familiar cart layout permits copying the marketplace logo and product copy',
+  'it adds a new workflow and data contract beyond the milestone': 'loyalty points are required before a shopper can browse products',
+  'integer cents avoid ambiguous floating-point money arithmetic': 'formatted dollar strings are the safest value for arithmetic',
+  'each state has a distinct user goal and observable contract': 'one large page state is sufficient for every shopper goal',
+  'they make behavior predictable without depending on a live catalog service': 'a live catalog is required to make a local fixture deterministic',
+  'it gives the page and assistive technology a meaningful structure': 'a decorative slogan provides the same structure as a heading',
+  'their setup, rendering, and deployment tradeoffs differ': 'a full-stack framework has no setup or deployment tradeoffs',
+  'the catalog describes merchandise while the cart records the shopper quantity': 'a cart item should duplicate every catalog field as its identity',
+  'it makes navigation behavior and not-found cases testable': 'routes can be left undefined because every link has a valid destination',
+  'fixtures are source data while the query is view state': 'search text belongs inside every product record so filtering can mutate it',
+  'they work without assuming server-side route rewrites': 'static hash routes require a server rewrite for each product path',
+  'extra setup increases maintenance without serving the milestone': 'unused dependencies are harmless because setup cost never affects maintenance',
+  'global navigation and one-record presentation have different responsibilities': 'each product card should duplicate the entire catalog shell',
+  'they provide predictable activation and accessible route changes': 'a styled div is always equivalent to a keyboard-operable link',
+  'actions and links must target the intended record even when names repeat': 'the first fixture can safely stand in for any selected product',
+  'it keeps cards consistent and localizes shape differences': 'each card should normalize fields independently wherever it renders',
+  'the UI contract remains clear when data is absent or a fixture fails': 'an empty source and a filtered projection need the same message',
+  'shoppers can identify and activate the intended item': 'a detail link can omit the product name because all cards share one target',
+  'it connects one navigation target to one product record': 'the route parameter is a literal product id named “:id”',
+  'it gives the shopper a recoverable next action': 'a not-found view should keep the shopper on stale product detail',
+  'the UI contract can later receive remote data without rewriting every component': 'the UI must be rewritten whenever the fixture source changes',
+  'the server controls trusted data and cannot rely on mutable client code': 'browser code can guarantee final price and authorization against tampering',
+  'the current client-only milestone can teach data shape without adding durable backend infrastructure': 'a database is required before a client-only fixture can teach data shape',
+  'authentication establishes who someone is; authorization decides what they may do': 'authentication and authorization are interchangeable names for the same check',
+  'equivalent user input should produce equivalent results': 'leading spaces and case changes should create different search results',
+  'it prevents ambiguous result sets when multiple controls are active': 'the last filter should replace all earlier controls regardless of their values',
+  'they are calculated from source products and current controls': 'filtering should delete nonmatching products from the source catalog',
+  'they answer different questions and should be labeled distinctly': 'the total catalog count is always the only count worth showing',
+  'the recovery actions differ: add data versus clear or change the query': 'no search matches proves that the catalog source is unavailable',
+  'integer source data supports precise comparison while the label serves display': 'formatted dollar text is the authoritative value for numeric filtering',
+  'integer cents support precise numeric filtering while formatted dollars serve display': 'formatted dollar text is the authoritative value for numeric filtering',
+  'names can change or collide while ids identify records': 'a visible product name is safer than a stable id for cart identity',
+  'it prevents the simulated cart from claiming more available units than the fixture allows': 'a cart quantity may exceed fixture stock because the browser can reserve units',
+  'each action can enforce identity and quantity rules consistently': 'a decrement can mutate shared catalog records without a defined transition',
+  'one source of cart state avoids drift between rows and summary': 'a stale displayed total is acceptable when each cart row looks correct',
+  'future loaders can distinguish known formats and migrate safely': 'an unversioned array is safer because loaders never need format checks',
+  'the learner can inspect or retry recovery instead of losing evidence silently': 'corrupt saved text should be replaced silently with an empty cart',
+  'they make the simulated checkout deterministic and avoid real fulfillment claims': 'any delivery string is acceptable in a demo because fulfillment is simulated',
+  'it makes clear that the flow does not process real payment or personal data': 'an unchecked consent box can be ignored because the checkout is simulated',
+  'the shopper can verify items, delivery, and total before committing the demo transition': 'the review may collect real customer details to make the demo realistic',
+  'the demo describes state transitions without representing a real payment transaction': 'a simulated decline should be presented as a real captured payment',
+  'the shopper can correct the choice or retry without rebuilding the cart': 'a decline should clear the cart before offering a retry',
+  'one user action should produce one bounded outcome': 'every submit click should create another pending checkout attempt',
+  'it verifies the route and state contracts work together': 'a private state variable proves the rendered flow is correct',
+  'the test should be repeatable without damaging learner state': 'a smoke test may leave its fixture changes behind because repeatability is irrelevant',
+  'tests remain focused on meaningful UI behavior rather than incidental markup': 'the third div is a stable behavior contract for a cart row',
+  'the recipient can run the app and understand how to continue development': 'compilation alone verifies that an exported app is ready for handoff',
+  'it extends product identity and interaction without changing checkout': 'wishlist membership should be copied into persisted cart quantities',
+  'the feature must integrate without regressing established behavior': 'wishlist behavior can be tested in isolation without checking catalog or cart flows',
+};
 const e = (prompt: string, answers: string[], feedback: string): Spec => {
   const correct = explanationIndex++ % 2 === 0 ? 'A' : 'B';
   const answer = answers[0];
-  const distractor = explanationDistractors[explanationIndex - 1];
+  const distractor = explanationDistractors[answer];
+  if (!distractor) throw new Error(`Missing explanation distractor for: ${answer}`);
   const choices = correct === 'A'
     ? `A) ${answer}; B) ${distractor}`
     : `A) ${distractor}; B) ${answer}`;
@@ -217,10 +247,10 @@ add('shop-product-details-and-client-server-boundaries', [
 
 add('shop-product-search-and-filters', [
  ['query-normalization', [
-  p('Should searches for ` mug ` and `MUG` match a case-insensitive trimmed catalog search?', ['yes'], 'Normalization removes surrounding spaces and case differences.'),
-  d('A query with leading spaces returns no match. Choose the repair: A) trim before matching; B) alter product names.', ['A'], 'The query boundary should normalize user input.'),
-  e('Why normalize the query before filtering?', ['equivalent user input should produce equivalent results'], 'Normalization makes search behavior predictable.'),
-  a('For a case-insensitive search, what normalized query does `  Wrap ` become?', ['wrap'], 'Trimming and case folding produce `wrap`.'),
+  p('Under trimmed, case-insensitive name matching, should ` mug ` and `MUG` return the same products?', ['yes'], 'Whitespace and case differences normalize to the same query.'),
+  d('Typing spaces around Lamp returns no matches although Lamp exists. Choose the repair: A) trim the query before matching; B) rename the fixture to include spaces.', ['A'], 'Normalize input at the query boundary without changing fixtures.'),
+  e('Why normalize the query before filtering?', ['equivalent user input should produce equivalent results'], 'Normalization makes the declared matching rule predictable.'),
+  a('Complete the normalized value for `  Wrap ` after trim and lowercase.', ['wrap'], 'The normalized query is wrap.'),
  ]],
  ['filter-composition', [
   p('A category filter is Home and the query is “lamp”. Should a result satisfy both active conditions?', ['yes'], 'Composed filters narrow results by every active criterion.'),
